@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Tasarım Örnekleri</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Amoeba
+  * Template URL: https://bootstrapmade.com/free-one-page-bootstrap-template-amoeba/
+  * Updated: Jan 31 2026 with Bootstrap v5.3.8
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.webp" alt=""> -->
+        <h1 class="sitename">Burak's Portfolio</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Ana Sayfa</a></li>
+          <li><a href="#portfolio">Portföy</a></li>
+          <li class="dropdown"><a href="#"><span>Kategoriler</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#portfolio" data-filter=".filter-kurumsal">Kurumsal</a></li>
+              <li><a href="#portfolio" data-filter=".filter-eticaret">E-Ticaret</a></li>
+              <li><a href="#portfolio" data-filter=".filter-blog">Blog/Kişisel</a></li>
+              <li><a href="#portfolio" data-filter=".filter-acilis">Açılış Sayfası</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>Yaptığım Çalışmalar</h2>
+            <p>Tüm tasarımları görmek için Başlayın butonuna tıklayın</p>
+            <a href="#portfolio" class="btn-get-started">Başlayın</a>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients section light-background" style="display:none">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="assets/img/clients/clients-1.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-2.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-3.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-4.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-5.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-6.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-7.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-8.webp" class="img-fluid" alt=""></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Portföy</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">Tümü</li>
+            <li data-filter=".filter-kurumsal">Kurumsal</li>
+            <li data-filter=".filter-eticaret">E-Ticaret</li>
+            <li data-filter=".filter-blog">Blog/Kişisel</li>
+            <li data-filter=".filter-acilis">Açılış Sayfası</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-kurumsal">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/2127_little_fashion.png" class="img-fluid" alt="2127 Little Fashion">
+                <div class="portfolio-info">
+                  <h4>2127 Little Fashion</h4>
+                  <p>Kurumsal web sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/2127_little_fashion.png" title="2127 Little Fashion" data-gallery="portfolio-gallery-kurumsal" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/2127_little_fashion/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-kurumsal">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/ashion-1.0.0.png" class="img-fluid" alt="Ashion">
+                <div class="portfolio-info">
+                  <h4>Ashion</h4>
+                  <p>Kurumsal web sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/ashion-1.0.0.png" title="Ashion" data-gallery="portfolio-gallery-kurumsal" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/ashion-1.0.0/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-kurumsal">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/aviato-bootstrap-main.png" class="img-fluid" alt="Aviato">
+                <div class="portfolio-info">
+                  <h4>Aviato</h4>
+                  <p>Kurumsal web sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/aviato-bootstrap-main.png" title="Aviato" data-gallery="portfolio-gallery-kurumsal" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/aviato-bootstrap-main/theme/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-eticaret">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/aroma-master.png" class="img-fluid" alt="Aroma Shop">
+                <div class="portfolio-info">
+                  <h4>Aroma Shop</h4>
+                  <p>E-ticaret sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/aroma-master.png" title="Aroma Shop" data-gallery="portfolio-gallery-eticaret" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/aroma-master/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-eticaret">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/coloshop-master.png" class="img-fluid" alt="Colo Shop">
+                <div class="portfolio-info">
+                  <h4>Colo Shop</h4>
+                  <p>E-ticaret sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/coloshop-master.png" title="Colo Shop" data-gallery="portfolio-gallery-eticaret" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/coloshop-master/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-eticaret">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/estore-master.png" class="img-fluid" alt="eStore">
+                <div class="portfolio-info">
+                  <h4>eStore</h4>
+                  <p>E-ticaret sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/estore-master.png" title="eStore" data-gallery="portfolio-gallery-eticaret" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/estore-master/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-eticaret">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/MultiShop.png" class="img-fluid" alt="MultiShop">
+                <div class="portfolio-info">
+                  <h4>MultiShop</h4>
+                  <p>E-ticaret sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/MultiShop.png" title="MultiShop" data-gallery="portfolio-gallery-eticaret" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/MultiShop/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-blog">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/wish-master.png" class="img-fluid" alt="Wish">
+                <div class="portfolio-info">
+                  <h4>Wish</h4>
+                  <p>Blog sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/wish-master.png" title="Wish" data-gallery="portfolio-gallery-blog" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/wish-master/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-blog">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/winkel-master.png" class="img-fluid" alt="Winkel">
+                <div class="portfolio-info">
+                  <h4>Winkel</h4>
+                  <p>Blog sitesi tasarımı</p>
+                  <a href="assets/img/portfolio/winkel-master.png" title="Winkel" data-gallery="portfolio-gallery-blog" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/winkel-master/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-acilis">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/fashi-master.png" class="img-fluid" alt="Fashi">
+                <div class="portfolio-info">
+                  <h4>Fashi</h4>
+                  <p>Açılış sayfası tasarımı</p>
+                  <a href="assets/img/portfolio/fashi-master.png" title="Fashi" data-gallery="portfolio-gallery-acilis" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/fashi-master/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-acilis">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/karl-master.png" class="img-fluid" alt="Karl">
+                <div class="portfolio-info">
+                  <h4>Karl</h4>
+                  <p>Açılış sayfası tasarımı</p>
+                  <a href="assets/img/portfolio/karl-master.png" title="Karl" data-gallery="portfolio-gallery-acilis" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="PORTFOLİO SİTELER/karl-master/index.html" title="Daha Fazla Detay" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section light-background">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="content px-xl-5">
+              <h3><span>Sıkça Sorulan </span><strong>Sorular</strong></h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="faq-container">
+              <div class="faq-item faq-active">
+                <h3><span class="num">1.</span> <span>Non consectetur a erat nam at lectus urna duis?</span></h3>
+                <div class="faq-content">
+                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">2.</span> <span>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</span></h3>
+                <div class="faq-content">
+                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">3.</span> <span>Dolor sit amet consectetur adipiscing elit pellentesque?</span></h3>
+                <div class="faq-content">
+                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">4.</span> <span>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</span></h3>
+                <div class="faq-content">
+                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">5.</span> <span>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</span></h3>
+                <div class="faq-content">
+                  <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
+
+
+
+
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Adres</h4>
+            <p>A108 Adam Street</p>
+            <p>New York, NY 535022</p>
+            <p></p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>İletişim</h4>
+            <p>
+              <strong>Telefon:</strong> <span>+1 5589 55488 55</span><br>
+              <strong>E-posta:</strong> <span>info@example.com</span><br>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Çalışma Saatleri</h4>
+            <p>
+              <strong>Pts-Cts:</strong> <span>11:00 - 23:00</span><br>
+              <strong>Pazar</strong>: <span>Kapalı</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4>Bizi Takip Edin</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Telif Hakkı</span> <strong class="px-1 sitename">Amoeba</strong> <span>Tüm Hakları Saklıdır</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        <a href="https://bootstrapmade.com/">BootstrapMade</a> tarafından tasarlanmıştır | <a href="https://bootstrapmade.com/tools/">DevTools</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

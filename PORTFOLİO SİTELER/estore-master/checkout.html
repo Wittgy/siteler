@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Ödeme | eStore</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+  <!-- CSS here -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+      <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+      <link rel="stylesheet" href="assets/css/flaticon.css">
+      <link rel="stylesheet" href="assets/css/slicknav.css">
+      <link rel="stylesheet" href="assets/css/animate.min.css">
+      <link rel="stylesheet" href="assets/css/magnific-popup.css">
+      <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+      <link rel="stylesheet" href="assets/css/themify-icons.css">
+      <link rel="stylesheet" href="assets/css/slick.css">
+      <link rel="stylesheet" href="assets/css/nice-select.css">
+      <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <!-- Header Start -->
+   <div class="header-area">
+        <div class="main-header ">
+            <div class="header-top top-bg d-none d-lg-block">
+               <div class="container-fluid">
+                   <div class="col-xl-12">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="header-info-left d-flex">
+                                <div class="flag">
+                                    <img src="assets/img/icon/header_icon.png" alt="">
+                                </div>
+                                <div class="select-this">
+                                    <form action="#">
+                                        <div class="select-itms">
+                                            <select name="select" id="select1">
+                                                <option value="">USA</option>
+                                                <option value="">SPN</option>
+                                                <option value="">CDA</option>
+                                                <option value="">USD</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <ul class="contact-now">     
+                                    <li>+777 2345 7886</li>
+                                </ul>
+                            </div>
+                            <div class="header-info-right">
+                               <ul>                                          
+                                   <li><a href="login.html">Hesabım</a></li>
+                                   <li><a href="product_list.html">İstek Listesi</a></li>
+                                   <li><a href="cart.html">Alışveriş</a></li>
+                                   <li><a href="cart.html">Sepet</a></li>
+                                   <li><a href="checkout.html">Ödeme</a></li>
+                               </ul>
+                            </div>
+                        </div>
+                   </div>
+               </div>
+            </div>
+           <div class="header-bottom  header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
+                            <div class="logo">
+                              <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
+                            <!-- Main-menu -->
+                            <div class="main-menu f-right d-none d-lg-block">
+                                <nav>                                                
+                                    <ul id="navigation">                                                                                                                                     
+                                        <li><a href="index.html">Ana Sayfa</a></li>
+                                        <li><a href="Catagori.html">Kategoriler</a></li>
+                                        <li class="hot"><a href="#">Yeni</a>
+                                            <ul class="submenu">
+                                                <li><a href="product_list.html"> Ürün Listesi</a></li>
+                                                <li><a href="single-product.html"> Ürün Detayları</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="blog.html">Blog</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog.html">Blog</a></li>
+                                                <li><a href="single-blog.html">Blog Detayları</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sayfalar</a>
+                                            <ul class="submenu">
+                                                <li><a href="login.html">Giriş Yap</a></li>
+                                                <li><a href="cart.html">Sepet</a></li>
+                                                <li><a href="elements.html">Elemanlar</a></li>
+                                                <li><a href="about.html">Hakkımızda</a></li>
+                                                <li><a href="confirmation.html">Onay</a></li>
+                                                <li><a href="cart.html">Alışveriş Sepeti</a></li>
+                                                <li><a href="checkout.html">Ürün Ödemesi</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html">İletişim</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div> 
+                        <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card">
+                            <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
+                                <li class="d-none d-xl-block">
+                                    <div class="form-box f-right ">
+                                        <input type="text" name="Search" placeholder="Ürün Ara">
+                                        <div class="search-icon">
+                                            <i class="fas fa-search special-tag"></i>
+                                        </div>
+                                    </div>
+                                 </li>
+                                <li class=" d-none d-xl-block">
+                                    <div class="favorit-items">
+                                        <i class="far fa-heart"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="shopping-card">
+                                        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                    </div>
+                                </li>
+                               <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">Giriş Yap</a></li>
+                            </ul>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+   </div>
+    <!-- Header End -->
+  </header>
+
+  <!-- slider Area Start-->
+  <div class="slider-area ">
+    <!-- Mobile Menu -->
+    <div class="single-slider slider-height2 d-flex align-items-center" data-background="assets/img/hero/category.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Ödeme</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- slider Area End-->
+
+  <!--================Checkout Area =================-->
+  <section class="checkout_area section_padding">
+    <div class="container">
+      <div class="returning_customer">
+        <div class="check_title">
+          <h2>
+            Daha Önce Alışveriş Yaptınız mı?
+            <a href="#">Giriş yapmak için tıklayın</a>
+          </h2>
+        </div>
+        <p>
+          Daha önce bizden alışveriş yaptıysanız, lütfen bilgilerinizi aşağıdaki kutulara girin.
+          Yeni müşteriyseniz, lütfen Fatura ve Teslimat bölümüne geçin.
+        </p>
+        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+          <div class="col-md-6 form-group p_star">
+            <input type="text" class="form-control" id="name" name="name" value=" " />
+            <span class="placeholder" data-placeholder="Kullanıcı Adı veya E-posta"></span>
+          </div>
+          <div class="col-md-6 form-group p_star">
+            <input type="password" class="form-control" id="password" name="password" value="" />
+            <span class="placeholder" data-placeholder="Şifre"></span>
+          </div>
+          <div class="col-md-12 form-group">
+            <button type="submit" value="submit" class="btn_3">
+              Giriş Yap
+            </button>
+            <div class="creat_account">
+              <input type="checkbox" id="f-option" name="selector" />
+              <label for="f-option">Beni Hatırla</label>
+            </div>
+            <a class="lost_pass" href="#">Şifrenizi mi unuttunuz?</a>
+          </div>
+        </form>
+      </div>
+      <div class="cupon_area">
+        <div class="check_title">
+          <h2>
+            Kuponunuz var mı?
+            <a href="#">Kodunuzu girmek için tıklayın</a>
+          </h2>
+        </div>
+        <input type="text" placeholder="Kupon kodunu girin" />
+        <a class="tp_btn" href="#">Kuponu Uygula</a>
+      </div>
+      <div class="billing_details">
+        <div class="row">
+          <div class="col-lg-8">
+            <h3>Fatura Bilgileri</h3>
+            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="first" name="name" />
+                <span class="placeholder" data-placeholder="Ad"></span>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="last" name="name" />
+                <span class="placeholder" data-placeholder="Soyad"></span>
+              </div>
+              <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="company" name="company" placeholder="Şirket adı" />
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="number" name="number" />
+                <span class="placeholder" data-placeholder="Telefon Numarası"></span>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="email" name="compemailany" />
+                <span class="placeholder" data-placeholder="E-posta Adresi"></span>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <select class="country_select">
+                  <option value="1">Ülke</option>
+                  <option value="2">Ülke</option>
+                  <option value="4">Ülke</option>
+                </select>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add1" name="add1" />
+                <span class="placeholder" data-placeholder="Adres Satırı 01"></span>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add2" name="add2" />
+                <span class="placeholder" data-placeholder="Adres Satırı 02"></span>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="city" name="city" />
+                <span class="placeholder" data-placeholder="İlçe/Şehir"></span>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <select class="country_select">
+                  <option value="1">Bölge</option>
+                  <option value="2">Bölge</option>
+                  <option value="4">Bölge</option>
+                </select>
+              </div>
+              <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="Posta Kodu" />
+              </div>
+              <div class="col-md-12 form-group">
+                <div class="creat_account">
+                  <input type="checkbox" id="f-option2" name="selector" />
+                  <label for="f-option2">Hesap oluşturmak istiyorum</label>
+                </div>
+              </div>
+              <div class="col-md-12 form-group">
+                <div class="creat_account">
+                  <h3>Teslimat Bilgileri</h3>
+                  <input type="checkbox" id="f-option3" name="selector" />
+                  <label for="f-option3">Farklı bir adrese gönder</label>
+                </div>
+                <textarea class="form-control" name="message" id="message" rows="1"
+                  placeholder="Sipariş Notları"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-4">
+            <div class="order_box">
+              <h2>Siparişiniz</h2>
+              <ul class="list">
+                <li>
+                  <a href="#">Ürün
+                    <span>Toplam</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Taze Böğürtlen
+                    <span class="middle">x 02</span>
+                    <span class="last">$720.00</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Taze Domates
+                    <span class="middle">x 02</span>
+                    <span class="last">$720.00</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Taze Brokoli
+                    <span class="middle">x 02</span>
+                    <span class="last">$720.00</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="list list_2">
+                <li>
+                  <a href="#">Ara Toplam
+                    <span>$2160.00</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Kargo
+                    <span>Sabit ücret: $50.00</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Toplam
+                    <span>$2210.00</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="payment_item">
+                <div class="radion_btn">
+                  <input type="radio" id="f-option5" name="selector" />
+                  <label for="f-option5">Çek ile Ödeme</label>
+                  <div class="check"></div>
+                </div>
+                <p>
+                  Lütfen mağaza adına, mağaza adresine bir çek gönderin.
+                </p>
+              </div>
+              <div class="payment_item active">
+                <div class="radion_btn">
+                  <input type="radio" id="f-option6" name="selector" />
+                  <label for="f-option6">Paypal </label>
+                  <img src="img/product/single-product/card.jpg" alt="" />
+                  <div class="check"></div>
+                </div>
+                <p>
+                  Lütfen mağaza adına, mağaza adresine bir çek gönderin.
+                </p>
+              </div>
+              <div class="creat_account">
+                <input type="checkbox" id="f-option4" name="selector" />
+                <label for="f-option4">Okudum ve kabul ediyorum </label>
+                <a href="#">kullanım koşulları*</a>
+              </div>
+              <a class="btn_3" href="#">Paypal ile Öde</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Checkout Area =================-->
+
+
+  <footer>
+    <!-- Footer Start-->
+    <div class="footer-area footer-padding2">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                   <div class="single-footer-caption mb-50">
+                     <div class="single-footer-caption mb-30">
+                          <!-- logo -->
+                         <div class="footer-logo">
+                             <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                         </div>
+                         <div class="footer-tittle">
+                             <div class="footer-pera">
+                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
+                            </div>
+                         </div>
+                     </div>
+                   </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Hızlı Bağlantılar</h4>
+                            <ul>
+                                <li><a href="#">Hakkımızda</a></li>
+                                <li><a href="#">Fırsatlar ve İndirimler</a></li>
+                                <li><a href="#">Kupon Al</a></li>
+                                <li><a href="#">Bize Ulaşın</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Yeni Ürünler</h4>
+                            <ul>
+                                <li><a href="#">Kadın Giyim</a></li>
+                                <li><a href="#">Moda Aksesuarları</a></li>
+                                <li><a href="#">Erkek Aksesuarları</a></li>
+                                <li><a href="#">Kauçuk Oyuncaklar</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Destek</h4>
+                            <ul>
+                             <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                             <li><a href="#">Kullanım Koşulları</a></li>
+                             <li><a href="#">Gizlilik Politikası</a></li>
+                             <li><a href="#">Gizlilik Politikası</a></li>
+                             <li><a href="#">Ödeme Sorunu Bildir</a></li>
+                         </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer bottom -->
+            <div class="row">
+             <div class="col-xl-7 col-lg-7 col-md-7">
+                 <div class="footer-copy-right">
+                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | Bu şablon <i class="ti-heart" aria-hidden="true"></i> ile <a href="https://colorlib.com" target="_blank">Colorlib</a> tarafından yapılmıştır
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>                   </div>
+             </div>
+              <div class="col-xl-5 col-lg-5 col-md-5">
+                 <div class="footer-copy-right f-right">
+                     <!-- social -->
+                     <div class="footer-social">
+                         <a href="#"><i class="fab fa-twitter"></i></a>
+                         <a href="#"><i class="fab fa-facebook-f"></i></a>
+                         <a href="#"><i class="fab fa-behance"></i></a>
+                         <a href="#"><i class="fas fa-globe"></i></a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        </div>
+    </div>
+
+    <!-- Footer End-->
+</footer>
+	<!-- JS here -->
+	
+		<!-- All JS Custom Plugins Link Here here -->
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+		
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+
+		<!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+		<script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+		<!-- Scrollup, nice-select, sticky -->
+    <script src="./assets/js/jquery.scrollUp.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
+      
+</body>
+
+</html>
