@@ -86,20 +86,6 @@
         }
         .hero p { color: var(--text-muted); font-size: 14px; }
 
-        /* JUMP NAV (minimal, quick-jump) */
-        .jump-nav {
-            max-width: 960px; margin: 0 auto; padding: 8px 20px 0;
-            display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
-        }
-        .jump-nav::-webkit-scrollbar { display: none; }
-        .jump-btn {
-            flex-shrink: 0; padding: 5px 12px; border-radius: 100px;
-            border: none; background: transparent;
-            color: var(--text-muted); font-family: var(--font); font-size: 12px; font-weight: 500;
-            cursor: pointer; transition: all 0.2s; white-space: nowrap;
-        }
-        .jump-btn:hover { background: var(--accent-subtle); color: var(--accent); }
-
         /* MENU ACCORDION */
         .menu { max-width: 960px; margin: 0 auto; padding: 4px 20px 20px; }
 
@@ -343,8 +329,6 @@
         <p id="restaurantDesc">Lezzetlerimizi keşfedin</p>
     </section>
 
-    <div class="jump-nav" id="jumpNav"></div>
-
     <div class="menu" id="menu"></div>
 
     <footer class="footer">
@@ -521,21 +505,6 @@
         }
 
         // ─── RENDER ─────────────────────────────────────────
-        function renderJumpNav() {
-            var el = document.getElementById('jumpNav');
-            el.innerHTML = '';
-            data.categories.forEach(function (c) {
-                var btn = document.createElement('button');
-                btn.className = 'jump-btn';
-                btn.textContent = c.icon + ' ' + c.label;
-                btn.addEventListener('click', function () {
-                    var target = document.getElementById('cat-' + c.id);
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-                el.appendChild(btn);
-            });
-        }
-
         function renderAccordion() {
             var el = document.getElementById('menu');
             el.innerHTML = '';
@@ -651,7 +620,6 @@
                 social.appendChild(a);
             }
 
-            renderJumpNav();
             renderAccordion();
         }
 
