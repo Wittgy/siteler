@@ -109,8 +109,6 @@
             background: var(--surface);
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
-            overflow: hidden;
-            transition: border 0.25s;
             scroll-margin-top: 80px;
         }
         .category-section:target {
@@ -152,7 +150,6 @@
         .category-items {
             display: grid; grid-template-columns: 1fr; gap: 6px;
             padding: 8px 12px 12px;
-            transition: all 0.3s ease;
         }
         .category-section.collapsed .category-items { display: none; }
 
@@ -851,6 +848,7 @@
 
         // ─── INIT ───────────────────────────────────────────
         loadData();
+        data.categories.forEach(function (c) { collapsedCats[c.id] = true; });
         renderAll();
 
         document.getElementById('modalOverlay').addEventListener('click', function (e) {
