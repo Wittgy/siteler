@@ -414,6 +414,28 @@ img {
   transform: translateY(0);
 }
 
+.hero .btn-glow-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--heading);
+  background: transparent;
+  border: 1px solid var(--border-hover);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero .btn-glow-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(37, 99, 235, 0.15);
+}
+
 /* Section */
 .section {
   padding: 100px 0;
