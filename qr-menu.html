@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>QR Menü</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #faf8f5;
+            --surface: #ffffff;
+            --surface-hover: #f5f3f0;
+            --text: #1c1917;
+            --text-muted: #78716c;
+            --accent: #d97706;
+            --accent-hover: #b45309;
+            --accent-subtle: rgba(217, 119, 6, 0.1);
+            --accent-light: #fef3c7;
+            --border: rgba(0, 0, 0, 0.06);
+            --border-hover: rgba(0, 0, 0, 0.12);
+            --radius: 14px;
+            --radius-sm: 10px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --pop: #dc2626;
+            --vegan: #16a34a;
+            --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-hover: 0 4px 16px rgba(0,0,0,0.06);
+        }
+
+        html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        /* HEADER */
+        .header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 20px;
+        }
+        .header-inner {
+            max-width: 960px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .header-brand { display: flex; align-items: center; gap: 12px; }
+        .header-logo {
+            width: 40px; height: 40px; border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--accent), #f59e0b);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .header-title { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); }
+        .header-title span { color: var(--text-muted); font-weight: 400; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 600;
+            background: var(--accent-subtle); color: var(--accent);
+            border: 1px solid rgba(217, 119, 6, 0.2); flex-shrink: 0;
+        }
+        .badge svg { width: 14px; height: 14px; }
+
+        /* HERO */
+        .hero { max-width: 960px; margin: 0 auto; padding: 28px 20px 20px; text-align: center; }
+        .hero h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; color: var(--text); }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), #f59e0b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            cursor: default;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .hero h1 span.long-press {
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .hero p { color: var(--text-muted); font-size: 14px; }
+
+        /* CATEGORIES */
+        .categories-wrapper {
+            position: sticky; top: 69px; z-index: 40;
+            background: var(--bg); padding: 10px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .categories { max-width: 960px; margin: 0 auto; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+        .categories::-webkit-scrollbar { display: none; }
+        .cat-btn {
+            flex-shrink: 0; padding: 9px 18px; border-radius: 100px;
+            border: 1px solid var(--border); background: var(--surface);
+            color: var(--text-muted); font-family: var(--font); font-size: 14px; font-weight: 500;
+            cursor: pointer; transition: all 0.25s ease; white-space: nowrap; user-select: none;
+            box-shadow: var(--shadow);
+        }
+        .cat-btn:hover { border-color: var(--border-hover); color: var(--text); }
+        .cat-btn.active { background: var(--accent-light); border-color: var(--accent); color: var(--accent-hover); font-weight: 600; }
+
+        /* MENU */
+        .menu { max-width: 960px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 1fr; gap: 10px; }
+        .menu-item {
+            display: flex; gap: 14px; padding: 14px;
+            border-radius: var(--radius); background: var(--surface);
+            border: 1px solid var(--border); box-shadow: var(--shadow);
+            transition: all 0.25s ease;
+            animation: fadeIn 0.35s ease both; position: relative;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .menu-item:hover { border-color: var(--border-hover); box-shadow: var(--shadow-hover); }
+        .menu-item-img {
+            width: 72px; height: 72px; border-radius: var(--radius-sm);
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+            font-size: 28px; background: var(--bg); overflow: hidden;
+        }
+        .menu-item-img img { width: 100%; height: 100%; object-fit: cover; }
+        .menu-item-body { flex: 1; min-width: 0; }
+        .menu-item-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 2px; }
+        .menu-item-name { font-size: 15px; font-weight: 600; color: var(--text); }
+        .menu-item-price { font-size: 15px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+        .menu-item-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 6px; }
+        .menu-item-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+        .tag {
+            display: inline-flex; align-items: center; gap: 3px;
+            padding: 2px 9px; border-radius: 100px;
+            font-size: 10px; font-weight: 600; letter-spacing: 0.2px;
+        }
+        .tag-pop { background: rgba(220, 38, 38, 0.08); color: var(--pop); }
+        .tag-vegan { background: rgba(22, 163, 74, 0.08); color: var(--vegan); }
+        .tag-new { background: rgba(217, 119, 6, 0.1); color: var(--accent); }
+
+        /* FOOTER */
+        .footer { max-width: 960px; margin: 40px auto 0; padding: 24px 20px; border-top: 1px solid var(--border); text-align: center; position: relative; }
+        .footer-info { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+        .footer-info a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-info a:hover { color: var(--accent); }
+        .footer-social { display: flex; justify-content: center; gap: 10px; }
+        .footer-social a {
+            width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); text-decoration: none; font-size: 16px; transition: all 0.25s ease;
+        }
+        .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+        .footer-copy { margin-top: 14px; font-size: 12px; color: rgba(120, 113, 108, 0.5); }
+
+        @media (min-width: 600px) {
+            .menu { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .hero h1 { font-size: 32px; }
+            .menu-item-img { width: 84px; height: 84px; font-size: 32px; }
+        }
+
+        /* ─── ADMIN ───────────────────────────────── */
+        .admin-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+            background: #ffffff; border-top: 2px solid var(--accent);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+            padding: 10px 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 10px;
+        }
+        .admin-bar .info { font-size: 13px; color: var(--accent); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+        .admin-bar .actions { display: flex; gap: 8px; }
+        .admin-btn {
+            padding: 8px 16px; border-radius: 8px; border: none;
+            font-family: var(--font); font-size: 13px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .admin-btn-primary { background: var(--accent); color: #fff; }
+        .admin-btn-primary:hover { background: var(--accent-hover); }
+        .admin-btn-danger { background: rgba(220, 38, 38, 0.08); color: var(--pop); }
+        .admin-btn-danger:hover { background: rgba(220, 38, 38, 0.15); }
+        .admin-btn-ghost { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+        .admin-btn-ghost:hover { background: var(--surface-hover); color: var(--text); }
+
+        .admin-controls {
+            position: absolute; top: 8px; right: 8px;
+            display: none; gap: 4px; z-index: 5;
+        }
+        .admin-controls button {
+            width: 30px; height: 30px; border-radius: 6px;
+            border: none; cursor: pointer; font-size: 14px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .admin-controls .edit-btn { background: rgba(217, 119, 6, 0.1); color: var(--accent); }
+        .admin-controls .edit-btn:hover { background: rgba(217, 119, 6, 0.2); }
+        .admin-controls .del-btn { background: rgba(220, 38, 38, 0.08); color: var(--pop); }
+        .admin-controls .del-btn:hover { background: rgba(220, 38, 38, 0.15); }
+        .admin-on .menu-item { padding-right: 44px; }
+        .admin-on .admin-controls { display: flex; }
+        /* MODAL */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+            align-items: flex-end; justify-content: center;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto;
+            background: #ffffff; border-radius: var(--radius) var(--radius) 0 0;
+            padding: 24px 20px 28px;
+            animation: modalUp 0.3s ease;
+        }
+        @keyframes modalUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .modal h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; color: var(--text); }
+        .modal label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 5px; margin-top: 14px; }
+        .modal label:first-of-type { margin-top: 0; }
+        .modal input, .modal select, .modal textarea {
+            width: 100%; padding: 10px 14px; border-radius: 8px;
+            border: 1px solid var(--border); background: var(--bg);
+            color: var(--text); font-family: var(--font); font-size: 14px;
+            outline: none; transition: border 0.2s;
+        }
+        .modal input:focus, .modal select:focus, .modal textarea:focus { border-color: var(--accent); }
+        .modal textarea { resize: vertical; min-height: 60px; }
+        .modal .row { display: flex; gap: 12px; }
+        .modal .row > * { flex: 1; }
+        .modal .modal-actions { display: flex; gap: 10px; margin-top: 22px; }
+        .modal .modal-actions button { flex: 1; padding: 12px; border-radius: 10px; border: none; font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .modal .modal-actions .save-btn { background: var(--accent); color: #fff; }
+        .modal .modal-actions .save-btn:hover { background: var(--accent-hover); }
+        .modal .modal-actions .cancel-btn { background: var(--bg); color: var(--text-muted); }
+        .modal .modal-actions .cancel-btn:hover { background: var(--surface-hover); color: var(--text); }
+
+        /* fotoğraf yükleme */
+        .photo-upload { margin-top: 14px; }
+        .photo-upload .preview-wrap {
+            display: flex; align-items: center; gap: 12px; margin-top: 8px;
+        }
+        .photo-upload .preview {
+            width: 72px; height: 72px; border-radius: var(--radius-sm);
+            background: var(--bg); overflow: hidden; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; flex-shrink: 0;
+        }
+        .photo-upload .preview img { width: 100%; height: 100%; object-fit: cover; }
+        .photo-upload .upload-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border);
+            background: var(--bg); color: var(--text-muted); font-family: var(--font);
+            font-size: 13px; cursor: pointer; transition: all 0.2s;
+        }
+        .photo-upload .upload-btn:hover { border-color: var(--border-hover); color: var(--text); }
+        .photo-upload .clear-btn {
+            padding: 6px 12px; border-radius: 6px; border: none;
+            background: rgba(220, 38, 38, 0.08); color: var(--pop);
+            font-family: var(--font); font-size: 12px; cursor: pointer;
+        }
+
+        @media (min-width: 600px) {
+            .modal-overlay { align-items: center; }
+            .modal { border-radius: var(--radius); }
+        }
+
+        .toast {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            z-index: 300; padding: 12px 24px; border-radius: 10px;
+            font-family: var(--font); font-size: 14px; font-weight: 500;
+            background: var(--accent); color: #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0; transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="toast" id="toast"></div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-brand">
+                <div class="header-logo" id="headerLogo">🍽️</div>
+                <div class="header-title" id="headerTitle">Menü</div>
+            </div>
+            <div class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                QR Menü
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1><span id="restaurantName">Restoran Adı</span></h1>
+        <p id="restaurantDesc">Lezzetlerimizi keşfedin</p>
+    </section>
+
+    <div class="categories-wrapper">
+        <div class="categories" id="categories"></div>
+    </div>
+
+    <div class="menu" id="menu"></div>
+
+    <footer class="footer">
+        <div class="footer-info">
+            <a href="https://maps.google.com" target="_blank" id="footerAddress">📍 Adres girin</a>
+            <a href="tel:" id="footerPhone">📞 Telefon girin</a>
+        </div>
+        <div class="footer-social" id="footerSocial"></div>
+        <div class="footer-copy" id="footerCopy">© QR Menü</div>
+
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2 id="modalTitle">Ürün Ekle</h2>
+            <label>Ürün Adı</label>
+            <input id="fieldName" />
+            <label>Açıklama</label>
+            <textarea id="fieldDesc"></textarea>
+            <div class="row">
+                <div>
+                    <label>Fiyat (₺)</label>
+                    <input type="number" id="fieldPrice" />
+                </div>
+                <div>
+                    <label>Kategori</label>
+                    <select id="fieldCat"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label>Emoji</label>
+                    <input id="fieldEmoji" placeholder="🍕" />
+                </div>
+                <div>
+                    <label>Etiketler</label>
+                    <select id="fieldTags" multiple style="height:80px">
+                        <option value="pop">🔥 Popüler</option>
+                        <option value="vegan">🌿 Vegan</option>
+                        <option value="new">✨ Yeni</option>
+                    </select>
+                </div>
+            </div>
+            <div class="photo-upload">
+                <label>📸 Fotoğraf</label>
+                <div class="preview-wrap">
+                    <div class="preview" id="photoPreview">🍽️</div>
+                    <div>
+                        <button class="upload-btn" onclick="document.getElementById('photoInput').click()">📁 Fotoğraf Seç</button>
+                        <button class="clear-btn" id="clearPhoto" style="display:none" onclick="clearPhoto()">Kaldır</button>
+                    </div>
+                </div>
+                <input type="file" id="photoInput" accept="image/*" style="display:none" />
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeModal()">İptal</button>
+                <button class="save-btn" id="saveBtn">Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ─── CONFIG ─────────────────────────────────────────
+        var ADMIN_PASSWORD = '1234';
+
+        // ─── DEFAULT DATA ───────────────────────────────────
+        var defaultData = {
+            restaurant: 'Lezzet Durağı',
+            desc: 'Lezzetlerimizi keşfedin',
+            emoji: '🍽️',
+            address: 'Atatürk Cad. No:42, İstanbul',
+            phone: '0555 123 45 67',
+            instagram: '#',
+            whatsapp: '#',
+            categories: [
+                { id: 'kahvalti', label: 'Kahvaltı', icon: '🥐' },
+                { id: 'corba', label: 'Çorbalar', icon: '🥣' },
+                { id: 'ana-yemek', label: 'Ana Yemekler', icon: '🥩' },
+                { id: 'salata', label: 'Salatalar', icon: '🥗' },
+                { id: 'icecek', label: 'İçecekler', icon: '🥤' },
+                { id: 'tatli', label: 'Tatlılar', icon: '🍯' },
+            ],
+            items: [
+                { id: 1, name: 'Menemen', desc: 'Yumurta, domates, biber ve özel baharatlarla', price: 120, cat: 'kahvalti', emoji: '🍳', tags: ['pop'], photo: '' },
+                { id: 2, name: 'Serpme Kahvaltı', desc: 'Zeytin, peynir, bal, kaymak, reçel çeşitleri', price: 280, cat: 'kahvalti', emoji: '🧀', tags: ['pop'], photo: '' },
+                { id: 3, name: 'Sahanda Yumurta', desc: 'İki yumurta, tereyağında, dilediğiniz gibi', price: 95, cat: 'kahvalti', emoji: '🍳', tags: [], photo: '' },
+                { id: 4, name: 'Sigara Böreği', desc: 'Peynirli, çıtır çıtır, 8 adet', price: 110, cat: 'kahvalti', emoji: '🥟', tags: ['pop'], photo: '' },
+                { id: 5, name: 'Ezogelin Çorbası', desc: 'Kırmızı mercimek, bulgur, nane ve tereyağı', price: 85, cat: 'corba', emoji: '🥣', tags: ['vegan'], photo: '' },
+                { id: 6, name: 'Mercimek Çorbası', desc: 'Havuç, patates ve özel baharat karışımı', price: 75, cat: 'corba', emoji: '🥣', tags: ['vegan'], photo: '' },
+                { id: 7, name: 'Tarhana Çorbası', desc: 'Ev yapımı tarhana, nane ve limon', price: 80, cat: 'corba', emoji: '🍲', tags: [], photo: '' },
+                { id: 8, name: 'Yayla Çorbası', desc: 'Pirinç, yoğurt, nane ile hafif lezzet', price: 80, cat: 'corba', emoji: '🥄', tags: [], photo: '' },
+                { id: 9, name: 'İskender Kebap', desc: 'Döner, tereyağlı sos, yoğurt, domates sos', price: 260, cat: 'ana-yemek', emoji: '🥙', tags: ['pop'], photo: '' },
+                { id: 10, name: 'Lahmacun', desc: 'Kıymalı harç, maydanoz, limon, 5 adet', price: 140, cat: 'ana-yemek', emoji: '🫓', tags: ['pop'], photo: '' },
+                { id: 11, name: 'Adana Kebap', desc: 'El kıyması, közlenmiş biber, sumaklı soğan', price: 220, cat: 'ana-yemek', emoji: '🥩', tags: [], photo: '' },
+                { id: 12, name: 'Beyti Sarma', desc: 'Döner sarılı, tereyağlı sos, yoğurt', price: 240, cat: 'ana-yemek', emoji: '🌯', tags: [], photo: '' },
+                { id: 13, name: 'Tavuk Şiş', desc: 'Marine edilmiş tavuk, köz sebzeler, pirinç pilavı', price: 190, cat: 'ana-yemek', emoji: '🍗', tags: [], photo: '' },
+                { id: 14, name: 'Et Sote', desc: 'Kuşbaşı dana eti, sebzeler, kekik sos', price: 210, cat: 'ana-yemek', emoji: '🥘', tags: [], photo: '' },
+                { id: 15, name: 'Mantı', desc: 'El açması mantı, yoğurt, nane, sumak', price: 150, cat: 'ana-yemek', emoji: '🥟', tags: [], photo: '' },
+                { id: 16, name: 'Mevsim Salata', desc: 'Roka, marul, domates, salatalık, nar ekşisi', price: 90, cat: 'salata', emoji: '🥗', tags: ['vegan'], photo: '' },
+                { id: 17, name: 'Çoban Salata', desc: 'Domates, salatalık, biber, soğan, sumak', price: 80, cat: 'salata', emoji: '🥒', tags: ['vegan'], photo: '' },
+                { id: 18, name: 'Peynir Tabağı', desc: 'Beyaz peynir, kaşar, cheddar, ceviz, üzüm', price: 160, cat: 'salata', emoji: '🧀', tags: [], photo: '' },
+                { id: 19, name: 'Ayran', desc: 'Soğuk, köpüklü, tuzlu', price: 30, cat: 'icecek', emoji: '🥛', tags: [], photo: '' },
+                { id: 20, name: 'Şalgam Suyu', desc: 'Acılı veya sade, soğuk servis', price: 35, cat: 'icecek', emoji: '🧃', tags: [], photo: '' },
+                { id: 21, name: 'Cola', desc: 'Soğuk içecek, 330ml', price: 40, cat: 'icecek', emoji: '🥤', tags: [], photo: '' },
+                { id: 22, name: 'Su', desc: 'Sırma su, 500ml', price: 15, cat: 'icecek', emoji: '💧', tags: [], photo: '' },
+                { id: 23, name: 'Çay', desc: 'Demlik çay, bardak servis', price: 20, cat: 'icecek', emoji: '🫖', tags: ['pop'], photo: '' },
+                { id: 24, name: 'Türk Kahvesi', desc: 'Çifte kavrum, köpüklü', price: 45, cat: 'icecek', emoji: '☕', tags: [], photo: '' },
+                { id: 25, name: 'Baklava', desc: 'Antep fıstıklı, kaymaklı, 4 dilim', price: 130, cat: 'tatli', emoji: '🧁', tags: ['pop'], photo: '' },
+                { id: 26, name: 'Künefe', desc: 'Tel kadayıf, peynirli, fıstık, kaymak', price: 150, cat: 'tatli', emoji: '🍯', tags: ['pop'], photo: '' },
+                { id: 27, name: 'Sütlaç', desc: 'Fırın sütlaç, tarçınlı', price: 85, cat: 'tatli', emoji: '🍮', tags: [], photo: '' },
+                { id: 28, name: 'Dondurma', desc: 'Maraş dondurma, 3 top', price: 70, cat: 'tatli', emoji: '🍦', tags: [], photo: '' },
+            ]
+        };
+
+        // ─── STATE ─────────────────────────────────────────
+        var data, activeCat = 'kahvalti', editingId = null, isAdmin = false;
+        var tempPhoto = '';
+
+        function loadData() {
+            var saved = localStorage.getItem('qr-menu-data');
+            if (saved) { try { data = JSON.parse(saved); return; } catch (e) {} }
+            data = JSON.parse(JSON.stringify(defaultData));
+        }
+
+        function saveData() { localStorage.setItem('qr-menu-data', JSON.stringify(data)); }
+
+        // ─── ADMIN ──────────────────────────────────────────
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('admin') === ADMIN_PASSWORD) {
+            isAdmin = true;
+            document.body.classList.add('admin-on');
+            showAdminBar();
+        }
+
+        function enterAdmin() {
+            window.location.search = 'admin=' + ADMIN_PASSWORD;
+        }
+
+        function showAdminBar() {
+            var bar = document.createElement('div');
+            bar.className = 'admin-bar';
+            bar.id = 'adminBar';
+            bar.innerHTML = '' +
+                '<span class="info">🔧 Yönetici Paneli</span>' +
+                '<div class="actions">' +
+                    '<button class="admin-btn admin-btn-primary" onclick="openAddModal()">+ Ürün Ekle</button>' +
+                    '<button class="admin-btn admin-btn-ghost" onclick="openSettings()">⚙️</button>' +
+                    '<button class="admin-btn admin-btn-danger" onclick="exitAdmin()">🔒 Çıkış</button>' +
+                '</div>';
+            document.body.appendChild(bar);
+            document.body.style.paddingBottom = '80px';
+        }
+
+        function exitAdmin() {
+            document.body.classList.remove('admin-on');
+            var bar = document.getElementById('adminBar');
+            if (bar) bar.remove();
+            document.body.style.paddingBottom = '40px';
+            var url = new URL(window.location);
+            url.searchParams.delete('admin');
+            window.history.replaceState({}, '', url);
+            isAdmin = false;
+        }
+
+        // ─── TOAST ──────────────────────────────────────────
+        function showToast(msg) {
+            var t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._hide);
+            t._hide = setTimeout(function () { t.classList.remove('show'); }, 2500);
+        }
+
+        // ─── RENDER ─────────────────────────────────────────
+        function renderCategories() {
+            var el = document.getElementById('categories');
+            el.innerHTML = '';
+            data.categories.forEach(function (c) {
+                var btn = document.createElement('button');
+                btn.className = 'cat-btn' + (c.id === activeCat ? ' active' : '');
+                btn.textContent = c.icon + ' ' + c.label;
+                btn.addEventListener('click', function () {
+                    activeCat = c.id;
+                    renderCategories();
+                    renderMenu();
+                });
+                el.appendChild(btn);
+            });
+        }
+
+        function renderMenu() {
+            var el = document.getElementById('menu');
+            el.innerHTML = '';
+            var filtered = data.items.filter(function (item) { return item.cat === activeCat; });
+            filtered.forEach(function (item, i) {
+                var div = document.createElement('div');
+                div.className = 'menu-item';
+                div.style.animationDelay = (i * 0.05) + 's';
+                div.dataset.id = item.id;
+
+                var tagsHtml = '';
+                (item.tags || []).forEach(function (t) {
+                    if (t === 'pop') tagsHtml += '<span class="tag tag-pop">🔥 Popüler</span>';
+                    else if (t === 'vegan') tagsHtml += '<span class="tag tag-vegan">🌿 Vegan</span>';
+                    else if (t === 'new') tagsHtml += '<span class="tag tag-new">✨ Yeni</span>';
+                });
+
+                var ctrls = '';
+                if (isAdmin) {
+                    ctrls = '<div class="admin-controls">' +
+                        '<button class="edit-btn" onclick="openEditModal(' + item.id + ')" title="Düzenle">✏️</button>' +
+                        '<button class="del-btn" onclick="deleteItem(' + item.id + ')" title="Sil">🗑️</button>' +
+                    '</div>';
+                }
+
+                var imgHtml = item.emoji || '🍽️';
+                if (item.photo) imgHtml = '<img src="' + item.photo + '" alt="' + item.name + '" />';
+
+                div.innerHTML = '' +
+                    ctrls +
+                    '<div class="menu-item-img">' + imgHtml + '</div>' +
+                    '<div class="menu-item-body">' +
+                        '<div class="menu-item-header">' +
+                            '<div class="menu-item-name">' + item.name + '</div>' +
+                            '<div class="menu-item-price">' + item.price + '₺</div>' +
+                        '</div>' +
+                        (item.desc ? '<div class="menu-item-desc">' + item.desc + '</div>' : '') +
+                        (tagsHtml ? '<div class="menu-item-tags">' + tagsHtml + '</div>' : '') +
+                    '</div>';
+
+                el.appendChild(div);
+            });
+        }
+
+        function renderAll() {
+            var rd = data.restaurant || 'Restoran Adı';
+            document.getElementById('restaurantName').textContent = rd;
+            document.getElementById('headerTitle').textContent = rd;
+            document.getElementById('headerLogo').textContent = data.emoji || '🍽️';
+            document.getElementById('restaurantDesc').textContent = data.desc || '';
+            document.getElementById('footerAddress').textContent = '📍 ' + (data.address || '');
+            document.getElementById('footerAddress').href = 'https://maps.google.com?q=' + encodeURIComponent(data.address || '');
+            document.getElementById('footerPhone').textContent = '📞 ' + (data.phone || '');
+            document.getElementById('footerPhone').href = 'tel:' + (data.phone || '');
+            document.getElementById('footerCopy').textContent = '© ' + rd;
+
+            var social = document.getElementById('footerSocial');
+            social.innerHTML = '';
+            if (data.instagram && data.instagram !== '#') {
+                var a = document.createElement('a');
+                a.href = data.instagram; a.target = '_blank'; a.title = 'Instagram'; a.textContent = '📷';
+                social.appendChild(a);
+            }
+            if (data.whatsapp && data.whatsapp !== '#') {
+                var a = document.createElement('a');
+                a.href = data.whatsapp; a.target = '_blank'; a.title = 'WhatsApp'; a.textContent = '💬';
+                social.appendChild(a);
+            }
+            if (data.address) {
+                var a = document.createElement('a');
+                a.href = 'https://maps.google.com?q=' + encodeURIComponent(data.address);
+                a.target = '_blank'; a.title = 'Konum'; a.textContent = '🗺️';
+                social.appendChild(a);
+            }
+
+            renderCategories();
+            renderMenu();
+        }
+
+        // ─── MODAL ──────────────────────────────────────────
+        function populateCatSelect() {
+            var sel = document.getElementById('fieldCat');
+            sel.innerHTML = '';
+            data.categories.forEach(function (c) {
+                var opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.icon + ' ' + c.label;
+                sel.appendChild(opt);
+            });
+        }
+
+        function setPhotoPreview(src) {
+            var wrap = document.getElementById('photoPreview');
+            if (src) {
+                wrap.innerHTML = '<img src="' + src + '" />';
+                document.getElementById('clearPhoto').style.display = 'inline-block';
+            } else {
+                wrap.innerHTML = '🍽️';
+                document.getElementById('clearPhoto').style.display = 'none';
+            }
+        }
+
+        function clearPhoto() {
+            tempPhoto = '';
+            setPhotoPreview('');
+            document.getElementById('photoInput').value = '';
+        }
+
+        document.getElementById('photoInput').addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function (ev) {
+                var img = new Image();
+                img.onload = function () {
+                    var canvas = document.createElement('canvas');
+                    var max = 400;
+                    var w = img.width, h = img.height;
+                    if (w > h) { if (w > max) { h *= max / w; w = max; } }
+                    else { if (h > max) { w *= max / h; h = max; } }
+                    canvas.width = w; canvas.height = h;
+                    var ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    tempPhoto = canvas.toDataURL('image/jpeg', 0.8);
+                    setPhotoPreview(tempPhoto);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function openAddModal() {
+            editingId = null; tempPhoto = '';
+            document.getElementById('modalTitle').textContent = 'Ürün Ekle';
+            document.getElementById('fieldName').value = '';
+            document.getElementById('fieldDesc').value = '';
+            document.getElementById('fieldPrice').value = '';
+            document.getElementById('fieldEmoji').value = '🍽️';
+            populateCatSelect();
+            document.getElementById('fieldCat').value = activeCat;
+            document.getElementById('fieldTags').selectedIndex = -1;
+            setPhotoPreview('');
+            document.getElementById('photoInput').value = '';
+            document.getElementById('saveBtn').textContent = 'Ekle';
+            document.getElementById('saveBtn').onclick = saveItem;
+            document.getElementById('modalOverlay').classList.add('open');
+        }
+
+        function openEditModal(id) {
+            var item = data.items.find(function (i) { return i.id === id; });
+            if (!item) return;
+            editingId = id; tempPhoto = '';
+            document.getElementById('modalTitle').textContent = 'Ürün Düzenle';
+            document.getElementById('fieldName').value = item.name;
+            document.getElementById('fieldDesc').value = item.desc || '';
+            document.getElementById('fieldPrice').value = item.price;
+            document.getElementById('fieldEmoji').value = item.emoji || '🍽️';
+            populateCatSelect();
+            document.getElementById('fieldCat').value = item.cat;
+            var sel = document.getElementById('fieldTags');
+            for (var i = 0; i < sel.options.length; i++) {
+                sel.options[i].selected = (item.tags || []).indexOf(sel.options[i].value) !== -1;
+            }
+            if (item.photo) { tempPhoto = item.photo; setPhotoPreview(item.photo); }
+            else setPhotoPreview('');
+            document.getElementById('saveBtn').textContent = 'Kaydet';
+            document.getElementById('saveBtn').onclick = saveItem;
+            document.getElementById('modalOverlay').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('open');
+        }
+
+        function saveItem() {
+            var name = document.getElementById('fieldName').value.trim();
+            var desc = document.getElementById('fieldDesc').value.trim();
+            var price = parseFloat(document.getElementById('fieldPrice').value);
+            var cat = document.getElementById('fieldCat').value;
+            var emoji = document.getElementById('fieldEmoji').value.trim() || '🍽️';
+            var sel = document.getElementById('fieldTags');
+            var tags = [];
+            for (var i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].selected) tags.push(sel.options[i].value);
+            }
+
+            if (!name || isNaN(price)) { showToast('Ürün adı ve fiyat zorunludur'); return; }
+
+            if (editingId) {
+                var item = data.items.find(function (i) { return i.id === editingId; });
+                if (item) {
+                    item.name = name;
+                    item.desc = desc;
+                    item.price = price;
+                    item.cat = cat;
+                    item.emoji = emoji;
+                    item.tags = tags;
+                    if (tempPhoto) item.photo = tempPhoto;
+                }
+                showToast('Ürün güncellendi');
+            } else {
+                var maxId = 0;
+                data.items.forEach(function (i) { if (i.id > maxId) maxId = i.id; });
+                data.items.push({ id: maxId + 1, name: name, desc: desc, price: price, cat: cat, emoji: emoji, tags: tags, photo: tempPhoto || '' });
+                showToast('Ürün eklendi');
+            }
+
+            saveData();
+            closeModal();
+            renderMenu();
+        }
+
+        function deleteItem(id) {
+            if (!confirm('Bu ürünü silmek istediğinize emin misiniz?')) return;
+            data.items = data.items.filter(function (i) { return i.id !== id; });
+            saveData();
+            renderMenu();
+            showToast('Ürün silindi');
+        }
+
+        // ─── SETTINGS ───────────────────────────────────────
+        function openSettings() {
+            var name = prompt('Restoran adı:', data.restaurant);
+            if (name !== null && name.trim()) data.restaurant = name.trim();
+            var emoji = prompt('Logo emoji:', data.emoji);
+            if (emoji !== null && emoji.trim()) data.emoji = emoji.trim();
+            var desc = prompt('Açıklama (kısa):', data.desc);
+            if (desc !== null) data.desc = desc.trim();
+            var addr = prompt('Adres:', data.address);
+            if (addr !== null) data.address = addr.trim();
+            var phone = prompt('Telefon:', data.phone);
+            if (phone !== null) data.phone = phone.trim();
+            var insta = prompt('Instagram linki:', data.instagram);
+            if (insta !== null) data.instagram = insta.trim();
+            var wp = prompt('WhatsApp linki:', data.whatsapp);
+            if (wp !== null) data.whatsapp = wp.trim();
+            saveData();
+            renderAll();
+            showToast('Ayarlar kaydedildi');
+        }
+
+        // ─── LONG PRESS (admin gizli giriş) ────────────────
+        (function () {
+            var el = document.getElementById('restaurantName');
+            if (!el) return;
+            var timer = null;
+            var HOLD_MS = 3000;
+
+            function start(e) {
+                if (isAdmin) return;
+                el.classList.add('long-press');
+                timer = setTimeout(function () {
+                    timer = null;
+                    window.location.search = 'admin=' + ADMIN_PASSWORD;
+                }, HOLD_MS);
+            }
+
+            function cancel() {
+                el.classList.remove('long-press');
+                if (timer) { clearTimeout(timer); timer = null; }
+            }
+
+            el.addEventListener('mousedown', start);
+            el.addEventListener('mouseup', cancel);
+            el.addEventListener('mouseleave', cancel);
+            el.addEventListener('touchstart', start, { passive: true });
+            el.addEventListener('touchend', cancel);
+            el.addEventListener('touchcancel', cancel);
+        })();
+
+        // ─── INIT ───────────────────────────────────────────
+        loadData();
+        renderAll();
+
+        document.getElementById('modalOverlay').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
