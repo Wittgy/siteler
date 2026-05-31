@@ -145,6 +145,29 @@
     .form-page .full-width {
       grid-column: 1 / -1;
     }
+
+    .form-page .fs-message {
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      font-size: 15px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-page .fs-success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #4ade80;
+    }
+
+    .form-page .fs-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
   </style>
 </head>
 
@@ -201,30 +224,36 @@
 
         <div class="contact-form form-page">
 
-          <form action="https://formsubmit.co/burakadu@gmail.com" method="POST">
+          <form id="fs-form" action="https://formspree.io/f/mlgvkpvz" method="POST">
 
-            <input type="hidden" name="_subject" value="Yeni Proje Talebi">
-            <input type="hidden" name="_captcha" value="true">
-            <input type="hidden" name="_next" value="Form.html?success=true">
+            <input type="hidden" name="_subject" value="Yeni Proje Talebi - Burak">
+
+            <div id="fs-success" class="fs-message fs-success" style="display:none">
+              <i class="bi bi-check-circle"></i> Proje talebiniz başarıyla gönderildi! En kısa sürede size dönüş yapacağım.
+            </div>
+
+            <div id="fs-error" class="fs-message fs-error" style="display:none">
+              <i class="bi bi-exclamation-triangle"></i> Gönderim sırasında bir hata oluştu. Lütfen tekrar deneyin.
+            </div>
 
             <div class="form-section">
               <h2 class="form-section-title">Firma Bilgileri</h2>
               <div class="form-grid">
                 <div>
                   <label>Firma Adı</label>
-                  <input type="text" name="company" class="form-control" placeholder="Firma adı" required>
+                  <input type="text" name="Firma Adı" class="form-control" placeholder="Firma adı" required>
                 </div>
                 <div>
                   <label>Yetkili Kişi</label>
-                  <input type="text" name="contact" class="form-control" placeholder="Ad soyad" required>
+                  <input type="text" name="Yetkili Kişi" class="form-control" placeholder="Ad soyad" required>
                 </div>
                 <div>
                   <label>Telefon</label>
-                  <input type="tel" name="phone" class="form-control" placeholder="0555 555 55 55">
+                  <input type="tel" name="Telefon" class="form-control" placeholder="0555 555 55 55">
                 </div>
                 <div>
                   <label>E-posta</label>
-                  <input type="email" name="email" class="form-control" placeholder="ornek@mail.com" required>
+                  <input type="email" name="E-posta" class="form-control" placeholder="ornek@mail.com" required>
                 </div>
               </div>
             </div>
@@ -234,7 +263,7 @@
               <div class="form-grid">
                 <div class="full-width">
                   <label>Web sitesinin amacı</label>
-                  <select name="projectType" class="form-control" required>
+                  <select name="Web Sitesi Türü" class="form-control" required>
                     <option value="">Seçiniz</option>
                     <option>Kurumsal Web Sitesi</option>
                     <option>E-Ticaret</option>
@@ -247,7 +276,7 @@
                 </div>
                 <div class="full-width">
                   <label>Projenizi kısaca anlatın</label>
-                  <textarea name="projectDescription" class="form-control" placeholder="Ne yapmak istiyorsunuz? Hedefiniz nedir?" required></textarea>
+                  <textarea name="Proje Açıklaması" class="form-control" placeholder="Ne yapmak istiyorsunuz? Hedefiniz nedir?" required></textarea>
                 </div>
               </div>
             </div>
@@ -256,28 +285,28 @@
               <h2 class="form-section-title">İstenen Sayfalar</h2>
               <div class="checkbox-grid">
                 <label class="checkbox-card">
-                  <input type="checkbox" name="pages[]" value="Ana Sayfa"> Ana Sayfa
+                  <input type="checkbox" name="İstenen Sayfalar[]" value="Ana Sayfa"> Ana Sayfa
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="pages[]" value="Hakkımızda"> Hakkımızda
+                  <input type="checkbox" name="İstenen Sayfalar[]" value="Hakkımızda"> Hakkımızda
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="pages[]" value="Hizmetler"> Hizmetler
+                  <input type="checkbox" name="İstenen Sayfalar[]" value="Hizmetler"> Hizmetler
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="pages[]" value="Ürünler"> Ürünler
+                  <input type="checkbox" name="İstenen Sayfalar[]" value="Ürünler"> Ürünler
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="pages[]" value="Blog"> Blog
+                  <input type="checkbox" name="İstenen Sayfalar[]" value="Blog"> Blog
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="pages[]" value="Galeri"> Galeri
+                  <input type="checkbox" name="İstenen Sayfalar[]" value="Galeri"> Galeri
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="pages[]" value="Referanslar"> Referanslar
+                  <input type="checkbox" name="İstenen Sayfalar[]" value="Referanslar"> Referanslar
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="pages[]" value="İletişim"> İletişim
+                  <input type="checkbox" name="İstenen Sayfalar[]" value="İletişim"> İletişim
                 </label>
               </div>
             </div>
@@ -286,28 +315,28 @@
               <h2 class="form-section-title">Özel Özellikler</h2>
               <div class="checkbox-grid">
                 <label class="checkbox-card">
-                  <input type="checkbox" name="features[]" value="Yönetim Paneli"> Yönetim Paneli
+                  <input type="checkbox" name="Özel Özellikler[]" value="Yönetim Paneli"> Yönetim Paneli
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="features[]" value="Blog Yönetimi"> Blog Yönetimi
+                  <input type="checkbox" name="Özel Özellikler[]" value="Blog Yönetimi"> Blog Yönetimi
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="features[]" value="Üye Sistemi"> Üye Sistemi
+                  <input type="checkbox" name="Özel Özellikler[]" value="Üye Sistemi"> Üye Sistemi
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="features[]" value="Online Ödeme"> Online Ödeme
+                  <input type="checkbox" name="Özel Özellikler[]" value="Online Ödeme"> Online Ödeme
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="features[]" value="WhatsApp Entegrasyonu"> WhatsApp Entegrasyonu
+                  <input type="checkbox" name="Özel Özellikler[]" value="WhatsApp Entegrasyonu"> WhatsApp Entegrasyonu
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="features[]" value="Çoklu Dil"> Çoklu Dil
+                  <input type="checkbox" name="Özel Özellikler[]" value="Çoklu Dil"> Çoklu Dil
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="features[]" value="Google Haritalar"> Google Haritalar
+                  <input type="checkbox" name="Özel Özellikler[]" value="Google Haritalar"> Google Haritalar
                 </label>
                 <label class="checkbox-card">
-                  <input type="checkbox" name="features[]" value="E-Posta Bildirimleri"> E-Posta Bildirimleri
+                  <input type="checkbox" name="Özel Özellikler[]" value="E-Posta Bildirimleri"> E-Posta Bildirimleri
                 </label>
               </div>
             </div>
@@ -317,11 +346,11 @@
               <div class="form-grid">
                 <div class="full-width">
                   <label>Beğendiğiniz web siteleri</label>
-                  <textarea name="referenceSites" class="form-control" placeholder="Örnek sitelerin linklerini yazabilirsiniz"></textarea>
+                  <textarea name="Örnek Siteler" class="form-control" placeholder="Örnek sitelerin linklerini yazabilirsiniz"></textarea>
                 </div>
                 <div class="full-width">
                   <label>Tasarım hakkında notlar</label>
-                  <textarea name="designNotes" class="form-control" placeholder="Modern, minimal, kurumsal vb."></textarea>
+                  <textarea name="Tasarım Notları" class="form-control" placeholder="Modern, minimal, kurumsal vb."></textarea>
                 </div>
               </div>
             </div>
@@ -331,7 +360,7 @@
               <div class="form-grid">
                 <div>
                   <label>Logo</label>
-                  <select name="logoStatus" class="form-control">
+                  <select name="Logo Durumu" class="form-control">
                     <option>Hazır</option>
                     <option>Yok</option>
                     <option>Yenilenecek</option>
@@ -339,7 +368,7 @@
                 </div>
                 <div>
                   <label>Metinler</label>
-                  <select name="textStatus" class="form-control">
+                  <select name="Metin Durumu" class="form-control">
                     <option>Hazır</option>
                     <option>Hazırlanıyor</option>
                     <option>Hazır Değil</option>
@@ -353,7 +382,7 @@
               <div class="form-grid">
                 <div>
                   <label>Bütçe Aralığı</label>
-                  <select name="budget" class="form-control">
+                  <select name="Bütçe" class="form-control">
                     <option>10.000 TL altı</option>
                     <option>10.000 - 25.000 TL</option>
                     <option>25.000 - 50.000 TL</option>
@@ -363,18 +392,18 @@
                 </div>
                 <div>
                   <label>Hedef Yayın Tarihi</label>
-                  <input type="date" name="targetDate" class="form-control">
+                  <input type="date" name="Hedef Tarih" class="form-control">
                 </div>
               </div>
             </div>
 
             <div class="form-section">
               <h2 class="form-section-title">Ek Notlar</h2>
-              <textarea name="extraNotes" class="form-control" placeholder="Belirtmek istediğiniz diğer detaylar..."></textarea>
+              <textarea name="Ek Notlar" class="form-control" placeholder="Belirtmek istediğiniz diğer detaylar..."></textarea>
             </div>
 
             <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-              <button type="submit" class="btn-submit">
+              <button type="submit" class="btn-submit" id="fs-submit-btn">
                 <i class="bi bi-send"></i>
                 Proje Talebini Gönder
               </button>
@@ -414,6 +443,44 @@
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/js/main.js"></script>
+
+  <script>
+    document.getElementById('fs-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = document.getElementById('fs-submit-btn');
+      const success = document.getElementById('fs-success');
+      const error = document.getElementById('fs-error');
+
+      success.style.display = 'none';
+      error.style.display = 'none';
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Gönderiliyor...';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          success.style.display = 'flex';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          form.reset();
+        } else {
+          const data = await res.json();
+          error.textContent = data?.error || 'Gönderim sırasında bir hata oluştu.';
+          error.style.display = 'flex';
+          error.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } catch {
+        error.style.display = 'flex';
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-send"></i> Proje Talebini Gönder';
+    });
+  </script>
 
 </body>
 
