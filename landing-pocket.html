@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pocket &#8226; Mobil Uygulama</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #fafafa;
+      --white: #ffffff;
+      --surface: #f5f5fa;
+      --text: #0f0f1a;
+      --text-muted: #6a6a7a;
+      --rose: #e11d48;
+      --rose-light: #f43f5e;
+      --rose-dark: #be123c;
+      --border: rgba(225,29,72,0.08);
+      --border-hover: rgba(225,29,72,0.18);
+      --radius: 20px;
+      --radius-sm: 10px;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Space Grotesk', sans-serif;
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(225,29,72,0.04), transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,250,250,0.85);
+      backdrop-filter: blur(20px) saturate(1.3);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1120px; margin: 0 auto; padding: 16px 24px;
+    }
+    .header-brand { display: flex; align-items: center; gap: 10px; }
+    .header-logo {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 800;
+      color: var(--text); letter-spacing: -0.5px;
+    }
+    .header-logo span { color: var(--rose); }
+    .nav { display: flex; gap: 28px; }
+    .nav a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 13px; font-weight: 500;
+      transition: color 0.2s var(--ease-out-expo);
+    }
+    .nav a:hover { color: var(--text); }
+
+    .hero {
+      min-height: 100dvh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 0 60px;
+      position: relative;
+    }
+    .hero-header {
+      max-width: 640px;
+      margin-bottom: 60px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 100px;
+      background: rgba(225,29,72,0.06);
+      border: 1px solid rgba(225,29,72,0.1);
+      font-size: 12px; font-weight: 500; color: var(--rose);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 5.5vw, 68px);
+      font-weight: 800; letter-spacing: -2.5px;
+      line-height: 1.02; margin-bottom: 16px;
+    }
+    .hero h1 .highlight { color: var(--rose); }
+    .hero p {
+      font-size: 16px; color: var(--text-muted);
+      line-height: 1.7; margin-bottom: 32px;
+    }
+
+    .store-buttons {
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 24px; border-radius: 12px;
+      background: var(--text); color: var(--white);
+      border: none; cursor: pointer; text-decoration: none;
+      font-family: var(--font-body); font-size: 12px; font-weight: 500;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+    .store-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .store-btn .small { font-size: 9px; opacity: 0.6; font-weight: 400; }
+    .store-btn-outline {
+      background: transparent; color: var(--text);
+      border: 1.5px solid rgba(0,0,0,0.1);
+    }
+    .store-btn-outline:hover { border-color: var(--rose); }
+
+    .hero-cards {
+      position: relative;
+      display: grid; grid-template-columns: 2fr 1fr;
+      gap: 16px;
+    }
+    .hero-card {
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.04);
+      padding: 32px;
+      transition: all 0.4s var(--ease-out-expo);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .hero-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
+    .hero-card.feature-card-wide {
+      position: relative; overflow: hidden;
+    }
+    .hero-card .card-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .hero-card h3 {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 700; margin-bottom: 6px;
+    }
+    .hero-card p {
+      color: var(--text-muted); font-size: 13px; line-height: 1.6;
+    }
+    .hero-card .card-stat {
+      font-family: var(--font-display);
+      font-size: 32px; font-weight: 800;
+      letter-spacing: -1px; color: var(--rose);
+      margin-bottom: 4px;
+    }
+    .hero-card .card-stat-label {
+      font-size: 12px; color: var(--text-muted);
+    }
+
+    .section { padding: 100px 0; }
+    .section-header {
+      max-width: 500px; margin-bottom: 60px;
+    }
+    .section-header.centered { text-align: center; margin-left: auto; margin-right: auto; }
+    .section-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--rose); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 800; letter-spacing: -1.5px;
+      line-height: 1.1; margin-bottom: 12px;
+    }
+    .section-desc {
+      color: var(--text-muted); font-size: 15px; line-height: 1.7;
+    }
+
+    .features-showcase {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .feature-tile {
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.04);
+      padding: 32px 28px;
+      transition: all 0.4s var(--ease-out-expo);
+      text-align: center;
+    }
+    .feature-tile:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.05); }
+    .feature-tile .icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feature-tile h3 {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 700; margin-bottom: 8px;
+    }
+    .feature-tile p {
+      color: var(--text-muted); font-size: 13px; line-height: 1.6;
+    }
+
+    .testimonial-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .testimonial-card {
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.04);
+      padding: 32px;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+    .testimonial-card:hover { transform: translateY(-2px); }
+    .testimonial-card .stars {
+      color: var(--rose); font-size: 14px; margin-bottom: 12px;
+    }
+    .testimonial-card blockquote {
+      font-size: 15px; line-height: 1.7; margin-bottom: 16px;
+      color: var(--text);
+    }
+    .testimonial-card .author { font-size: 13px; font-weight: 600; }
+    .testimonial-card .role { font-size: 12px; color: var(--text-muted); }
+
+    .cta-card {
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--text), #1a1a2e);
+      padding: 80px 60px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .cta-card h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800; color: var(--white);
+      margin-bottom: 12px;
+    }
+    .cta-card p {
+      color: rgba(255,255,255,0.5);
+      font-size: 15px; margin-bottom: 28px;
+    }
+    .cta-card .store-btn { background: var(--rose); }
+    .cta-card .store-btn:hover { background: var(--rose-light); }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer p { color: var(--text-muted); font-size: 13px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 13px; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--rose); }
+
+    [data-fade] {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    }
+    [data-fade].visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero-cards { grid-template-columns: 1fr; }
+      .features-showcase { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .nav { display: none; }
+      .cta-card { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect x="2" y="2" width="28" height="28" rx="8" stroke="#e11d48" stroke-width="2.5" fill="none"/>
+          <path d="M16 8 L16 24 M8 16 L24 16" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span class="header-logo">Poc<span>ket</span></span>
+      </div>
+      <nav class="nav">
+        <a href="#features">Özellikler</a>
+        <a href="#testimonials">Yorumlar</a>
+        <a href="#download">İndir</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-header">
+          <div class="hero-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            100.000+ indirme
+          </div>
+          <h1>Cepte Yeni<br>Bir <span class="highlight">Dünya</span></h1>
+          <p>Hedeflerine ulaşmak için ihtiyacın olan her şey bir tık uza&#287;ında. Pocket ile hayatını kolaylaştır.</p>
+          <div class="store-buttons">
+            <a href="#" class="store-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+              <span><span class="small">App Store'da</span><br>Yakında</span>
+            </a>
+            <a href="#" class="store-btn store-btn-outline">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.205a1.49 1.49 0 0 1 0 2.59zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l10.74 10.973zm-1.476 1.44l-3.258 3.238 13.125 7.556a1.471 1.471 0 0 0 .956.178l-10.74-10.972h-.083z"/></svg>
+              <span><span class="small">Google Play'de</span><br>Yakında</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-cards">
+          <div class="hero-card feature-card-wide">
+            <div class="card-stat">50K+</div>
+            <div class="card-stat-label">Aylık aktif kullanıcı</div>
+            <div style="margin-top:16px;display:flex;gap:6px;">
+              <span style="width:8px;height:8px;border-radius:50%;background:var(--rose);display:block"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:rgba(225,29,72,0.15);display:block"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:rgba(225,29,72,0.15);display:block"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:rgba(225,29,72,0.15);display:block"></span>
+              <span style="width:8px;height:8px;border-radius:50%;background:rgba(225,29,72,0.08);display:block"></span>
+            </div>
+          </div>
+          <div class="hero-card" style="display:flex;flex-direction:column;justify-content:center;">
+            <div class="card-icon" style="background:rgba(225,29,72,0.06);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Güvenli</h3>
+            <p>Verileriniz şifrelenir ve gizliliğiniz korunur.</p>
+          </div>
+          <div class="hero-card" style="display:flex;flex-direction:column;justify-content:center;">
+            <div class="card-icon" style="background:rgba(225,29,72,0.06);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Hızlı</h3>
+            <p>Sayfalar anında yüklenir, bekleme yapmaz.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header centered" data-fade>
+          <div class="section-label">Özellikler</div>
+          <h2 class="section-title">Her şey düşünüldü</h2>
+          <p class="section-desc">Kullanıcılarımızın en çok sevdiği özellikler.</p>
+        </div>
+        <div class="features-showcase">
+          <div class="feature-tile" data-fade>
+            <div class="icon" style="background:rgba(225,29,72,0.06);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <h3>Biyometrik Kilit</h3>
+            <p>Parmak izi ve yüz tanıma ile hesabınızı koruyun.</p>
+          </div>
+          <div class="feature-tile" data-fade>
+            <div class="icon" style="background:rgba(225,29,72,0.06);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            </div>
+            <h3>Akıllı Öneriler</h3>
+            <p>Yapay zeka desteğiyle kişiselleştirilmiş deneyim.</p>
+          </div>
+          <div class="feature-tile" data-fade>
+            <div class="icon" style="background:rgba(225,29,72,0.06);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Gerçek Zamanlı</h3>
+            <p>Anında bildirimler ve canlı güncellemeler.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section-header centered" data-fade>
+          <div class="section-label">Kullanıcı Yorumları</div>
+          <h2 class="section-title">Bizi sevenler ne diyor?</h2>
+        </div>
+        <div class="testimonial-grid">
+          <div class="testimonial-card" data-fade>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Pocket ile hayatım çok kolaylaştı. Tüm işlerimi tek bir yerden yönete biliyorum."</blockquote>
+            <div class="author">Ayşe K.</div>
+            <div class="role">Product Manager</div>
+          </div>
+          <div class="testimonial-card" data-fade>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Arayüzü o kadar basit ve anlaşılır ki hiç eğitim almadan kullanmaya başladım."</blockquote>
+            <div class="author">Mehmet T.</div>
+            <div class="role">Freelancer</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="cta-card" id="download" data-fade>
+        <h2>Hemen Katıl,<br>Farkı Hisset</h2>
+        <p>Ücretsiz dene, kredi kartı gerektirmez.</p>
+        <div class="store-buttons" style="justify-content:center;">
+          <a href="#" class="store-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+            <span>App Store</span>
+          </a>
+          <a href="#" class="store-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.205a1.49 1.49 0 0 1 0 2.59zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l10.74 10.973zm-1.476 1.44l-3.258 3.238 13.125 7.556a1.471 1.471 0 0 0 .956.178l-10.74-10.972h-.083z"/></svg>
+            <span>Google Play</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <footer class="footer">
+        <p>&copy; 2026 Pocket. Tüm hakları saklıdır.</p>
+        <div class="footer-links">
+          <a href="#">Gizlilik</a>
+          <a href="#">Koşullar</a>
+          <a href="#">Destek</a>
+        </div>
+        <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">Burak Biçer Tasarım Atlası · <a href="https://www.instagram.com/captainbicer/" target="_blank" style="color:inherit;text-decoration:underline">@captainbicer</a></p>
+      </footer>
+    </div>
+  </main>
+
+  <div class="controls">
+    <div class="zoom-control">
+      <button id="zoomOut">-</button>
+      <span class="zoom-label" id="zoomLabel">100%</span>
+      <button id="zoomIn">+</button>
+    </div>
+    <button class="btn-download" id="btnDownload">
+      <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      <span class="btn-label">Download</span>
+      <span class="spinner"></span>
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    (function() {
+      var els = document.querySelectorAll('[data-fade]');
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      els.forEach(function(el) { obs.observe(el); });
+    })();
+
+    (function() {
+      var el = document.querySelector('main');
+      var btn = document.getElementById('btnDownload');
+      var zoomIn = document.getElementById('zoomIn');
+      var zoomOut = document.getElementById('zoomOut');
+      var zoomLabel = document.getElementById('zoomLabel');
+      if (!el || !btn) return;
+      var scale = 1, MIN = 0.25, MAX = 2;
+      function updateZoom() {
+        document.body.style.transform = 'scale(' + scale + ')';
+        document.body.style.transformOrigin = 'top center';
+        zoomLabel.textContent = Math.round(scale * 100) + '%';
+      }
+      if (zoomIn) zoomIn.addEventListener('click', function() { scale = Math.min(MAX, +(scale + 0.1).toFixed(1)); updateZoom(); });
+      if (zoomOut) zoomOut.addEventListener('click', function() { scale = Math.max(MIN, +(scale - 0.1).toFixed(1)); updateZoom(); });
+      btn.addEventListener('click', async function() {
+        btn.classList.add('loading');
+        try {
+          var canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#fafafa', logging: false });
+          var link = document.createElement('a');
+          link.download = 'landing-pocket.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          btn.classList.remove('loading');
+          btn.classList.add('success');
+          btn.querySelector('.btn-label').textContent = 'Done!';
+          setTimeout(function() { btn.classList.remove('success'); btn.querySelector('.btn-label').textContent = 'Download'; }, 2000);
+        } catch (err) {
+          console.error(err);
+          btn.classList.remove('loading');
+          btn.querySelector('.btn-label').textContent = 'Error!';
+          setTimeout(function() { btn.querySelector('.btn-label').textContent = 'Download'; }, 2000);
+        }
+      });
+    })();
+  </script>
+  <style>
+    .controls {
+      position: fixed; bottom: 40px; left: 50%;
+      transform: translateX(-50%); z-index: 100;
+      display: flex; gap: 12px; align-items: center;
+    }
+    .btn-download {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 32px; border: none; border-radius: 12px;
+      background: linear-gradient(135deg, #e11d48, #f43f5e);
+      color: #fff; font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 24px rgba(225,29,72,0.35);
+    }
+    .btn-download:hover { transform: translateY(-2px); }
+    .btn-download.loading { pointer-events: none; opacity: 0.7; }
+    .btn-download.success { background: linear-gradient(135deg, #059669, #10b981); }
+    .btn-download .spinner {
+      display: none; width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    .btn-download.loading .spinner { display: block; }
+    .btn-download.loading .btn-label { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .zoom-control {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(15,15,26,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(225,29,72,0.2);
+      border-radius: 10px; padding: 6px 8px;
+    }
+    .zoom-control button {
+      width: 32px; height: 32px; border: none; border-radius: 6px;
+      background: transparent; color: rgba(225,29,72,0.6);
+      font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; font-family: inherit;
+    }
+    .zoom-control button:hover { background: rgba(225,29,72,0.15); color: #f43f5e; }
+    .zoom-control .zoom-label {
+      color: rgba(225,29,72,0.5);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px; min-width: 36px; text-align: center;
+      user-select: none;
+    }
+  </style>
+</body>
+</html>

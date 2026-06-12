@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>QR Menü</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #f4f4f0;
+            --surface: #ffffff;
+            --text: #0a0a0a;
+            --text-muted: #6b7280;
+            --accent: #dc2626;
+            --border: #d1d5db;
+            --font: 'Cabinet Grotesk', 'Archivo', system-ui, sans-serif;
+            --pop: #dc2626;
+            --vegan: #16a34a;
+        }
+
+        html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        /* HEADER */
+        .header {
+            position: sticky; top: 0; z-index: 50;
+            background: var(--surface);
+            border-bottom: 2px solid #0a0a0a;
+            padding: 12px 20px;
+        }
+        .header-inner {
+            max-width: 960px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .header-brand { display: flex; align-items: center; gap: 12px; }
+        .header-logo {
+            width: 40px; height: 40px;
+            border: 2px solid var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .header-logo svg { width: 22px; height: 22px; }
+        .header-title {
+            font-size: 16px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+            color: var(--text);
+        }
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.03em;
+            border: 1px solid var(--border); background: var(--surface);
+            color: var(--text-muted); flex-shrink: 0;
+        }
+        .badge svg { width: 14px; height: 14px; }
+
+        /* HERO */
+        .hero { max-width: 960px; margin: 0 auto; padding: 32px 20px 24px; text-align: center; border-bottom: 1px solid var(--border); }
+        .hero h1 { font-size: 32px; font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; color: var(--text); }
+        .hero h1 span { cursor: default; user-select: none; -webkit-user-select: none; }
+        .hero h1 span.long-press { opacity: 0.7; transition: opacity 0.3s; }
+        .hero p { color: var(--text-muted); font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase; font-weight: 500; }
+
+        /* MENU ACCORDION */
+        .menu { max-width: 960px; margin: 0 auto; padding: 12px 20px 20px; }
+
+        .category-section {
+            margin-bottom: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            scroll-margin-top: 80px;
+        }
+        .category-section:target {
+            border-color: var(--accent);
+        }
+
+        .category-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 16px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: background 0.2s;
+            position: sticky;
+            top: 65px;
+            z-index: 20;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+        .category-header:hover { background: #efefeb; }
+        .category-section.collapsed .category-header { border-bottom-color: transparent; }
+        .category-header-left { display: flex; align-items: center; gap: 10px; }
+        .category-header-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+        .category-header-icon svg { width: 22px; height: 22px; }
+        .category-header-name { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text); }
+        .category-header-count {
+            font-size: 11px; color: var(--text-muted);
+            border: 1px solid var(--border); padding: 1px 8px;
+            font-weight: 600;
+        }
+        .category-header-toggle {
+            font-size: 14px; color: var(--text-muted);
+            font-family: var(--font); font-weight: 700;
+            transition: transform 0.3s ease;
+            line-height: 1;
+        }
+        .category-section.collapsed .category-header-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .category-items {
+            display: grid; grid-template-columns: 1fr; gap: 0;
+            padding: 4px;
+        }
+        .category-section.collapsed .category-items { display: none; }
+
+        .menu-item {
+            display: flex; gap: 12px; padding: 12px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+            position: relative;
+            animation: fadeIn 0.3s ease both;
+        }
+        .menu-item:last-child { border-bottom: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        .menu-item:hover { background: #fafaf6; }
+        .menu-item-img {
+            width: 60px; height: 60px;
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--border); background: var(--bg); overflow: hidden;
+        }
+        .menu-item-img svg { width: 28px; height: 28px; opacity: 0.4; }
+        .menu-item-img img { width: 100%; height: 100%; object-fit: cover; }
+        .menu-item-body { flex: 1; min-width: 0; }
+        .menu-item-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 1px; }
+        .menu-item-name { font-size: 14px; font-weight: 600; color: var(--text); }
+        .menu-item-price { font-size: 14px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+        .menu-item-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin-bottom: 5px; }
+        .menu-item-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+        .tag {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 2px 8px;
+            font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+            border: 1px solid;
+        }
+        .tag svg { width: 10px; height: 10px; }
+        .tag-pop { border-color: var(--pop); color: var(--pop); background: rgba(220, 38, 38, 0.05); }
+        .tag-vegan { border-color: var(--vegan); color: var(--vegan); background: rgba(22, 163, 74, 0.05); }
+        .tag-new { border-color: var(--accent); color: var(--accent); background: rgba(220, 38, 38, 0.05); }
+
+        /* FOOTER */
+        .footer { max-width: 960px; margin: 40px auto 0; padding: 24px 20px; border-top: 2px solid #0a0a0a; text-align: center; }
+        .footer-info { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+        .footer-info a { color: var(--text-muted); text-decoration: none; font-size: 13px; letter-spacing: 0.03em; transition: color 0.2s; display: inline-flex; align-items: center; gap: 6px; justify-content: center; }
+        .footer-info a:hover { color: var(--accent); }
+        .footer-info a svg { width: 14px; height: 14px; flex-shrink: 0; }
+        .footer-social { display: flex; justify-content: center; gap: 8px; }
+        .footer-social a {
+            width: 38px; height: 38px; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); text-decoration: none; transition: all 0.25s ease;
+        }
+        .footer-social a svg { width: 16px; height: 16px; }
+        .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+        .footer-copy { margin-top: 14px; font-size: 11px; color: var(--text-muted); letter-spacing: 0.03em; }
+
+        @media (min-width: 600px) {
+            .category-items { grid-template-columns: 1fr 1fr; gap: 0; }
+            .category-header { padding: 16px 20px; }
+            .category-items { padding: 8px; }
+            .menu-item:nth-child(odd) { border-right: 1px solid var(--border); }
+            .menu-item:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+            .hero h1 { font-size: 36px; }
+            .menu-item-img { width: 64px; height: 64px; }
+        }
+
+        /* ADMIN */
+        .admin-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+            background: var(--surface); border-top: 2px solid var(--accent);
+            padding: 10px 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 10px;
+        }
+        .admin-bar .info { font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+        .admin-bar .actions { display: flex; gap: 6px; }
+        .admin-btn {
+            padding: 8px 14px; border: 1px solid;
+            font-family: var(--font); font-size: 12px; font-weight: 600; letter-spacing: 0.03em;
+            cursor: pointer; transition: all 0.2s; background: var(--surface);
+        }
+        .admin-btn-primary { border-color: var(--accent); background: var(--accent); color: #fff; }
+        .admin-btn-primary:hover { background: #b91c1c; }
+        .admin-btn-danger { border-color: var(--pop); color: var(--pop); }
+        .admin-btn-danger:hover { background: rgba(220, 38, 38, 0.08); }
+        .admin-btn-ghost { border-color: var(--border); color: var(--text-muted); }
+        .admin-btn-ghost:hover { background: #efefeb; color: var(--text); }
+        .admin-btn svg { width: 14px; height: 14px; display: block; }
+
+        .admin-controls {
+            position: absolute; top: 6px; right: 6px;
+            display: none; gap: 4px; z-index: 5;
+        }
+        .admin-controls button {
+            width: 28px; height: 28px; border: 1px solid var(--border);
+            background: var(--surface); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .admin-controls button svg { width: 14px; height: 14px; }
+        .admin-controls .edit-btn { color: var(--accent); }
+        .admin-controls .edit-btn:hover { border-color: var(--accent); }
+        .admin-controls .del-btn { color: var(--pop); }
+        .admin-controls .del-btn:hover { border-color: var(--pop); }
+        .admin-on .category-items { padding-right: 4px; }
+        .admin-on .admin-controls { display: flex; }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,0.5);
+            align-items: flex-end; justify-content: center;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto;
+            background: var(--surface);
+            border: 2px solid #0a0a0a;
+            animation: modalUp 0.3s ease;
+        }
+        @keyframes modalUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .modal h2 { font-size: 18px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px; padding: 20px 20px 0; color: var(--text); }
+        .modal-body { padding: 0 20px 24px; }
+        .modal label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; margin-top: 14px; }
+        .modal label:first-of-type { margin-top: 0; }
+        .modal input, .modal select, .modal textarea {
+            width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text); font-family: var(--font); font-size: 14px;
+            outline: none; transition: border 0.2s;
+        }
+        .modal input:focus, .modal select:focus, .modal textarea:focus { border-color: #0a0a0a; }
+        .modal textarea { resize: vertical; min-height: 60px; }
+        .modal .row { display: flex; gap: 12px; }
+        .modal .row > * { flex: 1; }
+        .modal .modal-actions { display: flex; gap: 10px; padding: 0 20px 24px; }
+        .modal .modal-actions button { flex: 1; padding: 12px; border: 1px solid; font-family: var(--font); font-size: 13px; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; transition: all 0.2s; }
+        .modal .modal-actions .save-btn { border-color: var(--accent); background: var(--accent); color: #fff; }
+        .modal .modal-actions .save-btn:hover { background: #b91c1c; }
+        .modal .modal-actions .cancel-btn { border-color: var(--border); background: var(--surface); color: var(--text-muted); }
+        .modal .modal-actions .cancel-btn:hover { background: #efefeb; color: var(--text); }
+
+        /* photo upload */
+        .photo-upload { margin-top: 14px; }
+        .photo-upload .preview-wrap {
+            display: flex; align-items: center; gap: 12px; margin-top: 6px;
+        }
+        .photo-upload .preview {
+            width: 64px; height: 64px;
+            background: var(--bg); overflow: hidden; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .photo-upload .preview svg { width: 28px; height: 28px; opacity: 0.3; }
+        .photo-upload .preview img { width: 100%; height: 100%; object-fit: cover; }
+        .photo-upload .upload-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 14px; border: 1px solid var(--border);
+            background: var(--surface); color: var(--text-muted); font-family: var(--font);
+            font-size: 12px; cursor: pointer; transition: all 0.2s;
+        }
+        .photo-upload .upload-btn:hover { border-color: #0a0a0a; color: var(--text); }
+        .photo-upload .upload-btn svg { width: 14px; height: 14px; }
+        .photo-upload .clear-btn {
+            padding: 6px 12px; border: 1px solid var(--pop);
+            background: var(--surface); color: var(--pop);
+            font-family: var(--font); font-size: 11px; cursor: pointer;
+        }
+
+        @media (min-width: 600px) {
+            .modal-overlay { align-items: center; }
+        }
+
+        /* CATEGORY MODAL */
+        .cat-list { display: flex; flex-direction: column; gap: 6px; max-height: 320px; overflow-y: auto; padding: 0 0 16px; }
+        .cat-list-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 12px; border: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .cat-list-info { display: flex; align-items: center; gap: 10px; }
+        .cat-list-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+        .cat-list-icon svg { width: 20px; height: 20px; }
+        .cat-list-name { font-size: 13px; font-weight: 600; letter-spacing: 0.03em; color: var(--text); }
+        .cat-list-count { font-size: 10px; color: var(--text-muted); letter-spacing: 0.03em; }
+        .cat-list-actions { display: flex; gap: 4px; }
+        .cat-list-actions button {
+            width: 28px; height: 28px; border: 1px solid var(--border); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; background: var(--surface);
+        }
+        .cat-list-actions button svg { width: 14px; height: 14px; }
+        .cat-edit-btn { color: var(--accent); }
+        .cat-edit-btn:hover { border-color: var(--accent); }
+        .cat-del-btn { color: var(--pop); }
+        .cat-del-btn:hover { border-color: var(--pop); }
+        .cat-list-item.edit-mode { padding: 6px; }
+        .cat-edit-row { display: flex; align-items: center; gap: 6px; width: 100%; }
+        .cat-edit-icon {
+            width: 40px; height: 40px; border: 1px solid var(--border);
+            background: var(--bg); flex-shrink: 0;
+        }
+        .cat-edit-name { flex: 1; min-width: 0; }
+        .cat-edit-save, .cat-edit-cancel {
+            width: 34px; height: 34px; border: 1px solid var(--border); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background 0.2s; background: var(--surface);
+        }
+        .cat-edit-save { color: var(--vegan); }
+        .cat-edit-save:hover { border-color: var(--vegan); }
+        .cat-edit-cancel { color: var(--pop); }
+        .cat-edit-cancel:hover { border-color: var(--pop); }
+        .cat-edit-save svg, .cat-edit-cancel svg { width: 16px; height: 16px; }
+
+        .cat-add-row {
+            display: flex; gap: 8px; margin: 16px 0;
+        }
+        .cat-add-icon { width: 44px; height: 44px; border: 1px solid var(--border); background: var(--bg); flex-shrink: 0; }
+        .cat-add-name { flex: 1; min-width: 0; }
+        .cat-add-btn {
+            padding: 10px 16px; border: 1px solid var(--accent); background: var(--accent);
+            color: #fff; font-family: var(--font); font-size: 12px; font-weight: 600; letter-spacing: 0.03em;
+            cursor: pointer; white-space: nowrap; transition: background 0.2s;
+        }
+        .cat-add-btn:hover { background: #b91c1c; }
+
+        .toast {
+            position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+            z-index: 300; padding: 12px 24px;
+            font-family: var(--font); font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
+            background: #0a0a0a; color: #fff;
+            opacity: 0; transition: opacity 0.3s;
+            pointer-events: none; border: 1px solid #0a0a0a;
+        }
+        .toast.show { opacity: 1; }
+
+        .shape-select-wrap { position: relative; }
+        .shape-select-preview { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); pointer-events: none; width: 20px; height: 20px; }
+        .shape-select-preview svg { width: 20px; height: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="toast" id="toast"></div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-brand">
+                <div class="header-logo" id="headerLogo"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" fill="none" stroke="#dc2626" stroke-width="2.5"/><line x1="8" y1="12" x2="16" y2="12" stroke="#dc2626" stroke-width="2.5"/></svg></div>
+                <div class="header-title" id="headerTitle">MEN&#220;</div>
+            </div>
+            <div class="badge">
+                <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2"/></svg>
+                QR MEN&#220;
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1><span id="restaurantName">BISTRO NOIR</span></h1>
+        <p id="restaurantDesc">MODERN AVRUPA MUTFA&#286;I</p>
+    </section>
+
+    <div class="menu" id="menu"></div>
+
+    <footer class="footer">
+        <div class="footer-info">
+            <a href="https://maps.google.com" target="_blank" id="footerAddress">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 10 Q5 18 12 22 Q19 18 19 10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span id="footerAddressText">Adres girin</span>
+            </a>
+            <a href="tel:" id="footerPhone">
+                <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="11" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span id="footerPhoneText">Telefon girin</span>
+            </a>
+        </div>
+        <div class="footer-social" id="footerSocial"></div>
+        <div class="footer-copy" id="footerCopy">&#8226; BISTRO NOIR</div>
+    </footer>
+
+    <!-- MODAL (product) -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2 id="modalTitle">&#220;R&#220;N EKLE</h2>
+            <div class="modal-body">
+                <label>&#220;r&#252;n Ad&#305;</label>
+                <input id="fieldName" />
+                <label>A&#231;&#305;klama</label>
+                <textarea id="fieldDesc"></textarea>
+                <div class="row">
+                    <div>
+                        <label>Fiyat (&#8378;)</label>
+                        <input type="number" id="fieldPrice" />
+                    </div>
+                    <div>
+                        <label>Kategori</label>
+                        <select id="fieldCat"></select>
+                    </div>
+                </div>
+                <div>
+                    <label>Etiketler</label>
+                    <select id="fieldTags" multiple style="height:72px">
+                        <option value="pop">Pop&#252;ler</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="new">Yeni</option>
+                    </select>
+                </div>
+                <div class="photo-upload">
+                    <label>Foto&#287;raf</label>
+                    <div class="preview-wrap">
+                        <div class="preview" id="photoPreview"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" fill="none" stroke="#6b7280" stroke-width="1.5"/><circle cx="9" cy="11" r="2" fill="none" stroke="#6b7280" stroke-width="1.5"/><line x1="16" y1="10" x2="20" y2="14" stroke="#6b7280" stroke-width="1.5"/><line x1="20" y1="10" x2="16" y2="14" stroke="#6b7280" stroke-width="1.5"/></svg></div>
+                        <div>
+                            <button class="upload-btn" onclick="document.getElementById('photoInput').click()"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="1.5"/></svg> Foto&#287;raf Se&#231;</button>
+                            <button class="clear-btn" id="clearPhoto" style="display:none" onclick="clearPhoto()">Kald&#305;r</button>
+                        </div>
+                    </div>
+                    <input type="file" id="photoInput" accept="image/*" style="display:none" />
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeModal()">&#304;ptal</button>
+                <button class="save-btn" id="saveBtn">Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL (kategori) -->
+    <div class="modal-overlay" id="catModalOverlay">
+        <div class="modal">
+            <h2>KATEGOR&#304;LER</h2>
+            <div class="modal-body">
+                <div class="cat-list" id="catList"></div>
+                <div class="cat-add-row">
+                    <select class="cat-add-icon" id="catIconInput"></select>
+                    <input class="cat-add-name" id="catNameInput" placeholder="Kategori ad&#305;" />
+                    <button class="cat-add-btn" id="catSaveBtn" onclick="saveCategory()">Ekle</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeCatModal()">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ─── SVG SHAPES ──────────────────────────────────
+        var SHAPES = [
+            { id: 'circle', svg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>' },
+            { id: 'diamond', svg: '<svg viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>' },
+            { id: 'bowl', svg: '<svg viewBox="0 0 24 24"><path d="M4 16 Q12 4 20 16" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="16" x2="20" y2="16" stroke="currentColor" stroke-width="1.5"/></svg>' },
+            { id: 'glass', svg: '<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="7" y1="19" x2="17" y2="19" stroke="currentColor" stroke-width="1.5"/></svg>' },
+            { id: 'square', svg: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>' },
+            { id: 'triangle', svg: '<svg viewBox="0 0 24 24"><polygon points="12,2 22,20 2,20" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>' },
+            { id: 'cross', svg: '<svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="1.5"/></svg>' },
+            { id: 'plus', svg: '<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="1.5"/></svg>' }
+        ];
+
+        var SHAPE_IDS = {};
+        SHAPES.forEach(function(s) { SHAPE_IDS[s.id] = s.svg; });
+
+        function shapeSelectOptions(selected) {
+            var html = '';
+            SHAPES.forEach(function(s) {
+                html += '<option value="' + s.id + '"' + (s.id === selected ? ' selected' : '') + '>' + s.id.charAt(0).toUpperCase() + s.id.slice(1) + '</option>';
+            });
+            return html;
+        }
+
+        // ─── TAG SVG ICONS ──────────────────────────────
+        var TAG_ICONS = {
+            pop: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg>',
+            vegan: '<svg viewBox="0 0 24 24"><polygon points="12,5 19,19 5,19" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
+            new: '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"/></svg>'
+        };
+
+        // ─── CONFIG ─────────────────────────────────────────
+        var ADMIN_PASSWORD = '1234';
+
+        // ─── DEFAULT DATA ───────────────────────────────────
+        var defaultData = {
+            restaurant: 'BISTRO NOIR',
+            desc: 'MODERN AVRUPA MUTFA&#286;I',
+            logo: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" fill="none" stroke="#dc2626" stroke-width="2.5"/><line x1="8" y1="12" x2="16" y2="12" stroke="#dc2626" stroke-width="2.5"/></svg>',
+            address: '&#304;stiklal Cad. No:42, Beyo&#287;lu, &#304;stanbul',
+            phone: '0555 123 45 67',
+            instagram: '#',
+            whatsapp: '#',
+            categories: [
+                { id: 'giris', label: 'G&#304;R&#304;&#350;', icon: 'circle' },
+                { id: 'ana-yemek', label: 'ANA YEMEK', icon: 'diamond' },
+                { id: 'salatalar', label: 'SALATALAR', icon: 'bowl' },
+                { id: 'icecekler', label: '&#304;&#199;ECEKLER', icon: 'glass' },
+                { id: 'tatlilar', label: 'TATLILAR', icon: 'square' }
+            ],
+            items: [
+                { id: 1, name: 'Zeytinya&#287;l&#305; Enginar', desc: 'Enginar, zeytinya&#287;&#305;, limon, dereotu ile hafif ba&#351;lang&#305;', price: 145, cat: 'giris', tags: ['vegan'], photo: '' },
+                { id: 2, name: 'F&#305;r&#305;n Mantar', desc: 'Kremal&#305; mantar, parmesan, kekik, taze ekmek ile', price: 160, cat: 'giris', tags: ['pop'], photo: '' },
+                { id: 3, name: 'Carpaccio', desc: 'Dana bonfile, roka, parmesan, limon sos, tr&#252;f ya&#287;&#305;', price: 195, cat: 'giris', tags: ['pop'], photo: '' },
+                { id: 4, name: 'Bruschetta', desc: 'Domates, fesle&#287;en, mozzarella, balzamik sos, &#305;zgara ekmek', price: 125, cat: 'giris', tags: ['vegan'], photo: '' },
+                { id: 5, name: 'Karides G&#252;ve&#231;', desc: 'Karides, sar&#305;msak, tereya&#287;&#305;, ac&#305; biber, taze ekmek', price: 220, cat: 'giris', tags: [], photo: '' },
+                { id: 6, name: 'Tavada Levrek', desc: 'Levrek fileto, sebzeli risotto, limon tereya&#287; sos', price: 285, cat: 'ana-yemek', tags: ['pop'], photo: '' },
+                { id: 7, name: 'Bonfile', desc: 'Izgara dana bonfile, tr&#252;f sos, pat&#234; graten, sebze', price: 350, cat: 'ana-yemek', tags: ['pop'], photo: '' },
+                { id: 8, name: 'Tavuk Rulo', desc: 'Ispanakl&#305; tavuk rulo, krema sos, sebze garnit&#252;r', price: 240, cat: 'ana-yemek', tags: [], photo: '' },
+                { id: 9, name: 'Risotto Mantar', desc: 'Arborio pirinci, mantar kar&#305;&#351;&#305;m&#305;, parmesan, tr&#252;f ya&#287;&#305;', price: 210, cat: 'ana-yemek', tags: ['vegan'], photo: '' },
+                { id: 10, name: 'Kuzu Pirzola', desc: 'Otlu kuzu pirzola, sebze &#351;i&#351;, patates p&#252;resi, demi-glace', price: 330, cat: 'ana-yemek', tags: [], photo: '' },
+                { id: 11, name: 'Kar&#305;&#351;&#305;k Izgara', desc: 'Bonfile, kuzu pirzola, tavuk, sebze, pilav, garnit&#252;r', price: 320, cat: 'ana-yemek', tags: ['pop'], photo: '' },
+                { id: 12, name: 'Makarna Pesto', desc: 'Taze fesle&#287;en pesto, &#231;eri domates, &#231;am f&#305;st&#305;&#287;&#305;, parmesan', price: 185, cat: 'ana-yemek', tags: ['vegan'], photo: '' },
+                { id: 13, name: 'Somon Izgara', desc: 'Somon fileto, dereotu sos, sebze sote, limon', price: 295, cat: 'ana-yemek', tags: [], photo: '' },
+                { id: 14, name: 'Ye&#351;il Salata', desc: 'Roka, marul, avokado, ceviz, nar ek&#351;isi, zeytinya&#287;&#305;', price: 110, cat: 'salatalar', tags: ['vegan', 'new'], photo: '' },
+                { id: 15, name: 'Akdeniz Salatas&#305;', desc: 'Roka, domates, salatal&#305;k, zeytin, beyaz peynir, naneli sos', price: 125, cat: 'salatalar', tags: [], photo: '' },
+                { id: 16, name: 'Sezar Salata', desc: 'Romaine marul, parmesan, kruton, tavuk, Sezar sos', price: 150, cat: 'salatalar', tags: ['pop'], photo: '' },
+                { id: 17, name: 'Pancar Salatas&#305;', desc: 'F&#305;r&#305;n pancar, ke&#231;i peyniri, ceviz, balzamik, roka', price: 135, cat: 'salatalar', tags: ['vegan'], photo: '' },
+                { id: 18, name: 'Kola', desc: 'So&#287;uk i&#231;ecek, 330ml', price: 50, cat: 'icecekler', tags: [], photo: '' },
+                { id: 19, name: 'Ayran', desc: 'So&#287;uk, k&#246;p&#252;kl&#252;, geleneksel', price: 40, cat: 'icecekler', tags: [], photo: '' },
+                { id: 20, name: 'Limonata', desc: 'Taze s&#305;k&#305;lm&#305;&#351; limon, nane, buz', price: 65, cat: 'icecekler', tags: ['new'], photo: '' },
+                { id: 21, name: '&#350;algam Suyu', desc: 'Ac&#305;l&#305; veya sade, so&#287;uk servis', price: 45, cat: 'icecekler', tags: [], photo: '' },
+                { id: 22, name: 'T&#252;rk Kahvesi', desc: '&#199;ifte kavrum, k&#246;p&#252;kl&#252;, lokum ile', price: 55, cat: 'icecekler', tags: [], photo: '' },
+                { id: 23, name: 'Su', desc: 'S&#305;rma su, 500ml', price: 20, cat: 'icecekler', tags: [], photo: '' },
+                { id: 24, name: '&#199;ay', desc: 'Demlik &#231;ay, bardak servis, limon', price: 30, cat: 'icecekler', tags: ['pop'], photo: '' },
+                { id: 25, name: 'Cr&#232;me Br&#251;l&#233;e', desc: 'Vanilyal&#305; krem, karamelize &#351;eker, taze meyve', price: 140, cat: 'tatlilar', tags: ['pop'], photo: '' },
+                { id: 26, name: 'Trile&#231;e', desc: '&#220;&#231; s&#252;tl&#252; tatl&#305;, karamel sos, f&#305;nd&#305;k', price: 130, cat: 'tatlilar', tags: [], photo: '' },
+                { id: 27, name: 'Profiterol', desc: '&#199;ikolata soslu, vanilyal&#305; dondurmal&#305;, f&#305;nd&#305;k k&#305;r&#305;&#287;&#305;', price: 145, cat: 'tatlilar', tags: ['new'], photo: '' },
+                { id: 28, name: 'Dondurma', desc: 'Ev yap&#305;m&#305; dondurma, 3 top, mevsim meyveleri', price: 110, cat: 'tatlilar', tags: [], photo: '' },
+                { id: 29, name: 'Cheesecake', desc: 'New York usul&#252; cheesecake, frambuaz sos', price: 150, cat: 'tatlilar', tags: ['pop'], photo: '' },
+                { id: 30, name: 'S&#252;tla&#231;', desc: 'F&#305;r&#305;n s&#252;tla&#231;, tar&#231;&#305;nl&#305;, f&#305;nd&#305;k k&#305;r&#305;&#287;&#305;', price: 85, cat: 'tatlilar', tags: [], photo: '' }
+            ]
+        };
+
+        // ─── STATE ─────────────────────────────────────────
+        var data, editingId = null, isAdmin = false;
+        var tempPhoto = '';
+        var collapsedCats = {};
+
+        function loadData() {
+            var saved = localStorage.getItem('qr-menu-swiss-data');
+            if (saved) { try { data = JSON.parse(saved); return; } catch (e) {} }
+            data = JSON.parse(JSON.stringify(defaultData));
+        }
+
+        function saveData() { localStorage.setItem('qr-menu-swiss-data', JSON.stringify(data)); }
+
+        function getCatIcon(id) {
+            var cat = data.categories.find(function (c) { return c.id === id; });
+            if (cat && cat.icon && SHAPE_IDS[cat.icon]) return SHAPE_IDS[cat.icon];
+            return SHAPE_IDS.circle || '';
+        }
+
+        // ─── ADMIN ──────────────────────────────────────────
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('admin') === ADMIN_PASSWORD) {
+            isAdmin = true;
+            document.body.classList.add('admin-on');
+            showAdminBar();
+        }
+
+        function enterAdmin() {
+            window.location.search = 'admin=' + ADMIN_PASSWORD;
+        }
+
+        function showAdminBar() {
+            var bar = document.createElement('div');
+            bar.className = 'admin-bar';
+            bar.id = 'adminBar';
+            bar.innerHTML = '' +
+                '<span class="info"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"/></svg> Y&#246;netici</span>' +
+                '<div class="actions">' +
+                    '<button class="admin-btn admin-btn-primary" onclick="openAddModal()">+ &#220;r&#252;n Ekle</button>' +
+                    '<button class="admin-btn admin-btn-ghost" onclick="openCatModal()"><svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="2"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2"/><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="2"/></svg></button>' +
+                    '<button class="admin-btn admin-btn-ghost" onclick="openSettings()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 3"/></svg></button>' +
+                    '<button class="admin-btn admin-btn-danger" onclick="exitAdmin()"><svg viewBox="0 0 24 24"><line x1="8" y1="8" x2="16" y2="16" stroke="currentColor" stroke-width="2"/><line x1="16" y1="8" x2="8" y2="16" stroke="currentColor" stroke-width="2"/></svg></button>' +
+                '</div>';
+            document.body.appendChild(bar);
+            document.body.style.paddingBottom = '80px';
+        }
+
+        function exitAdmin() {
+            document.body.classList.remove('admin-on');
+            var bar = document.getElementById('adminBar');
+            if (bar) bar.remove();
+            document.body.style.paddingBottom = '40px';
+            var url = new URL(window.location);
+            url.searchParams.delete('admin');
+            window.history.replaceState({}, '', url);
+            isAdmin = false;
+        }
+
+        // ─── TOAST ──────────────────────────────────────────
+        function showToast(msg) {
+            var t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._hide);
+            t._hide = setTimeout(function () { t.classList.remove('show'); }, 2500);
+        }
+
+        // ─── RENDER ─────────────────────────────────────────
+        function renderAccordion() {
+            var el = document.getElementById('menu');
+            el.innerHTML = '';
+
+            data.categories.forEach(function (cat, ci) {
+                var items = data.items.filter(function (item) { return item.cat === cat.id; });
+                if (items.length === 0) return;
+
+                var isCollapsed = collapsedCats[cat.id] === true;
+
+                var section = document.createElement('div');
+                section.className = 'category-section' + (isCollapsed ? ' collapsed' : '');
+                section.id = 'cat-' + cat.id;
+
+                var header = document.createElement('div');
+                header.className = 'category-header';
+                header.innerHTML = '' +
+                    '<div class="category-header-left">' +
+                        '<span class="category-header-icon">' + getCatIcon(cat.id) + '</span>' +
+                        '<span class="category-header-name">' + cat.label + '</span>' +
+                    '</div>' +
+                    '<div style="display:flex;align-items:center;gap:10px">' +
+                        '<span class="category-header-count">' + items.length + '</span>' +
+                        '<span class="category-header-toggle">&#9660;</span>' +
+                    '</div>';
+
+                header.addEventListener('click', function () {
+                    toggleCategory(cat.id);
+                });
+
+                var itemsContainer = document.createElement('div');
+                itemsContainer.className = 'category-items';
+
+                items.forEach(function (item, i) {
+                    var div = document.createElement('div');
+                    div.className = 'menu-item';
+                    div.style.animationDelay = (i * 0.04) + 's';
+                    div.dataset.id = item.id;
+
+                    var tagsHtml = '';
+                    (item.tags || []).forEach(function (t) {
+                        var icon = TAG_ICONS[t] || '';
+                        if (t === 'pop') tagsHtml += '<span class="tag tag-pop">' + icon + ' Pop&#252;ler</span>';
+                        else if (t === 'vegan') tagsHtml += '<span class="tag tag-vegan">' + icon + ' Vegan</span>';
+                        else if (t === 'new') tagsHtml += '<span class="tag tag-new">' + icon + ' Yeni</span>';
+                    });
+
+                    var ctrls = '';
+                    if (isAdmin) {
+                        ctrls = '<div class="admin-controls">' +
+                            '<button class="edit-btn" onclick="openEditModal(' + item.id + ')" title="D&#252;zenle"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>' +
+                            '<button class="del-btn" onclick="deleteItem(' + item.id + ')" title="Sil"><svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/></svg></button>' +
+                        '</div>';
+                    }
+
+                    var imgHtml = getCatIcon(item.cat);
+                    if (item.photo) imgHtml = '<img src="' + item.photo + '" alt="' + item.name + '" />';
+
+                    div.innerHTML = '' +
+                        ctrls +
+                        '<div class="menu-item-img">' + imgHtml + '</div>' +
+                        '<div class="menu-item-body">' +
+                            '<div class="menu-item-header">' +
+                                '<div class="menu-item-name">' + item.name + '</div>' +
+                                '<div class="menu-item-price">' + item.price + '&#8378;</div>' +
+                            '</div>' +
+                            (item.desc ? '<div class="menu-item-desc">' + item.desc + '</div>' : '') +
+                            (tagsHtml ? '<div class="menu-item-tags">' + tagsHtml + '</div>' : '') +
+                        '</div>';
+
+                    itemsContainer.appendChild(div);
+                });
+
+                section.appendChild(header);
+                section.appendChild(itemsContainer);
+                el.appendChild(section);
+            });
+        }
+
+        function toggleCategory(id) {
+            if (collapsedCats[id]) delete collapsedCats[id];
+            else collapsedCats[id] = true;
+            renderAccordion();
+        }
+
+        function renderAll() {
+            var rd = data.restaurant || 'Restoran Ad&#305;';
+            document.getElementById('restaurantName').textContent = rd;
+            document.getElementById('headerTitle').textContent = rd;
+            var logoEl = document.getElementById('headerLogo');
+            if (data.logo) logoEl.innerHTML = data.logo;
+            else logoEl.innerHTML = '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" fill="none" stroke="#dc2626" stroke-width="2.5"/><line x1="8" y1="12" x2="16" y2="12" stroke="#dc2626" stroke-width="2.5"/></svg>';
+            document.getElementById('restaurantDesc').textContent = data.desc || '';
+            document.getElementById('footerAddressText').textContent = data.address || '';
+            document.getElementById('footerAddress').href = 'https://maps.google.com?q=' + encodeURIComponent(data.address || '');
+            document.getElementById('footerPhoneText').textContent = data.phone || '';
+            document.getElementById('footerPhone').href = 'tel:' + (data.phone || '');
+            document.getElementById('footerCopy').innerHTML = '&#8226; ' + rd;
+
+            var social = document.getElementById('footerSocial');
+            social.innerHTML = '';
+            if (data.instagram && data.instagram !== '#') {
+                var a = document.createElement('a');
+                a.href = data.instagram; a.target = '_blank'; a.title = 'Instagram';
+                a.innerHTML = '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>';
+                social.appendChild(a);
+            }
+            if (data.whatsapp && data.whatsapp !== '#') {
+                var a = document.createElement('a');
+                a.href = data.whatsapp; a.target = '_blank'; a.title = 'WhatsApp';
+                a.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 20L5.5 15.5C4.5 14 4 12.3 4 10.5 4 6.4 7.4 3 11.5 3 15.6 3 19 6.4 19 10.5 19 14.6 15.6 18 11.5 18 9.7 18 8 17.5 6.5 16.5L4 20Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+                social.appendChild(a);
+            }
+            if (data.address) {
+                var a = document.createElement('a');
+                a.href = 'https://maps.google.com?q=' + encodeURIComponent(data.address);
+                a.target = '_blank'; a.title = 'Konum';
+                a.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 10 Q5 18 12 22 Q19 18 19 10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+                social.appendChild(a);
+            }
+
+            renderAccordion();
+        }
+
+        // ─── MODAL ──────────────────────────────────────────
+        function populateCatSelect() {
+            var sel = document.getElementById('fieldCat');
+            sel.innerHTML = '';
+            data.categories.forEach(function (c) {
+                var opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.label;
+                sel.appendChild(opt);
+            });
+        }
+
+        function setPhotoPreview(src) {
+            var wrap = document.getElementById('photoPreview');
+            if (src) {
+                wrap.innerHTML = '<img src="' + src + '" />';
+                document.getElementById('clearPhoto').style.display = 'inline-block';
+            } else {
+                wrap.innerHTML = '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" fill="none" stroke="#6b7280" stroke-width="1.5"/><circle cx="9" cy="11" r="2" fill="none" stroke="#6b7280" stroke-width="1.5"/><line x1="16" y1="10" x2="20" y2="14" stroke="#6b7280" stroke-width="1.5"/><line x1="20" y1="10" x2="16" y2="14" stroke="#6b7280" stroke-width="1.5"/></svg>';
+                document.getElementById('clearPhoto').style.display = 'none';
+            }
+        }
+
+        function clearPhoto() {
+            tempPhoto = '';
+            setPhotoPreview('');
+            document.getElementById('photoInput').value = '';
+        }
+
+        document.getElementById('photoInput').addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function (ev) {
+                var img = new Image();
+                img.onload = function () {
+                    var canvas = document.createElement('canvas');
+                    var max = 400;
+                    var w = img.width, h = img.height;
+                    if (w > h) { if (w > max) { h *= max / w; w = max; } }
+                    else { if (h > max) { w *= max / h; h = max; } }
+                    canvas.width = w; canvas.height = h;
+                    var ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    tempPhoto = canvas.toDataURL('image/jpeg', 0.8);
+                    setPhotoPreview(tempPhoto);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function openAddModal() {
+            editingId = null; tempPhoto = '';
+            document.getElementById('modalTitle').textContent = '&#220;R&#220;N EKLE';
+            document.getElementById('fieldName').value = '';
+            document.getElementById('fieldDesc').value = '';
+            document.getElementById('fieldPrice').value = '';
+            populateCatSelect();
+            document.getElementById('fieldCat').value = data.categories[0]?.id || '';
+            document.getElementById('fieldTags').selectedIndex = -1;
+            setPhotoPreview('');
+            document.getElementById('photoInput').value = '';
+            document.getElementById('saveBtn').textContent = 'Ekle';
+            document.getElementById('saveBtn').onclick = saveItem;
+            document.getElementById('modalOverlay').classList.add('open');
+        }
+
+        function openEditModal(id) {
+            var item = data.items.find(function (i) { return i.id === id; });
+            if (!item) return;
+            editingId = id; tempPhoto = '';
+            document.getElementById('modalTitle').textContent = '&#220;R&#220;N D&#220;ZENLE';
+            document.getElementById('fieldName').value = item.name;
+            document.getElementById('fieldDesc').value = item.desc || '';
+            document.getElementById('fieldPrice').value = item.price;
+            populateCatSelect();
+            document.getElementById('fieldCat').value = item.cat;
+            var sel = document.getElementById('fieldTags');
+            for (var i = 0; i < sel.options.length; i++) {
+                sel.options[i].selected = (item.tags || []).indexOf(sel.options[i].value) !== -1;
+            }
+            if (item.photo) { tempPhoto = item.photo; setPhotoPreview(item.photo); }
+            else setPhotoPreview('');
+            document.getElementById('saveBtn').textContent = 'Kaydet';
+            document.getElementById('saveBtn').onclick = saveItem;
+            document.getElementById('modalOverlay').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('open');
+        }
+
+        function saveItem() {
+            var name = document.getElementById('fieldName').value.trim();
+            var desc = document.getElementById('fieldDesc').value.trim();
+            var price = parseFloat(document.getElementById('fieldPrice').value);
+            var cat = document.getElementById('fieldCat').value;
+            var sel = document.getElementById('fieldTags');
+            var tags = [];
+            for (var i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].selected) tags.push(sel.options[i].value);
+            }
+
+            if (!name || isNaN(price)) { showToast('&#220;r&#252;n ad&#305; ve fiyat zorunludur'); return; }
+
+            if (editingId) {
+                var item = data.items.find(function (i) { return i.id === editingId; });
+                if (item) {
+                    item.name = name;
+                    item.desc = desc;
+                    item.price = price;
+                    item.cat = cat;
+                    item.tags = tags;
+                    if (tempPhoto) item.photo = tempPhoto;
+                }
+                showToast('&#220;r&#252;n g&#252;ncellendi');
+            } else {
+                var maxId = 0;
+                data.items.forEach(function (i) { if (i.id > maxId) maxId = i.id; });
+                data.items.push({ id: maxId + 1, name: name, desc: desc, price: price, cat: cat, tags: tags, photo: tempPhoto || '' });
+                showToast('&#220;r&#252;n eklendi');
+            }
+
+            saveData();
+            closeModal();
+            renderAccordion();
+        }
+
+        function deleteItem(id) {
+            if (!confirm('Bu &#252;r&#252;n&#252; silmek istedi&#287;inize emin misiniz?')) return;
+            data.items = data.items.filter(function (i) { return i.id !== id; });
+            saveData();
+            renderAccordion();
+            showToast('&#220;r&#252;n silindi');
+        }
+
+        // ─── CATEGORY MODAL ─────────────────────────────────
+        var editingCatId = null;
+
+        function initCatIconSelect() {
+            var sel = document.getElementById('catIconInput');
+            if (sel) sel.innerHTML = shapeSelectOptions('circle');
+        }
+
+        function renderCatIconSelect(selId, selected) {
+            var sel = document.getElementById(selId);
+            if (sel) sel.innerHTML = shapeSelectOptions(selected);
+        }
+
+        function openCatModal() {
+            editingCatId = null;
+            renderCatIconSelect('catIconInput', 'circle');
+            document.getElementById('catNameInput').value = '';
+            renderCatList();
+            document.getElementById('catModalOverlay').classList.add('open');
+        }
+
+        function closeCatModal() {
+            editingCatId = null;
+            document.getElementById('catModalOverlay').classList.remove('open');
+        }
+
+        function renderCatList() {
+            var el = document.getElementById('catList');
+            el.innerHTML = '';
+            data.categories.forEach(function (c) {
+                var count = data.items.filter(function (i) { return i.cat === c.id; }).length;
+                var div = document.createElement('div');
+                div.className = 'cat-list-item' + (editingCatId === c.id ? ' edit-mode' : '');
+                div.dataset.catId = c.id;
+
+                if (editingCatId === c.id) {
+                    var iconSvg = (c.icon && SHAPE_IDS[c.icon]) ? SHAPE_IDS[c.icon] : SHAPE_IDS.circle;
+                    div.innerHTML = '' +
+                        '<div class="cat-edit-row">' +
+                            '<select class="cat-edit-icon" id="catEditIcon">' + shapeSelectOptions(c.icon || 'circle') + '</select>' +
+                            '<input class="cat-edit-name" id="catEditName" value="' + escHtml(c.label) + '" />' +
+                            '<button class="cat-edit-save" onclick="saveCatEdit()" title="Kaydet"><svg viewBox="0 0 24 24"><polyline points="5,13 10,18 19,7" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></button>' +
+                            '<button class="cat-edit-cancel" onclick="cancelCatEdit()" title="&#304;ptal"><svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2.5"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2.5"/></svg></button>' +
+                        '</div>';
+                } else {
+                    div.innerHTML = '' +
+                        '<div class="cat-list-info">' +
+                            '<span class="cat-list-icon">' + getCatIcon(c.id) + '</span>' +
+                            '<div>' +
+                                '<div class="cat-list-name">' + escHtml(c.label) + '</div>' +
+                                '<div class="cat-list-count">' + count + ' &#252;r&#252;n</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="cat-list-actions">' +
+                            '<button class="cat-edit-btn" onclick="editCat(\'' + c.id + '\')" title="D&#252;zenle"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>' +
+                            '<button class="cat-del-btn" onclick="deleteCat(\'' + c.id + '\')" title="Sil"><svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/></svg></button>' +
+                        '</div>';
+                }
+
+                el.appendChild(div);
+            });
+        }
+
+        function editCat(id) {
+            editingCatId = id;
+            renderCatList();
+        }
+
+        function saveCatEdit() {
+            var iconSel = document.getElementById('catEditIcon');
+            var icon = iconSel.options[iconSel.selectedIndex].value;
+            var name = document.getElementById('catEditName').value.trim();
+            if (!name) { showToast('Kategori ismi gerekli'); return; }
+
+            var cat = data.categories.find(function (c) { return c.id === editingCatId; });
+            if (cat) { cat.icon = icon; cat.label = name; }
+            editingCatId = null;
+            saveData();
+            renderCatList();
+            renderAccordion();
+            showToast('Kategori g&#252;ncellendi');
+        }
+
+        function cancelCatEdit() {
+            editingCatId = null;
+            renderCatList();
+        }
+
+        function saveCategory() {
+            var iconSel = document.getElementById('catIconInput');
+            var icon = iconSel.options[iconSel.selectedIndex].value;
+            var name = document.getElementById('catNameInput').value.trim();
+            if (!name) { showToast('Kategori ismi gerekli'); return; }
+
+            var id = slugify(name);
+            if (data.categories.find(function (c) { return c.id === id; })) {
+                var suffix = 1;
+                while (data.categories.find(function (c) { return c.id === id + '-' + suffix; })) suffix++;
+                id = id + '-' + suffix;
+            }
+            data.categories.push({ id: id, label: name, icon: icon });
+            collapsedCats[id] = true;
+
+            renderCatIconSelect('catIconInput', 'circle');
+            document.getElementById('catNameInput').value = '';
+            saveData();
+            renderCatList();
+            renderAccordion();
+            showToast('Kategori eklendi');
+        }
+
+        function deleteCat(id) {
+            var count = data.items.filter(function (i) { return i.cat === id; }).length;
+            if (count > 0) {
+                showToast('Bu kategoride ' + count + ' &#252;r&#252;n var, &#246;nce &#252;r&#252;nleri ta&#351;&#305;y&#305;n');
+                return;
+            }
+            var cat = data.categories.find(function (c) { return c.id === id; });
+            if (!cat) return;
+            if (!confirm('"' + cat.label + '" kategorisini silmek istedi&#287;inize emin misiniz?')) return;
+            data.categories = data.categories.filter(function (c) { return c.id !== id; });
+            delete collapsedCats[id];
+            saveData();
+            renderCatList();
+            renderAccordion();
+            showToast('Kategori silindi');
+        }
+
+        function escHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        function slugify(str) {
+            return str.toLowerCase()
+                .replace(/[ı]/g, 'i').replace(/[ğ]/g, 'g').replace(/[ü]/g, 'u')
+                .replace(/[ş]/g, 's').replace(/[ö]/g, 'o').replace(/[ç]/g, 'c')
+                .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        }
+
+        // ─── SETTINGS ───────────────────────────────────────
+        function openSettings() {
+            var name = prompt('Restoran ad&#305;:', data.restaurant);
+            if (name !== null && name.trim()) data.restaurant = name.trim();
+            var logo = prompt('Logo SVG:', data.logo || '');
+            if (logo !== null && logo.trim()) data.logo = logo.trim();
+            var desc = prompt('A&#231;&#305;klama (k&#305;sa):', data.desc);
+            if (desc !== null) data.desc = desc.trim();
+            var addr = prompt('Adres:', data.address);
+            if (addr !== null) data.address = addr.trim();
+            var phone = prompt('Telefon:', data.phone);
+            if (phone !== null) data.phone = phone.trim();
+            var insta = prompt('Instagram linki:', data.instagram);
+            if (insta !== null) data.instagram = insta.trim();
+            var wp = prompt('WhatsApp linki:', data.whatsapp);
+            if (wp !== null) data.whatsapp = wp.trim();
+            saveData();
+            renderAll();
+            showToast('Ayarlar kaydedildi');
+        }
+
+        // ─── LONG PRESS (admin hidden entry) ────────────────
+        (function () {
+            var el = document.getElementById('restaurantName');
+            if (!el) return;
+            var timer = null;
+            var HOLD_MS = 3000;
+
+            function start(e) {
+                if (isAdmin) return;
+                el.classList.add('long-press');
+                timer = setTimeout(function () {
+                    timer = null;
+                    window.location.search = 'admin=' + ADMIN_PASSWORD;
+                }, HOLD_MS);
+            }
+
+            function cancel() {
+                el.classList.remove('long-press');
+                if (timer) { clearTimeout(timer); timer = null; }
+            }
+
+            el.addEventListener('mousedown', start);
+            el.addEventListener('mouseup', cancel);
+            el.addEventListener('mouseleave', cancel);
+            el.addEventListener('touchstart', start, { passive: true });
+            el.addEventListener('touchend', cancel);
+            el.addEventListener('touchcancel', cancel);
+        })();
+
+        // ─── INIT ───────────────────────────────────────────
+        loadData();
+        data.categories.forEach(function (c) { collapsedCats[c.id] = true; });
+        renderAll();
+
+        document.getElementById('modalOverlay').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.getElementById('catModalOverlay').addEventListener('click', function (e) {
+            if (e.target === this) closeCatModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { closeModal(); closeCatModal(); }
+        });
+    </script>
+</body>
+</html>

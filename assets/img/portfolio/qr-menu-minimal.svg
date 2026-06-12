@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="960" viewBox="0 0 1280 960">
+  <rect width="1280" height="960" fill="#f9f9f8"/>
+  <rect x="0" y="0" width="1280" height="80" fill="#ffffff"/>
+  <rect x="0" y="80" width="1280" height="1" fill="rgba(0,0,0,0.06)"/>
+  <rect x="60" y="22" width="36" height="36" rx="8" fill="#111111"/>
+  <text x="110" y="44" font-family="'Geist','Switzer',sans-serif" font-size="17" font-weight="600" fill="#111111">Mellow Brew</text>
+  <rect x="1050" y="26" width="80" height="28" rx="6" fill="rgba(160,120,90,0.08)"/>
+  <rect x="340" y="140" width="600" height="700" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+  <rect x="590" y="155" width="100" height="4" rx="2" fill="#e0ddd5"/>
+  <text x="640" y="205" text-anchor="middle" font-family="'Geist',sans-serif" font-size="22" font-weight="600" fill="#111111">Mellow Brew</text>
+  <text x="640" y="225" text-anchor="middle" font-family="'Geist',sans-serif" font-size="12" fill="#8a8a8a">kahve &#8226; çay &#8226; tatlı</text>
+  <rect x="380" y="260" width="520" height="48" rx="8" fill="rgba(160,120,90,0.06)"/>
+  <text x="400" y="290" font-family="'Geist',sans-serif" font-size="14" font-weight="500" fill="#111111">Sıcak İçecekler</text>
+  <text x="882" y="290" font-family="'Geist',sans-serif" font-size="13" fill="#a0785a">6</text>
+  <rect x="380" y="318" width="520" height="48" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+  <text x="400" y="348" font-family="'Geist',sans-serif" font-size="14" font-weight="500" fill="#111111">Soğuk İçecekler</text>
+  <text x="882" y="348" font-family="'Geist',sans-serif" font-size="13" fill="#a0785a">5</text>
+  <rect x="380" y="376" width="520" height="48" rx="8" fill="rgba(160,120,90,0.06)"/>
+  <text x="400" y="406" font-family="'Geist',sans-serif" font-size="14" font-weight="500" fill="#111111">Fırından</text>
+  <text x="882" y="406" font-family="'Geist',sans-serif" font-size="13" fill="#a0785a">4</text>
+  <rect x="380" y="434" width="520" height="48" rx="8" fill="rgba(160,120,90,0.06)"/>
+  <text x="400" y="464" font-family="'Geist',sans-serif" font-size="14" font-weight="500" fill="#111111">Atıştırmalık</text>
+  <text x="882" y="464" font-family="'Geist',sans-serif" font-size="13" fill="#a0785a">4</text>
+  <rect x="380" y="492" width="520" height="48" rx="8" fill="rgba(160,120,90,0.06)"/>
+  <text x="400" y="522" font-family="'Geist',sans-serif" font-size="14" font-weight="500" fill="#111111">Kahvaltı</text>
+  <text x="882" y="522" font-family="'Geist',sans-serif" font-size="13" fill="#a0785a">5</text>
+  <rect x="380" y="570" width="520" height="1" fill="rgba(0,0,0,0.04)"/>
+  <rect x="400" y="590" width="240" height="8" rx="2" fill="#111111"/>
+  <rect x="700" y="594" width="60" height="6" rx="2" fill="#a0785a"/>
+  <rect x="400" y="610" width="480" height="1" fill="rgba(0,0,0,0.04)"/>
+  <rect x="400" y="622" width="180" height="8" rx="2" fill="#111111"/>
+  <rect x="700" y="626" width="60" height="6" rx="2" fill="#a0785a"/>
+  <text x="640" y="870" text-anchor="middle" font-family="'Geist',sans-serif" font-size="14" font-weight="500" fill="#111111">Mellow Brew &#8212; Kahve &#8226; Çay &#8226; Tatlı</text>
+  <text x="640" y="895" text-anchor="middle" font-family="'Geist',sans-serif" font-size="12" fill="#8a8a8a">QR Menü &#8226; Coffee Shop &#8226; Responsive</text>
+</svg>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trattoria del Borgo &#8226; Rustik &#130;talyan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #f5e6d3;
+      --surface: #ffffff;
+      --text: #2d1810;
+      --text-muted: #8b5e3c;
+      --accent: #8b5e3c;
+      --accent-light: #c4956a;
+      --green: #5a7a5a;
+      --border: #dcc9b0;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Geist', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      background-image: radial-gradient(circle at 30% 20%, rgba(139,94,60,0.04) 0%, transparent 60%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    .header {
+      padding: 20px 0;
+      background: rgba(245,230,211,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 960px; margin: 0 auto; padding: 0 20px;
+    }
+    .header-brand {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .header-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--text); color: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 22px; font-weight: 700; font-style: italic;
+    }
+    .header-title {
+      font-family: var(--font-display); font-size: 18px; font-weight: 600;
+    }
+    .header-title small { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.5px; }
+    .nav { display: flex; gap: 24px; }
+    .nav a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 13px; font-weight: 500; transition: color 0.2s;
+    }
+    .nav a:hover { color: var(--text); }
+
+    .hero {
+      padding: 120px 20px 48px; text-align: center;
+      max-width: 960px; margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700; font-style: italic;
+      letter-spacing: -0.5px; margin-bottom: 6px;
+    }
+    .hero .sub {
+      font-size: 15px; color: var(--text-muted);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero .divider {
+      width: 60px; height: 2px; background: var(--accent-light);
+      margin: 20px auto; opacity: 0.4;
+    }
+    .hero p {
+      font-size: 15px; color: var(--text-muted); max-width: 500px; margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .section { padding: 48px 0; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 600;
+      text-align: center; margin-bottom: 32px;
+      position: relative;
+    }
+    .section-title::after {
+      content: ''; display: block; width: 40px; height: 2px;
+      background: var(--accent-light); opacity: 0.3;
+      margin: 10px auto 0;
+    }
+
+    .menu-category { margin-bottom: 32px; }
+    .menu-cat-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-cat-header h3 {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 600; font-style: italic;
+      color: var(--text);
+    }
+    .menu-cat-header .count {
+      font-size: 12px; color: var(--text-muted);
+      background: var(--border); padding: 2px 10px; border-radius: 100px;
+    }
+
+    .menu-item {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 12px 0; border-bottom: 1px dashed var(--border);
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item-info { flex: 1; padding-right: 16px; }
+    .menu-item-name {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 600; margin-bottom: 2px;
+    }
+    .menu-item-desc {
+      font-size: 13px; color: var(--text-muted); line-height: 1.5;
+    }
+    .menu-item-price {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600; color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: center;
+    }
+    .about-image {
+      width: 100%; aspect-ratio: 4/3; border-radius: 12px;
+      background: var(--border); display: flex;
+      align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 36px; font-weight: 700; font-style: italic;
+      color: var(--text-muted); opacity: 0.5;
+    }
+    .about-text h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 12px; }
+    .about-text p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+
+    .contact-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px; text-align: center;
+    }
+    .contact-box h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+    .contact-box p { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+    .contact-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .contact-row a {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text); text-decoration: none; font-size: 14px;
+      padding: 10px 20px; border-radius: 8px;
+      border: 1px solid var(--border); transition: all 0.2s;
+    }
+    .contact-row a:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-row svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0; text-align: center; margin-top: 48px;
+    }
+    .footer p { font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 640px) {
+      .nav { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-row { flex-direction: column; align-items: center; }
+    }
+
+    .controls {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%); z-index: 100;
+      display: flex; gap: 10px; align-items: center;
+    }
+    .btn-download {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border: none; border-radius: 10px;
+      background: var(--accent); color: #fff;
+      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all 0.3s ease;
+      box-shadow: 0 2px 12px rgba(139,94,60,0.3);
+    }
+    .btn-download:hover { background: var(--text); transform: translateY(-2px); }
+    .btn-download.loading { pointer-events: none; opacity: 0.7; }
+    .btn-download.success { background: var(--green); }
+    .btn-download .spinner {
+      display: none; width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+    }
+    .btn-download.loading .spinner { display: block; }
+    .btn-download.loading .btn-label { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .zoom-control {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(45,24,16,0.85); backdrop-filter: blur(12px);
+      border-radius: 10px; padding: 4px 6px;
+    }
+    .zoom-control button {
+      width: 28px; height: 28px; border: none; border-radius: 6px;
+      background: transparent; color: rgba(255,255,255,0.6);
+      font-size: 16px; cursor: pointer; transition: all 0.2s;
+    }
+    .zoom-control button:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .zoom-label {
+      color: rgba(255,255,255,0.4); font-size: 11px; min-width: 32px;
+      text-align: center; user-select: none; font-family: var(--font-body);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-icon">T</div>
+        <div class="header-title">
+          Trattoria del Borgo
+          <small>Rustik &#130;talyan Mutfa&#x11F;&#x131;</small>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#menu">Men&#xFC;</a>
+        <a href="#about">Hikayemiz</a>
+        <a href="#contact">&#x130;leti&#x15F;im</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Trattoria del Borgo</h1>
+    <div class="sub">Geleneksel &#130;talyan Lezzetleri</div>
+    <div class="divider"></div>
+    <p>K&#xFC;&#xE7;&#xFC;k bir k&#xF6;y trattoria's&#x131;n&#x131;n s&#x131;cak atmosferini sofran&#x131;za ta&#x15F;&#x131;yoruz. En taze malzemeler, en otantik tarifler.</p>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="container">
+      <h2 class="section-title">Men&#xFC;m&#xFC;z</h2>
+
+      <div class="menu-category">
+        <div class="menu-cat-header">
+          <h3>Antipasti</h3>
+          <span class="count">5</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Bruschetta al Pomodoro</div>
+            <div class="menu-item-desc">Domates, fesle&#x11F;en, sar&#x131;msakl&#x131; zeytinya&#x11F;&#x131;, &#x131;zgara ekmek</div>
+          </div>
+          <div class="menu-item-price">&#8378;145</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Carpaccio di Manzo</div>
+            <div class="menu-item-desc">&#x110;nce dilimlenmi&#x15F; dana eti, roka, parmesan, limon</div>
+          </div>
+          <div class="menu-item-price">&#8378;195</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Melanzane alla Parmigiana</div>
+            <div class="menu-item-desc">Patl&#x131;can, domates sosu, mozzarella, fesle&#x11F;en</div>
+          </div>
+          <div class="menu-item-price">&#8378;165</div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header">
+          <h3>Primi Piatti</h3>
+          <span class="count">4</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Tagliatelle al Tartufo</div>
+            <div class="menu-item-desc">Tr&#xFC;f mantarl&#x131; tagliatelle, parmesan kremas&#x131;</div>
+          </div>
+          <div class="menu-item-price">&#8378;245</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Risotto ai Funghi</div>
+            <div class="menu-item-desc">Porcini mantar&#x131;, Arborio pirinci, kekik</div>
+          </div>
+          <div class="menu-item-price">&#8378;225</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Pappardelle al Rag&#xF9;</div>
+            <div class="menu-item-desc">K&#x131;ymal&#x131; Bolonez sos, taze pappardelle</div>
+          </div>
+          <div class="menu-item-price">&#8378;215</div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header">
+          <h3>Secondi Piatti</h3>
+          <span class="count">4</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Saltimbocca alla Romana</div>
+            <div class="menu-item-desc">Dana eti, prosciutto, ada&#xE7;ay&#x131;, beyaz &#x15F;arap sosu</div>
+          </div>
+          <div class="menu-item-price">&#8378;295</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Pollo alla Cacciatora</div>
+            <div class="menu-item-desc">Tavuk, domates, zeytin, kapari, biberiye</div>
+          </div>
+          <div class="menu-item-price">&#8378;255</div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header">
+          <h3>Dolci</h3>
+          <span class="count">3</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Tiramis&#xF9; della Casa</div>
+            <div class="menu-item-desc">Mascarpone, espresso, kakao, ev yap&#x131;m&#x131; pandispanya</div>
+          </div>
+          <div class="menu-item-price">&#8378;165</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Panna Cotta al Caramello</div>
+            <div class="menu-item-desc">Vanilyal&#x131; panna cotta, tuzlu karamel, f&#x131;nd&#x131;k</div>
+          </div>
+          <div class="menu-item-price">&#8378;155</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">Hikayemiz</h2>
+      <div class="about-grid">
+        <div class="about-image">TB</div>
+        <div class="about-text">
+          <h3>K&#xFC;&#xE7;&#xFC;k Bir K&#xF6;y Trattoria's&#x131;</h3>
+          <p>Trattoria del Borgo, 1985 y&#x131;l&#x131;nda Toskana'n&#x131;n k&#xFC;&#xE7;&#xFC;k bir k&#xF6;y&#xFC;nde ba&#x15F;layan bir aile hikayesidir. B&#xFC;y&#xFC;kannemiz Nonna Maria'n&#x131;n tarifleriyle bug&#xFC;nlere ula&#x15F;an bu lezzet yolculu&#x11F;u, &#x130;stanbul'un kalbinde devam ediyor.</p>
+          <p>En taze mevsim malzemeleri, &#xF6;zenle se&#xE7;ilmi&#x15F; &#x130;talyan &#x15F;araplar&#x131; ve samimi bir ortamda, ger&#xE7;ek &#x130;talyan mutfa&#x11F;&#x131;n&#x131; deneyimleyin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Rezervasyon</h2>
+      <div class="contact-box">
+        <h3>Bize Ula&#x15F;&#x131;n</h3>
+        <p>Rezervasyon i&#xE7;in bizi arayabilir veya e-posta g&#xF6;nderebilirsiniz.</p>
+        <div class="contact-row">
+          <a href="tel:+902122221111">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +90 212 222 11 11
+          </a>
+          <a href="mailto:info@trattoriadelborgo.com">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@trattoriadelborgo.com
+          </a>
+          <a href="#">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @trattoriadelborgo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&#xA9; 2026 Trattoria del Borgo &#8226; T&#xFC;m haklar&#x131; sakl&#x131;d&#x131;r.</p>
+    <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">Burak Biçer Tasarım Atlası · <a href="https://www.instagram.com/captainbicer/" target="_blank" style="color:inherit;text-decoration:underline">@captainbicer</a></p>
+  </footer>
+
+  <div class="controls">
+    <div class="zoom-control">
+      <button id="zoomOut">&#x2212;</button>
+      <span class="zoom-label" id="zoomLabel">100%</span>
+      <button id="zoomIn">+</button>
+    </div>
+    <button class="btn-download" id="btnDownload">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      <span class="btn-label">Download</span>
+      <span class="spinner"></span>
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    (function() {
+      var el = document.getElementById('menu') || document.body;
+      var btn = document.getElementById('btnDownload');
+      var zoomIn = document.getElementById('zoomIn');
+      var zoomOut = document.getElementById('zoomOut');
+      var zoomLabel = document.getElementById('zoomLabel');
+      if (!el || !btn) return;
+      var scale = 1, MIN = 0.25, MAX = 2;
+      var designEl = document.querySelector('body');
+      function updateZoom() {
+        designEl.style.transform = 'scale(' + scale + ')';
+        designEl.style.transformOrigin = 'top left';
+        designEl.style.minHeight = (window.innerHeight * scale + 80) + 'px';
+        zoomLabel.textContent = Math.round(scale * 100) + '%';
+      }
+      if (zoomIn) zoomIn.addEventListener('click', function() { scale = Math.min(MAX, +(scale + 0.1).toFixed(1)); updateZoom(); });
+      if (zoomOut) zoomOut.addEventListener('click', function() { scale = Math.max(MIN, +(scale - 0.1).toFixed(1)); updateZoom(); });
+      btn.addEventListener('click', async function() {
+        btn.classList.add('loading');
+        try {
+          var canvas = await html2canvas(designEl, { scale: 2, useCORS: true, backgroundColor: '#f5e6d3', logging: false });
+          var link = document.createElement('a');
+          link.download = 'trattoria-del-borgo.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          btn.classList.remove('loading');
+          btn.classList.add('success');
+          btn.querySelector('.btn-label').textContent = 'Done!';
+          setTimeout(function() { btn.classList.remove('success'); btn.querySelector('.btn-label').textContent = 'Download'; }, 2000);
+        } catch(e) { console.error(e); btn.classList.remove('loading'); btn.querySelector('.btn-label').textContent = 'Error!'; setTimeout(function() { btn.querySelector('.btn-label').textContent = 'Download'; }, 2000); }
+      });
+    })();
+  </script>
+</body>
+</html>

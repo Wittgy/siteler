@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FDFBF7"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#d4a853"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect x="0" y="0" width="320" height="600" fill="#1a1410"/>
+  <text x="40" y="80" fill="#d4a853" font-family="'Playfair Display',serif" font-size="11" font-weight="600" letter-spacing="4">STUDIO ION</text>
+  <text x="40" y="180" fill="#FDFBF7" font-family="'Playfair Display',serif" font-size="52" font-weight="700">Kreatif</text>
+  <text x="40" y="240" fill="#d4a853" font-family="'Playfair Display',serif" font-size="52" font-weight="700">Fikirler</text>
+  <text x="40" y="310" fill="#a09080" font-family="'Plus Jakarta Sans',sans-serif" font-size="13" font-weight="400" line-height="1.6">Markanizi bir sonraki seviyeye</text>
+  <text x="40" y="332" fill="#a09080" font-family="'Plus Jakarta Sans',sans-serif" font-size="13" font-weight="400">tasimak icin buradayiz.</text>
+  <rect x="40" y="360" width="120" height="36" rx="2" fill="#d4a853"/>
+  <text x="52" y="383" fill="#1a1410" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" font-weight="600">Projeyi Baslat</text>
+  <rect x="480" y="40" width="280" height="200" rx="4" fill="#fff" stroke="#e8e0d0" stroke-width="1"/>
+  <text x="500" y="80" fill="#1a1410" font-family="'Playfair Display',serif" font-size="20" font-weight="700">Brand Identity</text>
+  <text x="500" y="108" fill="#8a7a6a" font-family="'Plus Jakarta Sans',sans-serif" font-size="12">Stratejik marka konumlandirma</text>
+  <rect x="500" y="130" width="40" height="4" rx="2" fill="#d4a853"/>
+  <text x="500" y="168" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Logo &amp; kimlik tasarimi</text>
+  <text x="500" y="188" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Marka kilavuzu olusturma</text>
+  <text x="500" y="208" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Gorsel dil stratejisi</text>
+  <rect x="480" y="260" width="130" height="170" rx="4" fill="#fff" stroke="#e8e0d0" stroke-width="1"/>
+  <text x="500" y="296" fill="#1a1410" font-family="'Playfair Display',serif" font-size="18" font-weight="700">Web</text>
+  <rect x="500" y="310" width="30" height="3" rx="1.5" fill="#d4a853"/>
+  <text x="500" y="342" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; UI/UX tasarimi</text>
+  <text x="500" y="362" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Front-end gelistirme</text>
+  <text x="500" y="382" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Responsive yapi</text>
+  <text x="500" y="402" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Performance optimizasyon</text>
+  <rect x="624" y="260" width="136" height="170" rx="4" fill="#fff" stroke="#e8e0d0" stroke-width="1"/>
+  <text x="644" y="296" fill="#1a1410" font-family="'Playfair Display',serif" font-size="18" font-weight="700">Content</text>
+  <rect x="644" y="310" width="30" height="3" rx="1.5" fill="#d4a853"/>
+  <text x="644" y="342" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Icerik stratejisi</text>
+  <text x="644" y="362" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Gorsel icerik uretimi</text>
+  <text x="644" y="382" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="11">&#8226; Sosyal medya yonetimi</text>
+  <rect x="480" y="450" width="280" height="120" rx="4" fill="#1a1410"/>
+  <text x="500" y="486" fill="#FDFBF7" font-family="'Playfair Display',serif" font-size="22" font-weight="700">Hadi baslayalim</text>
+  <text x="500" y="514" fill="#a09080" font-family="'Plus Jakarta Sans',sans-serif" font-size="12">Ucretsiz danisma icin bizimle iletisime gecin.</text>
+  <rect x="500" y="536" width="100" height="28" rx="2" fill="#d4a853"/>
+  <text x="512" y="555" fill="#1a1410" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600">Iletisim</text>
+  <text x="40" y="580" fill="#5a4a3a" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" font-weight="500">Studio Ion &#8226; Kreatif Ajans</text>
+</svg>

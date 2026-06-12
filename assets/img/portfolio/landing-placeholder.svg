@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#1e1e2e"/>
+  <rect x="100" y="80" width="600" height="320" rx="12" fill="#2a2a3e" stroke="#3a3a5e" stroke-width="1"/>
+  <rect x="200" y="120" width="400" height="40" rx="6" fill="#3a3a5e"/>
+  <rect x="200" y="180" width="300" height="14" rx="4" fill="#4a4a6e"/>
+  <rect x="200" y="205" width="250" height="14" rx="4" fill="#4a4a6e"/>
+  <rect x="200" y="240" width="180" height="40" rx="8" fill="#6366f1"/>
+  <circle cx="160" cy="240" r="40" fill="#3a3a5e"/>
+  <text x="400" y="480" text-anchor="middle" fill="#6a6a8e" font-family="Inter, sans-serif" font-size="20" font-weight="600">Landing Page</text>
+  <text x="400" y="510" text-anchor="middle" fill="#4a4a6e" font-family="Inter, sans-serif" font-size="14">Yakında &#8226; Coming Soon</text>
+</svg>

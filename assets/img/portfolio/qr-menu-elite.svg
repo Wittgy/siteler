@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="960" viewBox="0 0 1280 960">
+  <rect width="1280" height="960" fill="#0a0e1a"/>
+  <rect x="0" y="0" width="1280" height="80" fill="rgba(10,14,26,0.85)"/>
+  <rect x="0" y="80" width="1280" height="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="60" y="22" width="36" height="36" rx="8" fill="#c9953c"/>
+  <rect x="110" y="30" width="180" height="6" rx="3" fill="#f3f4f6"/>
+  <rect x="110" y="42" width="120" height="4" rx="2" fill="#8892a4"/>
+  <rect x="1050" y="26" width="100" height="28" rx="14" fill="rgba(201,149,60,0.12)" stroke="rgba(201,149,60,0.2)" stroke-width="1"/>
+  <rect x="1060" y="36" width="4" height="4" rx="2" fill="#c9953c"/>
+  <rect x="340" y="140" width="600" height="680" rx="24" fill="#111827"/>
+  <rect x="340" y="140" width="600" height="680" rx="24" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <rect x="590" y="155" width="100" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
+  <rect x="360" y="180" width="560" height="1" fill="rgba(255,255,255,0.06)"/>
+  <text x="640" y="210" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="22" font-weight="700" fill="#f3f4f6">The Prime Steakhouse</text>
+  <rect x="400" y="240" width="480" height="44" rx="10" fill="#1a2235" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="404" y="240" width="3" height="44" rx="1.5" fill="#c9953c"/>
+  <rect x="420" y="258" width="16" height="8" rx="2" fill="#c9953c"/>
+  <rect x="400" y="296" width="480" height="44" rx="10" fill="#1a2235" stroke="#c9953c" stroke-width="1.5"/>
+  <rect x="404" y="296" width="3" height="44" rx="1.5" fill="#c9953c"/>
+  <rect x="420" y="314" width="16" height="8" rx="2" fill="#c9953c"/>
+  <rect x="420" y="350" width="440" height="52" rx="8" fill="rgba(255,255,255,0.02)"/>
+  <rect x="420" y="412" width="440" height="52" rx="8" fill="rgba(255,255,255,0.02)"/>
+  <rect x="420" y="474" width="440" height="52" rx="8" fill="rgba(255,255,255,0.02)"/>
+  <rect x="400" y="540" width="480" height="44" rx="10" fill="#1a2235" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="400" y="596" width="480" height="44" rx="10" fill="#1a2235" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="360" y="740" width="560" height="1" fill="rgba(255,255,255,0.06)"/>
+  <text x="640" y="870" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="14" font-weight="600" fill="#f3f4f6">The Prime Steakhouse &#8212; Premium Et Deneyimi</text>
+  <text x="640" y="895" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="12" fill="#8892a4">QR Menü &#8226; Fine Dining &#8226; Responsive</text>
+</svg>

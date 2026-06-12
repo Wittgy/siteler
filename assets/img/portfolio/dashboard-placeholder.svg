@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#1e1e2e"/>
+  <rect x="80" y="80" width="640" height="360" rx="12" fill="#2a2a3e" stroke="#3a3a5e" stroke-width="1"/>
+  <rect x="60" y="60" width="160" height="400" rx="8" fill="#2a2a3e" stroke="#3a3a5e" stroke-width="1"/>
+  <rect x="80" y="80" width="120" height="30" rx="6" fill="#3a3a5e"/>
+  <rect x="80" y="125" width="120" height="8" rx="4" fill="#6366f1"/>
+  <rect x="80" y="145" width="120" height="8" rx="4" fill="#4a4a6e"/>
+  <rect x="80" y="165" width="120" height="8" rx="4" fill="#4a4a6e"/>
+  <rect x="260" y="100" width="200" height="120" rx="8" fill="#3a3a5e"/>
+  <rect x="480" y="100" width="200" height="120" rx="8" fill="#3a3a5e"/>
+  <rect x="260" y="240" width="200" height="120" rx="8" fill="#3a3a5e"/>
+  <rect x="480" y="240" width="200" height="120" rx="8" fill="#3a3a5e"/>
+  <rect x="280" y="115" width="80" height="40" rx="6" fill="#6366f1"/>
+  <rect x="280" y="165" width="160" height="8" rx="4" fill="#4a4a6e"/>
+  <rect x="280" y="180" width="120" height="8" rx="4" fill="#4a4a6e"/>
+  <rect x="500" y="115" width="80" height="40" rx="6" fill="#10b981"/>
+  <rect x="500" y="165" width="160" height="8" rx="4" fill="#4a4a6e"/>
+  <rect x="500" y="180" width="120" height="8" rx="4" fill="#4a4a6e"/>
+  <text x="400" y="500" text-anchor="middle" fill="#6a6a8e" font-family="Inter, sans-serif" font-size="20" font-weight="600">Dashboard / Admin Panel</text>
+  <text x="400" y="530" text-anchor="middle" fill="#4a4a6e" font-family="Inter, sans-serif" font-size="14">Yakında &#8226; Coming Soon</text>
+</svg>

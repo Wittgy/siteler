@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elif Ayd&#x131;n &#8226; CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #f8f5f0;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #9a8e80;
+      --accent: #1a1a1a;
+      --accent-hover: #3a3a3a;
+      --border: #e5ddd0;
+      --border-light: #f0ebe4;
+      --radius: 12px;
+      --radius-sm: 6px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Geist', system-ui, -apple-system, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--text); color: var(--bg); }
+
+    .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    /* header */
+    .header {
+      padding: 32px 0 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 880px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 700; color: var(--text);
+      letter-spacing: -0.3px;
+    }
+    .nav { display: flex; gap: 28px; }
+    .nav a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 13px; font-weight: 500; transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .nav a:hover { color: var(--text); }
+
+    /* hero / intro */
+    .intro {
+      padding: 60px 0 48px;
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 40px; align-items: start;
+    }
+    .intro-avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--text); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--bg); font-family: var(--font-display);
+      font-size: 40px; font-weight: 600; font-style: italic;
+    }
+    .intro-content h1 {
+      font-family: var(--font-display);
+      font-size: 40px; font-weight: 700;
+      letter-spacing: -0.5px; margin-bottom: 4px;
+    }
+    .intro-content .title {
+      font-size: 16px; color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .intro-content p {
+      font-size: 15px; color: var(--text-muted);
+      line-height: 1.7; max-width: 480px;
+    }
+    .intro-links {
+      display: flex; gap: 12px; margin-top: 20px;
+    }
+    .intro-links a {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 100px;
+      border: 1px solid var(--border); text-decoration: none;
+      font-size: 13px; font-weight: 500; color: var(--text);
+      transition: all 0.2s;
+    }
+    .intro-links a:hover { border-color: var(--text); background: var(--text); color: var(--bg); }
+    .intro-links a svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* sections */
+    .section { padding: 40px 0; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 600;
+      margin-bottom: 24px; letter-spacing: -0.3px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* timeline */
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 28px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -20px; top: 6px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--text); border: 3px solid var(--bg);
+    }
+    .tl-date {
+      font-size: 12px; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .tl-title {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600; margin-bottom: 2px;
+    }
+    .tl-org { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
+    .tl-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* skills */
+    .skills-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .skill-item { }
+    .skill-item .skill-label {
+      display: flex; justify-content: space-between;
+      font-size: 13px; font-weight: 500; margin-bottom: 6px;
+    }
+    .skill-item .skill-label span:last-child { color: var(--text-muted); }
+    .skill-bar {
+      height: 4px; border-radius: 2px;
+      background: var(--border); overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%; border-radius: 2px;
+      background: var(--text); transition: width 0.8s ease;
+    }
+
+    /* education */
+    .edu-item { margin-bottom: 20px; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-year {
+      font-size: 12px; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .edu-title {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600;
+    }
+    .edu-org { font-size: 14px; color: var(--text-muted); }
+
+    /* contact footer */
+    .contact-row {
+      display: flex; gap: 32px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .contact-row a {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); text-decoration: none;
+      font-size: 13px; transition: color 0.2s;
+    }
+    .contact-row a:hover { color: var(--text); }
+    .contact-row svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .footer {
+      border-top: 1px solid var(--border-light);
+      padding: 24px 0;
+      text-align: center;
+    }
+    .footer p { font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 640px) {
+      .intro { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+      .intro-avatar { margin: 0 auto; }
+      .intro-content p { max-width: 100%; }
+      .intro-links { justify-content: center; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .contact-row { justify-content: center; }
+      .nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">EA</div>
+      <nav class="nav">
+        <a href="#experience">Deneyim</a>
+        <a href="#skills">Yetenekler</a>
+        <a href="#education">E&#x11F;itim</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <div class="intro-avatar">EA</div>
+      <div class="intro-content">
+        <h1>Elif Ayd&#x131;n</h1>
+        <div class="title">Product Designer &amp; Front-end Developer</div>
+        <p>Kullan&#x131;c&#x131; odakl&#x131; tasar&#x131;m ve temiz kod ile dijital &#xFC;r&#xFC;nleri daha iyi hale getiriyorum.</p>
+        <div class="intro-links">
+          <a href="mailto:elif@example.com">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            E-posta
+          </a>
+          <a href="#">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="#">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="experience">
+      <h2 class="section-title">Deneyim</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2024 &#8211; G&#xFC;n&#xFC;m&#xFC;z</div>
+          <div class="tl-title">K&#x131;demli Product Designer</div>
+          <div class="tl-org">Monster Digital &#8226; &#x130;stanbul</div>
+          <div class="tl-desc">Kullan&#x131;c&#x131; ara&#x15F;t&#x131;rmalar&#x131;, etkile&#x15F;im tasar&#x131;m&#x131; ve prototipleme s&#xFC;re&#xE7;lerini y&#xF6;nettim. Ekibin tasar&#x131;m sistemini kurarak 3 farkl&#x131; &#xFC;r&#xFC;nde tutarl&#x131;l&#x131;&#x11F;&#x131; sa&#x11F;lad&#x131;m.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2022 &#8211; 2024</div>
+          <div class="tl-title">UI/UX Tasar&#x131;mc&#x131;</div>
+          <div class="tl-org">Pixelworks &#8226; &#x130;stanbul</div>
+          <div class="tl-desc">Web ve mobil uygulamalar i&#xE7;in kullan&#x131;c&#x131; aray&#xFC;z&#xFC; tasar&#x131;m&#x131; yapt&#x131;m. Tasar&#x131;m sistemleri ve component library olu&#x15F;turarak geli&#x15F;tirme s&#xFC;recini h&#x131;zland&#x131;rd&#x131;m.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2020 &#8211; 2022</div>
+          <div class="tl-title">Junior Tasar&#x131;mc&#x131;</div>
+          <div class="tl-org">Studio Craft &#8226; Ankara</div>
+          <div class="tl-desc">Marka kimli&#x11F;i, bas&#x131;l&#x131; materyaller ve sosyal medya tasar&#x131;mlar&#x131; &#xFC;rettim. M&#xFC;&#x15F;teri brief'lerini analiz ederek yarat&#x131;c&#x131; &#xE7;&#xF6;z&#xFC;mler geli&#x15F;tirdim.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <h2 class="section-title">Yetenekler</h2>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-label"><span>UI/UX Tasar&#x131;m</span><span>95%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Front-end Geli&#x15F;tirme</span><span>85%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Tasar&#x131;m Sistemi</span><span>90%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Prototipleme</span><span>80%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Marka Kimli&#x11F;i</span><span>75%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Kullan&#x131;c&#x131; Ara&#x15F;t&#x131;rmas&#x131;</span><span>80%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <h2 class="section-title">E&#x11F;itim</h2>
+      <div class="edu-item">
+        <div class="edu-year">2016 &#8211; 2020</div>
+        <div class="edu-title">End&#xFC;striyel Tasar&#x131;m</div>
+        <div class="edu-org">&#x130;stanbul Teknik &#xDC;niversitesi &#8226; Lisans</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2018</div>
+        <div class="edu-title">De&#x11F;i&#x15F;im Program&#x131;</div>
+        <div class="edu-org">Politecnico di Milano</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:20px">
+      <h2 class="section-title">&#x130;leti&#x15F;im</h2>
+      <div class="contact-row">
+        <a href="mailto:elif@example.com">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          elif@example.com
+        </a>
+        <a href="tel:+905551234567">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +90 555 123 45 67
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/elifaydin
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>&#xA9; 2026 Elif Ayd&#x131;n &#8226; T&#xFC;m haklar&#x131; sakl&#x131;d&#x131;r.</p>
+    <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">Burak Biçer Tasarım Atlası · <a href="https://www.instagram.com/captainbicer/" target="_blank" style="color:inherit;text-decoration:underline">@captainbicer</a></p>
+  </footer>
+
+</body>
+</html>

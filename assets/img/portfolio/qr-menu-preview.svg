@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="960" viewBox="0 0 1280 960">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#faf8f5"/>
+      <stop offset="100%" stop-color="#f0ede8"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#000" flood-opacity="0.06"/>
+    </filter>
+    <filter id="shadowDeep">
+      <feDropShadow dx="0" dy="8" stdDeviation="24" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="960" fill="url(#bgGrad)"/>
+
+  <!-- Top bar -->
+  <rect width="1280" height="80" fill="#fff" opacity="0.95"/>
+  <rect x="0" y="80" width="1280" height="1" fill="#e5e0d8"/>
+
+  <!-- Logo circle -->
+  <rect x="60" y="22" width="36" height="36" rx="8" fill="url(#accentGrad)"/>
+  <text x="78" y="47" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="18" font-weight="700">M</text>
+  <text x="110" y="48" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#1c1917">QR Menü</text>
+  <text x="196" y="48" font-family="Inter, sans-serif" font-size="18" font-weight="400" fill="#78716c">/ Lezzet Durağı</text>
+
+  <!-- Badge -->
+  <rect x="1050" y="26" width="100" height="28" rx="14" fill="rgba(217,119,6,0.1)" stroke="rgba(217,119,6,0.2)" stroke-width="1"/>
+  <circle cx="1065" cy="40" r="3" fill="#d97706"/>
+  <text x="1075" y="45" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#d97706">Dijital Menü</text>
+
+  <!-- Phone mockup -->
+  <rect x="360" y="120" width="560" height="700" rx="32" fill="#fff" filter="url(#shadowDeep)"/>
+  <rect x="360" y="120" width="560" height="700" rx="32" fill="none" stroke="#e5e0d8" stroke-width="1"/>
+
+  <!-- Phone notch -->
+  <rect x="580" y="132" width="120" height="8" rx="4" fill="#e5e0d8"/>
+
+  <!-- Phone header -->
+  <rect x="380" y="155" width="520" height="60" rx="0" fill="#fff"/>
+  <rect x="380" y="155" width="520" height="1" fill="#e5e0d8" y2="155"/>
+  <text x="640" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#1c1917">Lezzet Durağı</text>
+  <text x="640" y="208" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#78716c">Kategori listesinden seçim yapın</text>
+
+  <!-- Search bar -->
+  <rect x="400" y="230" width="480" height="36" rx="10" fill="#f5f3f0"/>
+  <text x="420" y="253" font-family="Inter, sans-serif" font-size="13" fill="#a8a29e">&#x1F50D;  Menüde ara...</text>
+
+  <!-- Category 1 - Başlangıçlar -->
+  <rect x="400" y="282" width="480" height="44" rx="10" fill="#fff" stroke="#e5e0d8" stroke-width="1"/>
+  <text x="416" y="309" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1c1917">&#x1F944;  Başlangıçlar</text>
+  <text x="868" y="309" font-family="Inter, sans-serif" font-size="14" fill="#d97706">&#x25BC;</text>
+
+  <!-- Category 2 - Ana Yemekler (active) -->
+  <rect x="400" y="334" width="480" height="44" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="416" y="361" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1c1917">&#x1F372;  Ana Yemekler</text>
+  <text x="868" y="361" font-family="Inter, sans-serif" font-size="14" fill="#d97706">&#x25BC;</text>
+
+  <!-- Menu items under Ana Yemekler -->
+  <rect x="416" y="386" width="448" height="56" rx="8" fill="#faf8f5"/>
+  <text x="432" y="410" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1c1917">Izgara Köfte</text>
+  <text x="432" y="428" font-family="Inter, sans-serif" font-size="11" fill="#78716c">Izgara köfte, patates, garnitür</text>
+  <text x="848" y="415" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#d97706">₺185</text>
+  <rect x="432" y="440" width="416" height="1" fill="#e5e0d8"/>
+
+  <rect x="416" y="442" width="448" height="56" rx="8" fill="#faf8f5"/>
+  <text x="432" y="466" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1c1917">Tavuk Şiş</text>
+  <text x="432" y="484" font-family="Inter, sans-serif" font-size="11" fill="#78716c">Tavuk şiş, lavaş, köz biber</text>
+  <text x="848" y="471" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#d97706">₺165</text>
+  <rect x="432" y="496" width="416" height="1" fill="#e5e0d8"/>
+
+  <rect x="416" y="498" width="448" height="56" rx="8" fill="#faf8f5"/>
+  <text x="432" y="522" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1c1917">Lahmacun</text>
+  <text x="432" y="540" font-family="Inter, sans-serif" font-size="11" fill="#78716c">Kıymalı, maydanoz, limon</text>
+  <text x="848" y="527" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#d97706">₺95</text>
+
+  <!-- Category 3 - İçecekler -->
+  <rect x="400" y="570" width="480" height="44" rx="10" fill="#fff" stroke="#e5e0d8" stroke-width="1"/>
+  <text x="416" y="597" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1c1917">&#x1F964;  İçecekler</text>
+  <text x="868" y="597" font-family="Inter, sans-serif" font-size="14" fill="#d97706">&#x25B6;</text>
+
+  <!-- Category 4 - Tatlılar -->
+  <rect x="400" y="622" width="480" height="44" rx="10" fill="#fff" stroke="#e5e0d8" stroke-width="1"/>
+  <text x="416" y="649" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1c1917">&#x1F36E;  Tatlılar</text>
+  <text x="868" y="649" font-family="Inter, sans-serif" font-size="14" fill="#d97706">&#x25B6;</text>
+
+  <!-- Bottom nav bar in phone -->
+  <rect x="380" y="730" width="520" height="60" rx="0" fill="#fff"/>
+  <rect x="380" y="730" width="520" height="1" fill="#e5e0d8"/>
+  <text x="640" y="768" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#d97706">&#x1F3B0;  Menü</text>
+  <text x="500" y="768" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#a8a29e">&#x1F4CC;  Sipariş</text>
+  <text x="780" y="768" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#a8a29e">&#x2699;  Ayarlar</text>
+
+  <!-- QR Code decoration -->
+  <rect x="980" y="160" width="120" height="120" rx="12" fill="#fff" filter="url(#shadow)"/>
+  <rect x="980" y="160" width="120" height="120" rx="12" fill="none" stroke="#e5e0d8" stroke-width="1"/>
+  <rect x="994" y="174" width="92" height="92" rx="4" fill="#1c1917"/>
+  <rect x="1002" y="182" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1022" y="182" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1042" y="182" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1062" y="182" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1002" y="202" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1022" y="202" width="12" height="12" rx="2" fill="#d97706"/>
+  <rect x="1042" y="202" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1062" y="202" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1002" y="222" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1042" y="222" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1062" y="222" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1002" y="242" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1022" y="242" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1042" y="242" width="12" height="12" rx="2" fill="#fff"/>
+  <rect x="1062" y="242" width="12" height="12" rx="2" fill="#d97706"/>
+  <text x="1040" y="310" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#78716c">QR ile tarayın</text>
+  <text x="1040" y="325" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#a8a29e">Menüyü açın</text>
+
+  <!-- Tags -->
+  <rect x="980" y="360" width="120" height="28" rx="8" fill="rgba(217,119,6,0.1)"/>
+  <text x="1040" y="379" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#d97706">&#x1F4F1;  Responsive</text>
+
+  <rect x="980" y="396" width="120" height="28" rx="8" fill="rgba(217,119,6,0.1)"/>
+  <text x="1040" y="415" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#d97706">&#x1F310;  Mobil Uyumlu</text>
+
+  <!-- Project info box -->
+  <rect x="120" y="860" width="1040" height="1" fill="#e5e0d8"/>
+  <text x="640" y="900" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1c1917">QR Menü &#8212; Dijital Restoran Menü Uygulaması</text>
+  <text x="640" y="922" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#a8a29e">HTML &#8226; CSS &#8226; Responsive Tasarım</text>
+</svg>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wild Fern &#8226; Boho Cafe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #faf5ef;
+      --surface: #ffffff;
+      --text: #2d2a24;
+      --text-muted: #9a8e80;
+      --green: #84a98c;
+      --green-dark: #5a7a5a;
+      --terracotta: #e07a5f;
+      --terracotta-light: #f0a08a;
+      --border: #e8ddd0;
+      --border-light: #f5efe8;
+      --radius: 20px;
+      --radius-sm: 10px;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Geist', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    .header {
+      padding: 20px 0;
+      background: rgba(250,245,239,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 960px; margin: 0 auto; padding: 0 20px;
+    }
+    .header-brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .header-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--green); display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 18px;
+    }
+    .header-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .header-title {
+      font-family: var(--font-display); font-size: 17px; font-weight: 600;
+    }
+    .header-title small { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); }
+    .nav { display: flex; gap: 24px; }
+    .nav a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 13px; font-weight: 500; transition: color 0.2s;
+    }
+    .nav a:hover { color: var(--green-dark); }
+
+    .hero {
+      padding: 60px 20px 40px; text-align: center;
+      max-width: 960px; margin: 0 auto;
+    }
+    .hero-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(132,169,140,0.12); margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-icon svg { width: 28px; height: 28px; fill: none; stroke: var(--green); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5vw, 48px);
+      font-weight: 700; letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .hero .sub {
+      font-size: 15px; color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .hero .divider {
+      width: 40px; height: 3px; border-radius: 2px;
+      background: var(--green); margin: 16px auto; opacity: 0.3;
+    }
+    .hero p {
+      font-size: 15px; color: var(--text-muted);
+      max-width: 480px; margin: 0 auto; line-height: 1.7;
+    }
+
+    .section { padding: 48px 0; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 600; text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .coffee-highlight {
+      background: var(--green); border-radius: var(--radius);
+      padding: 32px; color: #fff; text-align: center;
+      margin-bottom: 40px;
+    }
+    .coffee-highlight .label {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+      opacity: 0.7; margin-bottom: 8px;
+    }
+    .coffee-highlight h3 {
+      font-family: var(--font-display); font-size: 26px; font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .coffee-highlight p {
+      font-size: 14px; opacity: 0.85; max-width: 400px; margin: 0 auto;
+    }
+    .coffee-highlight .price {
+      display: inline-block; margin-top: 14px;
+      padding: 6px 20px; border-radius: 100px;
+      background: rgba(255,255,255,0.15); font-size: 15px; font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .menu-card {
+      background: var(--surface); border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm); padding: 20px;
+      transition: all 0.25s ease; display: flex;
+      align-items: flex-start; gap: 14px;
+    }
+    .menu-card:hover { border-color: var(--border); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+    .menu-card-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(132,169,140,0.1); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .menu-card-icon svg { width: 18px; height: 18px; fill: none; stroke: var(--green); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .menu-card-body { flex: 1; min-width: 0; }
+    .menu-card-name { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+    .menu-card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .menu-card-price { font-weight: 600; color: var(--terracotta); font-size: 14px; white-space: nowrap; margin-top: 4px; }
+
+    .insta-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+      margin-top: 24px;
+    }
+    .insta-item {
+      aspect-ratio: 1; border-radius: var(--radius-sm);
+      background: var(--border-light); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 22px; color: var(--text-muted); opacity: 0.5;
+      font-family: var(--font-display); font-weight: 600;
+    }
+
+    .contact-boho {
+      background: var(--surface); border: 1px solid var(--border-light);
+      border-radius: var(--radius); padding: 36px; text-align: center;
+    }
+    .contact-boho h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+    .contact-boho p { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+    .contact-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .contact-row a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light); text-decoration: none;
+      color: var(--text); font-size: 13px; transition: all 0.2s;
+    }
+    .contact-row a:hover { border-color: var(--green); color: var(--green-dark); }
+    .contact-row a svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .hours {
+      margin-top: 16px; font-size: 13px; color: var(--text-muted);
+    }
+    .hours span { display: inline-block; margin: 0 12px; }
+    .hours strong { color: var(--text); }
+
+    .footer {
+      border-top: 1px solid var(--border-light);
+      padding: 24px 0; text-align: center; margin-top: 48px;
+    }
+    .footer p { font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 640px) {
+      .nav { display: none; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .insta-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-row { flex-direction: column; align-items: center; }
+    }
+
+    .controls {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%); z-index: 100;
+      display: flex; gap: 10px; align-items: center;
+    }
+    .btn-download {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border: none; border-radius: 10px;
+      background: var(--green-dark); color: #fff;
+      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all 0.3s ease;
+      box-shadow: 0 2px 12px rgba(90,122,90,0.3);
+    }
+    .btn-download:hover { background: var(--green); transform: translateY(-2px); }
+    .btn-download.loading { pointer-events: none; opacity: 0.7; }
+    .btn-download.success { background: var(--terracotta); }
+    .btn-download .spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    .btn-download.loading .spinner { display: block; }
+    .btn-download.loading .btn-label { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .zoom-control {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(45,42,36,0.85); backdrop-filter: blur(12px);
+      border-radius: 10px; padding: 4px 6px;
+    }
+    .zoom-control button { width: 28px; height: 28px; border: none; border-radius: 6px; background: transparent; color: rgba(255,255,255,0.5); font-size: 16px; cursor: pointer; transition: all 0.2s; }
+    .zoom-control button:hover { background: rgba(132,169,140,0.2); color: #fff; }
+    .zoom-label { color: rgba(255,255,255,0.35); font-size: 11px; min-width: 32px; text-align: center; user-select: none; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="header-title">
+          Wild Fern
+          <small>&Ccedil;ay &amp; Kahve Evi</small>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#menu">Men&#xFC;</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#contact">&#x130;leti&#x15F;im</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-icon">
+      <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+    </div>
+    <h1>Wild Fern</h1>
+    <div class="sub">Do&#x11F;an&#x131;n i&#xE7;inde bir mola</div>
+    <div class="divider"></div>
+    <p>Botanik bah&#xE7;emizde demlenen &#xF6;zel kahveler, taze &ccedil;aylar ve ev yap&#x131;m&#x131; lezzetlerle huzurlu bir mola verin.</p>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="coffee-highlight">
+        <div class="label">G&#xFC;n&#xFC;n Kahvesi</div>
+        <h3>Fern Latte</h3>
+        <p>Ev yap&#x131;m&#x131; f&#x131;nd&#x131;k s&#xFC;t&#xFC;, tar&#xE7;&#x131;n ve ada&#xE7;ay&#x131; ile haz&#x131;rlanan imza i&#xE7;ece&#x11F;imiz</p>
+        <div class="price">&#8378;95</div>
+      </div>
+
+      <h2 class="section-title">Kahveler</h2>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">T&uuml;rk Kahvesi</div>
+            <div class="menu-card-desc">K&ouml;p&uuml;k kıvamında, lokum eşlikli</div>
+          </div>
+          <div class="menu-card-price">&#8378;65</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Filter Kahve</div>
+            <div class="menu-card-desc">Peru &amp; Etiyopya &ccedil;ekirdek, V60 damlama</div>
+          </div>
+          <div class="menu-card-price">&#8378;75</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Matcha Latte</div>
+            <div class="menu-card-desc">Japon yeşil &ccedil;ayı, s&uuml;t k&ouml;p&uuml;ğ&uuml;</div>
+          </div>
+          <div class="menu-card-price">&#8378;85</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Soğuk Brew</div>
+            <div class="menu-card-desc">12 saat demlenmiş, vanilya notaları</div>
+          </div>
+          <div class="menu-card-price">&#8378;80</div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:40px">Atıştırmalıklar</h2>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2c-3 0-6 2-6 6 0 3.5 2 5 2 5s-2 1.5-2 5c0 4 4 4 6 4s6 0 6-4c0-3.5-2-5-2-5s2-1.5 2-5c0-4-3-6-6-6z"/></svg>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Lavantalı Cheesecake</div>
+            <div class="menu-card-desc">Hindistan cevizli taban, lavanta şurubu</div>
+          </div>
+          <div class="menu-card-price">&#8378;110</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12c0-4 4-7 4-7s4 3 4 7"/></svg>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Ballı Bademli Kek</div>
+            <div class="menu-card-desc">Glutensiz, organik bal &amp; badem unu</div>
+          </div>
+          <div class="menu-card-price">&#8378;95</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Akdeniz Tabağı</div>
+            <div class="menu-card-desc">Zeytin, peynir, domates kurusu, ceviz</div>
+          </div>
+          <div class="menu-card-price">&#8378;130</div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Sicak &Ccedil;ikolata</div>
+            <div class="menu-card-desc">Belçika &ccedil;ikolatası, marshmallow, krema</div>
+          </div>
+          <div class="menu-card-price">&#8378;75</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Instagram'dan</h2>
+      <p style="text-align:center;color:var(--text-muted);font-size:14px;margin-bottom:8px">@wildfern.cafe</p>
+      <div class="insta-grid">
+        <div class="insta-item">&#x2744;</div>
+        <div class="insta-item">&#x2744;</div>
+        <div class="insta-item">&#x2744;</div>
+        <div class="insta-item">&#x2744;</div>
+        <div class="insta-item">&#x2744;</div>
+        <div class="insta-item">&#x2744;</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Bize Ulaşın</h2>
+      <div class="contact-boho">
+        <h3>Wild Fern'e Bekleriz</h3>
+        <p>Haftanın her g&uuml;n&uuml; kapıyız. Gelin &ccedil;ayınızı yudumlarken doğanın tadını &ccedil;ıkarın.</p>
+        <div class="contact-row">
+          <a href="https://maps.google.com" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Moda, İstanbul
+          </a>
+          <a href="tel:+902163001010">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +90 216 300 10 10
+          </a>
+          <a href="https://instagram.com" target="_blank">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @wildfern.cafe
+          </a>
+        </div>
+        <div class="hours">
+          <span><strong>Pzt &#8211; Cum:</strong> 08:00 &#8211; 22:00</span>
+          <span><strong>Cts &#8211; Paz:</strong> 09:00 &#8211; 23:00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&#xA9; 2026 Wild Fern &#8226; &Ccedil;ay &amp; Kahve Evi</p>
+    <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">Burak Biçer Tasarım Atlası · <a href="https://www.instagram.com/captainbicer/" target="_blank" style="color:inherit;text-decoration:underline">@captainbicer</a></p>
+  </footer>
+
+  <div class="controls">
+    <div class="zoom-control">
+      <button id="zoomOut">&#x2212;</button>
+      <span class="zoom-label" id="zoomLabel">100%</span>
+      <button id="zoomIn">+</button>
+    </div>
+    <button class="btn-download" id="btnDownload">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      <span class="btn-label">Download</span>
+      <span class="spinner"></span>
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    (function() {
+      var body = document.body;
+      var btn = document.getElementById('btnDownload');
+      var zoomIn = document.getElementById('zoomIn');
+      var zoomOut = document.getElementById('zoomOut');
+      var zoomLabel = document.getElementById('zoomLabel');
+      var scale = 1, MIN = 0.25, MAX = 2;
+      function updateZoom() {
+        body.style.transform = 'scale(' + scale + ')';
+        body.style.transformOrigin = 'top left';
+        body.style.minHeight = (window.innerHeight * scale + 80) + 'px';
+        zoomLabel.textContent = Math.round(scale * 100) + '%';
+      }
+      if (zoomIn) zoomIn.addEventListener('click', function() { scale = Math.min(MAX, +(scale + 0.1).toFixed(1)); updateZoom(); });
+      if (zoomOut) zoomOut.addEventListener('click', function() { scale = Math.max(MIN, +(scale - 0.1).toFixed(1)); updateZoom(); });
+      btn.addEventListener('click', async function() {
+        btn.classList.add('loading');
+        try {
+          var canvas = await html2canvas(body, { scale: 2, useCORS: true, backgroundColor: '#faf5ef', logging: false });
+          var link = document.createElement('a');
+          link.download = 'wild-fern-cafe.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          btn.classList.remove('loading');
+          btn.classList.add('success');
+          btn.querySelector('.btn-label').textContent = 'Done!';
+          setTimeout(function() { btn.classList.remove('success'); btn.querySelector('.btn-label').textContent = 'Download'; }, 2000);
+        } catch(e) { console.error(e); btn.classList.remove('loading'); btn.querySelector('.btn-label').textContent = 'Error!'; setTimeout(function() { btn.querySelector('.btn-label').textContent = 'Download'; }, 2000); }
+      });
+    })();
+  </script>
+</body>
+</html>

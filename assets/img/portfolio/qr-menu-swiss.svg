@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="960" viewBox="0 0 1280 960">
+  <rect width="1280" height="960" fill="#f4f4f0"/>
+  <rect x="0" y="0" width="1280" height="80" fill="#ffffff"/>
+  <rect x="0" y="80" width="1280" height="2" fill="#0a0a0a"/>
+  <rect x="60" y="24" width="32" height="32" fill="#0a0a0a"/>
+  <rect x="100" y="32" width="160" height="6" fill="#0a0a0a"/>
+  <rect x="100" y="44" width="80" height="4" fill="#6b7280"/>
+  <rect x="1050" y="28" width="90" height="24" fill="#dc2626"/>
+  <rect x="1065" y="38" width="4" height="4" fill="#fff"/>
+  <rect x="340" y="140" width="600" height="680" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+  <rect x="590" y="156" width="100" height="4" fill="#d1d5db"/>
+  <rect x="340" y="170" width="600" height="2" fill="#0a0a0a"/>
+  <text x="640" y="200" text-anchor="middle" font-family="'Cabinet Grotesk','Archivo',sans-serif" font-size="20" font-weight="700" fill="#0a0a0a" letter-spacing="3">BISTRO NOIR</text>
+  <text x="640" y="218" text-anchor="middle" font-family="'Cabinet Grotesk',sans-serif" font-size="10" fill="#6b7280" letter-spacing="2">MODERN AVRUPA MUTFAĞI</text>
+  <rect x="360" y="240" width="560" height="40" fill="#f4f4f0" stroke="#d1d5db" stroke-width="1"/>
+  <rect x="370" y="255" width="16" height="10" fill="#0a0a0a"/>
+  <rect x="360" y="290" width="560" height="40" fill="#f4f4f0" stroke="#dc2626" stroke-width="2"/>
+  <rect x="370" y="305" width="16" height="10" fill="#dc2626"/>
+  <rect x="380" y="340" width="520" height="1" fill="#d1d5db"/>
+  <rect x="380" y="350" width="240" height="8" fill="#0a0a0a"/>
+  <rect x="680" y="354" width="60" height="6" fill="#dc2626"/>
+  <rect x="380" y="370" width="520" height="1" fill="#d1d5db"/>
+  <rect x="380" y="380" width="240" height="8" fill="#0a0a0a"/>
+  <rect x="680" y="384" width="60" height="6" fill="#dc2626"/>
+  <rect x="380" y="400" width="520" height="1" fill="#d1d5db"/>
+  <rect x="380" y="410" width="200" height="8" fill="#0a0a0a"/>
+  <rect x="680" y="414" width="60" height="6" fill="#dc2626"/>
+  <rect x="360" y="440" width="560" height="40" fill="#f4f4f0" stroke="#d1d5db" stroke-width="1"/>
+  <rect x="360" y="490" width="560" height="40" fill="#f4f4f0" stroke="#d1d5db" stroke-width="1"/>
+  <rect x="360" y="540" width="560" height="40" fill="#f4f4f0" stroke="#d1d5db" stroke-width="1"/>
+  <rect x="340" y="720" width="600" height="2" fill="#0a0a0a"/>
+  <text x="640" y="870" text-anchor="middle" font-family="'Cabinet Grotesk',sans-serif" font-size="14" font-weight="600" fill="#0a0a0a" letter-spacing="1">BISTRO NOIR &#8212; Modern Avrupa Mutfağı</text>
+  <text x="640" y="895" text-anchor="middle" font-family="'Cabinet Grotesk',sans-serif" font-size="11" fill="#6b7280">QR Menü &#8226; Bistro &#8226; Responsive</text>
+</svg>

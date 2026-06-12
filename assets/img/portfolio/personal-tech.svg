@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="gt" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#1a0a2e"/>
+    </linearGradient>
+    <linearGradient id="gg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="gac" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#gt)"/>
+  <rect x="80" y="60" width="640" height="480" rx="16" fill="url(#gg)" stroke="rgba(99,102,241,0.2)" stroke-width="1"/>
+  <rect x="80" y="60" width="640" height="480" rx="16" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  <circle cx="640" cy="120" r="80" fill="#6366f1" opacity="0.06"/>
+  <circle cx="620" cy="100" r="40" fill="#06b6d4" opacity="0.04"/>
+  <rect x="120" y="100" width="60" height="20" rx="4" fill="#06b6d4" opacity="0.3"/>
+  <rect x="190" y="100" width="60" height="20" rx="4" fill="#6366f1" opacity="0.3"/>
+  <rect x="120" y="140" width="320" height="12" rx="4" fill="#e2e8f0" opacity="0.9"/>
+  <rect x="120" y="165" width="240" height="8" rx="3" fill="#64748b" opacity="0.5"/>
+  <rect x="120" y="190" width="180" height="36" rx="8" fill="url(#gac)"/>
+  <rect x="120" y="260" width="560" height="80" rx="8" fill="#1a1a2e" stroke="rgba(99,102,241,0.15)" stroke-width="1"/>
+  <rect x="140" y="275" width="16" height="16" rx="3" fill="#6366f1"/>
+  <rect x="165" y="277" width="120" height="6" rx="2" fill="#64748b" opacity="0.4"/>
+  <rect x="140" y="300" width="200" height="6" rx="2" fill="#64748b" opacity="0.3"/>
+  <rect x="140" y="318" width="160" height="6" rx="2" fill="#64748b" opacity="0.2"/>
+  <rect x="120" y="370" width="560" height="80" rx="8" fill="#1a1a2e" stroke="rgba(99,102,241,0.15)" stroke-width="1"/>
+  <rect x="140" y="385" width="16" height="16" rx="3" fill="#06b6d4"/>
+  <rect x="165" y="387" width="140" height="6" rx="2" fill="#64748b" opacity="0.4"/>
+  <rect x="140" y="410" width="180" height="6" rx="2" fill="#64748b" opacity="0.3"/>
+  <rect x="140" y="428" width="110" height="6" rx="2" fill="#64748b" opacity="0.2"/>
+  <rect x="100" y="510" width="600" height="1" fill="rgba(99,102,241,0.1)"/>
+  <text x="400" y="565" text-anchor="middle" fill="#475569" font-family="'SF Mono', 'JetBrains Mono', monospace" font-size="12" letter-spacing="1">DEVELOPER LANDING</text>
+</svg>

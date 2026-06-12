@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#1e1e2e"/>
+  <rect x="100" y="80" width="600" height="340" rx="12" fill="#2a2a3e" stroke="#3a3a5e" stroke-width="1"/>
+  <rect x="140" y="120" width="520" height="180" rx="10" fill="#3a3a5e"/>
+  <rect x="140" y="320" width="520" height="80" rx="10" fill="#3a3a5e"/>
+  <rect x="160" y="140" width="140" height="40" rx="6" fill="#6366f1"/>
+  <rect x="160" y="195" width="200" height="10" rx="4" fill="#4a4a6e"/>
+  <rect x="160" y="215" width="180" height="10" rx="4" fill="#4a4a6e"/>
+  <rect x="160" y="235" width="160" height="10" rx="4" fill="#4a4a6e"/>
+  <rect x="420" y="140" width="140" height="40" rx="6" fill="#10b981"/>
+  <rect x="420" y="195" width="200" height="10" rx="4" fill="#4a4a6e"/>
+  <rect x="420" y="215" width="180" height="10" rx="4" fill="#4a4a6e"/>
+  <rect x="420" y="235" width="160" height="10" rx="4" fill="#4a4a6e"/>
+  <rect x="160" y="340" width="480" height="10" rx="4" fill="#4a4a6e"/>
+  <rect x="160" y="360" width="300" height="10" rx="4" fill="#4a4a6e"/>
+  <rect x="160" y="380" width="200" height="10" rx="4" fill="#4a4a6e"/>
+  <circle cx="345" cy="470" r="30" fill="#2a2a3e" stroke="#6366f1" stroke-width="2"/>
+  <text x="345" y="477" text-anchor="middle" fill="#6366f1" font-family="Inter, sans-serif" font-size="24">&#9733;</text>
+  <text x="400" y="540" text-anchor="middle" fill="#6a6a8e" font-family="Inter, sans-serif" font-size="20" font-weight="600">Restoran / Kafe</text>
+  <text x="400" y="565" text-anchor="middle" fill="#4a4a6e" font-family="Inter, sans-serif" font-size="14">Yakında &#8226; Coming Soon</text>
+</svg>

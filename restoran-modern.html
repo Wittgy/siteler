@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noir &amp; Gold &#8226; Fine Dining</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0f172a;
+      --surface: #1a2332;
+      --surface-hover: #1e2a3d;
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --gold: #d4a853;
+      --gold-light: #e8c46a;
+      --border: rgba(212,168,83,0.12);
+      --border-hover: rgba(212,168,83,0.25);
+      --radius: 12px;
+      --font-display: 'Cabinet Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed; top: -300px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,168,83,0.05), transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,23,42,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 960px; margin: 0 auto; padding: 16px 20px;
+    }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .header-logo {
+      font-family: var(--font-display); font-size: 20px; font-weight: 800;
+      color: var(--gold); letter-spacing: -0.5px;
+    }
+    .header-logo span { color: var(--text); }
+    .nav { display: flex; gap: 28px; }
+    .nav a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 13px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.5px; transition: color 0.2s;
+    }
+    .nav a:hover { color: var(--gold); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+    }
+    .hero-label {
+      font-size: 11px; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 3px; margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 900;
+      letter-spacing: -2px; margin-bottom: 12px;
+    }
+    .hero h1 .gold { color: var(--gold); }
+    .hero .divider {
+      width: 80px; height: 1px; background: var(--gold);
+      margin: 20px auto; opacity: 0.4;
+    }
+    .hero p {
+      font-size: 16px; color: var(--text-muted);
+      max-width: 460px; margin: 0 auto; line-height: 1.7;
+    }
+
+    .section { padding: 80px 0; }
+    .section-label {
+      font-size: 11px; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 3px; margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 800; letter-spacing: -1px;
+      margin-bottom: 32px;
+    }
+
+    .accordion { display: flex; flex-direction: column; gap: 8px; }
+    .accordion-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+    .accordion-item.open { border-color: var(--border-hover); }
+    .accordion-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; cursor: pointer;
+      transition: background 0.2s; user-select: none;
+    }
+    .accordion-header:hover { background: var(--surface-hover); }
+    .accordion-header-left { display: flex; align-items: center; gap: 14px; }
+    .accordion-header-left .icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); flex-shrink: 0;
+    }
+    .accordion-header-left .icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .accordion-header h3 {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 700; letter-spacing: -0.3px;
+    }
+    .accordion-header .count {
+      font-size: 11px; color: var(--text-muted);
+      background: var(--bg); padding: 2px 10px; border-radius: 100px;
+    }
+    .accordion-arrow {
+      transition: transform 0.3s; color: var(--text-muted);
+    }
+    .accordion-arrow svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .accordion-item.open .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 20px;
+    }
+    .accordion-item.open .accordion-body {
+      max-height: 1000px; padding: 0 20px 16px;
+    }
+    .menu-item {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item-info { flex: 1; padding-right: 16px; }
+    .menu-item-name { font-weight: 500; font-size: 15px; margin-bottom: 2px; }
+    .menu-item-name .tag {
+      font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 1px 8px; border-radius: 100px;
+      margin-left: 8px; vertical-align: middle;
+    }
+    .tag-new { background: rgba(212,168,83,0.15); color: var(--gold); }
+    .tag-pop { background: rgba(239,68,68,0.12); color: #ef4444; }
+    .menu-item-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+    .menu-item-price { font-weight: 600; color: var(--gold); white-space: nowrap; }
+
+    .wine-section { margin-top: 40px; }
+    .wine-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .wine-item:last-child { border-bottom: none; }
+    .wine-name { font-size: 14px; font-weight: 500; }
+    .wine-name small { display: block; font-size: 12px; color: var(--text-muted); font-weight: 400; }
+    .wine-price { color: var(--gold); font-weight: 500; }
+
+    .ambient-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;
+    }
+    .ambient-card {
+      aspect-ratio: 4/3; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 28px; font-weight: 800;
+      color: rgba(212,168,83,0.15);
+    }
+
+    .contact-glass {
+      border-radius: var(--radius); border: 1px solid var(--border);
+      background: var(--surface); padding: 40px;
+      text-align: center; backdrop-filter: blur(12px);
+    }
+    .contact-glass .cta { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+    .contact-glass p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+    .contact-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .contact-row a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); text-decoration: none; font-size: 13px;
+      transition: all 0.2s;
+    }
+    .contact-row a:hover { border-color: var(--gold); color: var(--gold); }
+    .contact-row a svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0; text-align: center; margin-top: 48px;
+    }
+    .footer p { font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 640px) {
+      .nav { display: none; }
+      .ambient-grid { grid-template-columns: 1fr; }
+      .contact-glass { padding: 24px 20px; }
+      .contact-row { flex-direction: column; align-items: center; }
+    }
+
+    .controls {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%); z-index: 100;
+      display: flex; gap: 10px; align-items: center;
+    }
+    .btn-download {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border: none; border-radius: 10px;
+      background: var(--gold); color: #0f172a;
+      font-family: var(--font-body); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 16px rgba(212,168,83,0.3);
+    }
+    .btn-download:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-download.loading { pointer-events: none; opacity: 0.7; }
+    .btn-download.success { background: #22c55e; }
+    .btn-download .spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(15,23,42,0.2); border-top-color: #0f172a; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    .btn-download.loading .spinner { display: block; }
+    .btn-download.loading .btn-label { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .zoom-control {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(15,23,42,0.85); backdrop-filter: blur(12px);
+      border-radius: 10px; padding: 4px 6px; border: 1px solid rgba(212,168,83,0.15);
+    }
+    .zoom-control button { width: 28px; height: 28px; border: none; border-radius: 6px; background: transparent; color: rgba(255,255,255,0.5); font-size: 16px; cursor: pointer; transition: all 0.2s; }
+    .zoom-control button:hover { background: rgba(212,168,83,0.15); color: var(--gold); }
+    .zoom-label { color: rgba(255,255,255,0.35); font-size: 11px; min-width: 32px; text-align: center; user-select: none; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-logo">Noir <span>&amp;</span> <span class="gold">Gold</span></div>
+      </div>
+      <nav class="nav">
+        <a href="#menu">Men&#xFC;</a>
+        <a href="#wine">&#x15E;arap</a>
+        <a href="#ambience">Ortam</a>
+        <a href="#contact">Rezervasyon</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-label">Fine Dining Deneyimi</div>
+      <h1>Noir <span class="gold">&amp;</span> Gold</h1>
+      <div class="divider"></div>
+      <p>Modern gastronominin en se&#xE7;kin &#xF6;rneklerini, kusursuz bir atmosferde sunuyoruz.</p>
+    </div>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="section-label">Lezzetler</div>
+      <h2 class="section-title">Men&#xFC;</h2>
+
+      <div class="accordion">
+        <div class="accordion-item open">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12c0-4 4-7 4-7s4 3 4 7"/></svg></div>
+              <h3>Ba&#x15F;lang&#x131;&#xE7;lar</h3>
+            </div>
+            <span class="count">4</span>
+            <div class="accordion-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="accordion-body">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Foie Gras Terini <span class="tag tag-pop">Pop&#xFC;ler</span></div>
+                <div class="menu-item-desc">Kaz ci&#x11F;eri terini, incir re&#xE7;eli, kızarmı&#x15F; briyoche</div>
+              </div>
+              <div class="menu-item-price">&#8378;380</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Karamelize So&#x11F;an Tart</div>
+                <div class="menu-item-desc">Taze kekik, ke&#xE7;i peyniri, balzamik glaze</div>
+              </div>
+              <div class="menu-item-price">&#8378;220</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Deniz Mahsull&#xFC; Gratin <span class="tag tag-new">Yeni</span></div>
+                <div class="menu-item-desc">Karides, tarak, be&#x15F;amel sos, gratin&#xE9; ka&#x15F;ar</div>
+              </div>
+              <div class="menu-item-price">&#8378;340</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tr&#xFC;f Mantarl&#x131; &#xC7;orba</div>
+                <div class="menu-item-desc">Tr&#xFC;f mantar&#x131; ya&#x11F;&#x131;, taze biberiye, cevizli kruton</div>
+              </div>
+              <div class="menu-item-price">&#8378;210</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <div class="icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <h3>Ana Yemekler</h3>
+            </div>
+            <span class="count">5</span>
+            <div class="accordion-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="accordion-body">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Beef Bourguignon <span class="tag tag-pop">Pop&#xFC;ler</span></div>
+                <div class="menu-item-desc">Dana eti, kırmızı &#x15F;arap sosu, mantar, arpacık so&#x11F;an</div>
+              </div>
+              <div class="menu-item-price">&#8378;420</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Dana Bonfile</div>
+                <div class="menu-item-desc">Izgara bonfile, tr&#xFC;f mantarlı pat&#xE9;, sebze turlu</div>
+              </div>
+              <div class="menu-item-price">&#8378;450</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Karidesli Risotto</div>
+                <div class="menu-item-desc">Arborio pirinci, beyaz &#x15F;arap, karides, parmesan</div>
+              </div>
+              <div class="menu-item-price">&#8378;370</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2c-3 0-6 2-6 6 0 3.5 2 5 2 5s-2 1.5-2 5c0 4 4 4 6 4s6 0 6-4c0-3.5-2-5-2-5s2-1.5 2-5c0-4-3-6-6-6z"/></svg></div>
+              <h3>Tatl&#x131;lar</h3>
+            </div>
+            <span class="count">3</span>
+            <div class="accordion-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="accordion-body">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Cr&#xE8;me Br&#xFB;l&#xE9;e <span class="tag tag-pop">Pop&#xFC;ler</span></div>
+                <div class="menu-item-desc">Vanilya &#xE7;ekirdekli, karamelize &#x15F;eker, taze meyve</div>
+              </div>
+              <div class="menu-item-price">&#8378;180</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tarte Tatin</div>
+                <div class="menu-item-desc">Karamelize elma, vanilyalı dondurma, tar&#xE7;ın</div>
+              </div>
+              <div class="menu-item-price">&#8378;200</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">&#xC7;ikolatalı Fondan</div>
+                <div class="menu-item-desc">Akı&#x15F;kan &#xE7;ikolatalı kek, frambuazlı coulis</div>
+              </div>
+              <div class="menu-item-price">&#8378;220</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="wine">
+    <div class="container">
+      <div class="section-label">&#x15E;arap Listesi</div>
+      <h2 class="section-title">Se&#xE7;kilerimiz</h2>
+      <div class="wine-section">
+        <div class="wine-item">
+          <div class="wine-name">Chianti Classico Riserva <small>Toskana, &#x130;talya &#8226; 2019</small></div>
+          <div class="wine-price">&#8378;650</div>
+        </div>
+        <div class="wine-item">
+          <div class="wine-name">Barolo DOCG <small>Piemonte, &#x130;talya &#8226; 2018</small></div>
+          <div class="wine-price">&#8378;890</div>
+        </div>
+        <div class="wine-item">
+          <div class="wine-name">Sauvignon Blanc <small>Marlborough, Yeni Zelanda &#8226; 2023</small></div>
+          <div class="wine-price">&#8378;450</div>
+        </div>
+        <div class="wine-item">
+          <div class="wine-name">&#x15E;ampagne Brut <small>Reims, Fransa &#8226; NV</small></div>
+          <div class="wine-price">&#8378;1,200</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ambience">
+    <div class="container">
+      <div class="section-label">Ortam</div>
+      <h2 class="section-title">Atmosfer</h2>
+      <p style="color:var(--text-muted);font-size:14px;max-width:500px">Her detayı &#xF6;zenle d&#xFC;&#x15F;&#xFC;nd&#xFC;r&#xFC;lm&#xFC;&#x15F; bir fine dining deneyimi i&#xE7;in bize katılın.</p>
+      <div class="ambient-grid">
+        <div class="ambient-card">NG</div>
+        <div class="ambient-card">NG</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-label">Rezervasyon</div>
+      <h2 class="section-title">Bize Katılın</h2>
+      <div class="contact-glass">
+        <div class="cta">Bir Masaya Ne Dersiniz?</div>
+        <p>Rezervasyon i&#xE7;in bizi arayın veya e-posta g&#xF6;nderin.</p>
+        <div class="contact-row">
+          <a href="tel:+902122334455">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +90 212 233 44 55
+          </a>
+          <a href="mailto:reservation@noirandgold.com">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            reservation@noirandgold.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&#xA9; 2026 Noir &amp; Gold &#8226; Fine Dining</p>
+    <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">Burak Biçer Tasarım Atlası · <a href="https://www.instagram.com/captainbicer/" target="_blank" style="color:inherit;text-decoration:underline">@captainbicer</a></p>
+  </footer>
+
+  <div class="controls">
+    <div class="zoom-control">
+      <button id="zoomOut">&#x2212;</button>
+      <span class="zoom-label" id="zoomLabel">100%</span>
+      <button id="zoomIn">+</button>
+    </div>
+    <button class="btn-download" id="btnDownload">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      <span class="btn-label">Download</span>
+      <span class="spinner"></span>
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    (function() {
+      document.querySelectorAll('.accordion-header').forEach(function(h) {
+        h.addEventListener('click', function() {
+          this.parentElement.classList.toggle('open');
+        });
+      });
+      var btn = document.getElementById('btnDownload');
+      var zoomIn = document.getElementById('zoomIn');
+      var zoomOut = document.getElementById('zoomOut');
+      var zoomLabel = document.getElementById('zoomLabel');
+      var body = document.body;
+      var scale = 1, MIN = 0.25, MAX = 2;
+      function updateZoom() {
+        body.style.transform = 'scale(' + scale + ')';
+        body.style.transformOrigin = 'top left';
+        body.style.minHeight = (window.innerHeight * scale + 80) + 'px';
+        zoomLabel.textContent = Math.round(scale * 100) + '%';
+      }
+      if (zoomIn) zoomIn.addEventListener('click', function() { scale = Math.min(MAX, +(scale + 0.1).toFixed(1)); updateZoom(); });
+      if (zoomOut) zoomOut.addEventListener('click', function() { scale = Math.max(MIN, +(scale - 0.1).toFixed(1)); updateZoom(); });
+      btn.addEventListener('click', async function() {
+        btn.classList.add('loading');
+        try {
+          var canvas = await html2canvas(body, { scale: 2, useCORS: true, backgroundColor: '#0f172a', logging: false });
+          var link = document.createElement('a');
+          link.download = 'noir-and-gold.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          btn.classList.remove('loading');
+          btn.classList.add('success');
+          btn.querySelector('.btn-label').textContent = 'Done!';
+          setTimeout(function() { btn.classList.remove('success'); btn.querySelector('.btn-label').textContent = 'Download'; }, 2000);
+        } catch(e) { console.error(e); btn.classList.remove('loading'); btn.querySelector('.btn-label').textContent = 'Error!'; setTimeout(function() { btn.querySelector('.btn-label').textContent = 'Download'; }, 2000); }
+      });
+    })();
+  </script>
+</body>
+</html>

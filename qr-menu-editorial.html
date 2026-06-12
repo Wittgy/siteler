@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Maison Blanche &#8226; Men&uuml;</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #f5f0eb;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --text-muted: #8a7f75;
+            --accent: #2d2d2d;
+            --accent-hover: #4a4a4a;
+            --accent-subtle: rgba(45,45,45,0.05);
+            --border: rgba(0,0,0,0.08);
+            --border-hover: rgba(0,0,0,0.16);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --font-serif: 'Playfair Display', 'Lyon Text', Georgia, serif;
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
+            --pop: #c0392b;
+            --vegan: #27ae60;
+            --shadow: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-hover: 0 4px 16px rgba(0,0,0,0.06);
+        }
+
+        html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding-bottom: 40px;
+            position: relative;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        svg.icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+        svg.icon-sm { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+        svg.icon-lg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+        .header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(245,240,235,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+        }
+        .header-inner {
+            max-width: 960px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .header-brand { display: flex; align-items: center; gap: 10px; }
+        .header-logo {
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent); flex-shrink: 0;
+        }
+        .header-logo svg { width: 24px; height: 24px; stroke-width: 1.8; }
+        .header-title {
+            font-size: 15px; font-weight: 500; letter-spacing: 0.3px;
+            color: var(--text-muted); text-transform: uppercase;
+            font-family: var(--font);
+        }
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 5px 12px; border-radius: 100px; font-size: 11px; font-weight: 500;
+            background: var(--accent-subtle); color: var(--text-muted);
+            border: 1px solid var(--border); letter-spacing: 0.3px;
+            text-transform: uppercase; flex-shrink: 0;
+        }
+
+        .hero {
+            max-width: 960px; margin: 0 auto;
+            padding: 40px 20px 24px; text-align: center;
+        }
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 34px; font-weight: 700; letter-spacing: -0.3px;
+            margin-bottom: 6px; color: var(--text);
+        }
+        .hero h1 span { cursor: default; user-select: none; -webkit-user-select: none; }
+        .hero h1 span.long-press { opacity: 0.6; transition: opacity 0.3s; }
+        .hero .hero-sub {
+            font-size: 13px; color: var(--text-muted);
+            letter-spacing: 2px; text-transform: uppercase; font-weight: 500;
+        }
+        .hero .hero-rule {
+            width: 40px; height: 1px; background: var(--accent);
+            margin: 16px auto 0; opacity: 0.3;
+        }
+        .hero p { font-size: 14px; color: var(--text-muted); margin-top: 12px; font-style: italic; }
+
+        .menu { max-width: 960px; margin: 0 auto; padding: 4px 20px 20px; }
+
+        .category-section {
+            margin-bottom: 10px;
+            border-radius: 0;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            scroll-margin-top: 80px;
+        }
+        .category-section:target {
+            box-shadow: 0 0 0 1px var(--accent);
+        }
+
+        .category-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 20px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: background 0.2s;
+            position: sticky;
+            top: 61px;
+            z-index: 20;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+        .category-header:hover { background: rgba(0,0,0,0.01); }
+        .category-section.collapsed .category-header { border-bottom-color: transparent; }
+        .category-header-left { display: flex; align-items: center; gap: 12px; }
+        .category-header-icon { width: 24px; height: 24px; color: var(--text-muted); flex-shrink: 0; }
+        .category-header-icon svg { width: 20px; height: 20px; stroke-width: 1.8; }
+        .category-header-name {
+            font-family: var(--font-serif);
+            font-size: 17px; font-weight: 600; color: var(--text);
+            letter-spacing: -0.2px;
+        }
+        .category-header-count {
+            font-size: 11px; color: var(--text-muted);
+            font-family: var(--font-serif); font-style: italic;
+        }
+        .category-header-toggle {
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+            width: 16px; height: 16px;
+        }
+        .category-header-toggle svg { width: 14px; height: 14px; stroke-width: 2; }
+        .category-section.collapsed .category-header-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .category-items {
+            display: grid; grid-template-columns: 1fr; gap: 6px;
+            padding: 8px 16px 16px;
+        }
+        .category-section.collapsed .category-items { display: none; }
+
+        .menu-item {
+            display: flex; gap: 14px; padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.25s ease;
+            position: relative;
+            animation: fadeIn 0.3s ease both;
+        }
+        .menu-item:last-child { border-bottom: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        .menu-item-img {
+            width: 56px; height: 56px; border-radius: 50%;
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+            background: var(--bg); overflow: hidden;
+            color: var(--text-muted);
+        }
+        .menu-item-img svg { width: 24px; height: 24px; stroke-width: 1.5; }
+        .menu-item-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .menu-item-body { flex: 1; min-width: 0; }
+        .menu-item-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
+        .menu-item-name { font-size: 14px; font-weight: 500; color: var(--text); letter-spacing: -0.1px; }
+        .menu-item-price {
+            font-family: var(--font-serif);
+            font-size: 14px; font-weight: 600; color: var(--accent);
+            white-space: nowrap; flex-shrink: 0;
+        }
+        .menu-item-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 6px; }
+        .menu-item-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tag {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 3px 10px; border-radius: 100px;
+            font-size: 9px; font-weight: 500; letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .tag svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .tag-pop { background: rgba(192,57,43,0.06); color: var(--pop); }
+        .tag-vegan { background: rgba(39,174,96,0.06); color: var(--vegan); }
+        .tag-new { background: rgba(45,45,45,0.06); color: var(--accent); }
+
+        .footer {
+            max-width: 960px; margin: 40px auto 0;
+            padding: 28px 20px 20px;
+            text-align: center; position: relative;
+        }
+        .footer::before {
+            content: '';
+            display: block; width: 40px; height: 1px;
+            background: var(--accent); opacity: 0.2;
+            margin: 0 auto 24px;
+        }
+        .footer-info { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+        .footer-info a {
+            color: var(--text-muted); text-decoration: none;
+            font-size: 13px; transition: color 0.2s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .footer-info a:hover { color: var(--accent); }
+        .footer-info a svg { width: 14px; height: 14px; flex-shrink: 0; }
+        .footer-social { display: flex; justify-content: center; gap: 12px; }
+        .footer-social a {
+            width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .footer-social a svg { width: 16px; height: 16px; stroke-width: 1.8; }
+        .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+        .footer-copy { margin-top: 16px; font-size: 11px; color: rgba(138,127,117,0.5); letter-spacing: 0.5px; }
+
+        @media (min-width: 600px) {
+            .category-items { grid-template-columns: 1fr 1fr; gap: 0; }
+            .category-items .menu-item:nth-child(odd) { border-right: 1px solid var(--border); padding-right: 16px; }
+            .category-items .menu-item:nth-child(even) { padding-left: 16px; }
+            .category-header { padding: 18px 24px; }
+            .category-items { padding: 10px 20px 20px; }
+            .hero h1 { font-size: 40px; }
+            .menu-item-img { width: 60px; height: 60px; }
+        }
+
+        .admin-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+            background: #ffffff; border-top: 1px solid var(--border);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+            padding: 10px 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 10px;
+        }
+        .admin-bar .info { font-size: 12px; color: var(--accent); font-weight: 500; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .admin-bar .actions { display: flex; gap: 8px; }
+        .admin-btn {
+            padding: 7px 14px; border-radius: 6px; border: none;
+            font-family: var(--font); font-size: 12px; font-weight: 500;
+            cursor: pointer; transition: all 0.2s;
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        .admin-btn-primary { background: var(--accent); color: #fff; }
+        .admin-btn-primary:hover { background: var(--accent-hover); }
+        .admin-btn-danger { background: rgba(192,57,43,0.06); color: var(--pop); }
+        .admin-btn-danger:hover { background: rgba(192,57,43,0.12); }
+        .admin-btn-ghost { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+        .admin-btn-ghost:hover { background: var(--surface-hover); color: var(--text); }
+        .admin-btn svg { width: 14px; height: 14px; display: block; }
+
+        .admin-controls {
+            position: absolute; top: 8px; right: 4px;
+            display: none; gap: 4px; z-index: 5;
+        }
+        .admin-controls button {
+            width: 28px; height: 28px; border-radius: 50%;
+            border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .admin-controls button svg { width: 13px; height: 13px; stroke-width: 1.8; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+        .admin-controls .edit-btn { background: var(--accent-subtle); color: var(--accent); }
+        .admin-controls .edit-btn:hover { background: rgba(45,45,45,0.1); }
+        .admin-controls .del-btn { background: rgba(192,57,43,0.06); color: var(--pop); }
+        .admin-controls .del-btn:hover { background: rgba(192,57,43,0.12); }
+        .admin-on .menu-item { padding-right: 32px; }
+        .admin-on .admin-controls { display: flex; }
+
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,0.3); backdrop-filter: blur(4px);
+            align-items: flex-end; justify-content: center;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto;
+            background: #ffffff;
+            padding: 28px 24px 32px;
+            animation: modalUp 0.3s ease;
+        }
+        @keyframes modalUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .modal h2 {
+            font-family: var(--font-serif);
+            font-size: 22px; font-weight: 600; margin-bottom: 22px;
+            color: var(--text); letter-spacing: -0.2px;
+        }
+        .modal h2 svg { width: 20px; height: 20px; margin-right: 8px; stroke-width: 1.8; vertical-align: middle; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+        .modal label { display: block; font-size: 11px; font-weight: 500; color: var(--text-muted); margin-bottom: 4px; margin-top: 14px; text-transform: uppercase; letter-spacing: 0.8px; }
+        .modal label:first-of-type { margin-top: 0; }
+        .modal input, .modal select, .modal textarea {
+            width: 100%; padding: 10px 14px; border-radius: 6px;
+            border: 1px solid var(--border); background: var(--bg);
+            color: var(--text); font-family: var(--font); font-size: 14px;
+            outline: none; transition: border 0.2s;
+        }
+        .modal input:focus, .modal select:focus, .modal textarea:focus { border-color: var(--accent); }
+        .modal textarea { resize: vertical; min-height: 60px; font-family: var(--font); }
+        .modal .row { display: flex; gap: 12px; }
+        .modal .row > * { flex: 1; }
+        .modal .modal-actions { display: flex; gap: 10px; margin-top: 24px; }
+        .modal .modal-actions button { flex: 1; padding: 12px; border-radius: 6px; border: none; font-family: var(--font); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+        .modal .modal-actions .save-btn { background: var(--accent); color: #fff; }
+        .modal .modal-actions .save-btn:hover { background: var(--accent-hover); }
+        .modal .modal-actions .cancel-btn { background: var(--bg); color: var(--text-muted); }
+        .modal .modal-actions .cancel-btn:hover { background: var(--border); color: var(--text); }
+
+        .photo-upload { margin-top: 14px; }
+        .photo-upload .preview-wrap {
+            display: flex; align-items: center; gap: 12px; margin-top: 8px;
+        }
+        .photo-upload .preview {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: var(--bg); overflow: hidden; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); flex-shrink: 0;
+        }
+        .photo-upload .preview svg { width: 24px; height: 24px; stroke-width: 1.5; }
+        .photo-upload .preview img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .photo-upload .upload-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border);
+            background: var(--bg); color: var(--text-muted); font-family: var(--font);
+            font-size: 12px; cursor: pointer; transition: all 0.2s;
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        .photo-upload .upload-btn svg { width: 14px; height: 14px; stroke-width: 1.8; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+        .photo-upload .upload-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .photo-upload .clear-btn {
+            padding: 6px 12px; border-radius: 6px; border: none;
+            background: rgba(192,57,43,0.06); color: var(--pop);
+            font-family: var(--font); font-size: 11px; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+
+        @media (min-width: 600px) {
+            .modal-overlay { align-items: center; }
+            .modal { border-radius: 0; }
+        }
+
+        .cat-list { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; }
+        .cat-list-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 12px; border-radius: 6px;
+            background: var(--bg); border: 1px solid var(--border);
+        }
+        .cat-list-info { display: flex; align-items: center; gap: 10px; }
+        .cat-list-icon { width: 24px; height: 24px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; }
+        .cat-list-icon svg { width: 18px; height: 18px; stroke-width: 1.8; }
+        .cat-list-name { font-size: 14px; font-weight: 500; color: var(--text); }
+        .cat-list-count { font-size: 11px; color: var(--text-muted); }
+        .cat-list-actions { display: flex; gap: 4px; }
+        .cat-list-actions button {
+            width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .cat-list-actions button svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .cat-edit-btn { background: var(--accent-subtle); color: var(--accent); }
+        .cat-edit-btn:hover { background: rgba(45,45,45,0.1); }
+        .cat-del-btn { background: rgba(192,57,43,0.06); color: var(--pop); }
+        .cat-del-btn:hover { background: rgba(192,57,43,0.12); }
+        .cat-list-item.edit-mode { padding: 6px; }
+        .cat-edit-row { display: flex; align-items: center; gap: 6px; width: 100%; }
+        .cat-edit-row .cat-edit-icon {
+            width: 40px; height: 40px; border-radius: 6px; border: 1px solid var(--border);
+            background: var(--bg); font-size: 18px; text-align: center; padding: 0; flex-shrink: 0;
+        }
+        .cat-edit-name { flex: 1; min-width: 0; }
+        .cat-edit-save, .cat-edit-cancel {
+            width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer;
+            font-size: 15px; display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background 0.2s;
+        }
+        .cat-edit-save { background: rgba(39,174,96,0.08); }
+        .cat-edit-save:hover { background: rgba(39,174,96,0.15); }
+        .cat-edit-cancel { background: rgba(192,57,43,0.06); }
+        .cat-edit-cancel:hover { background: rgba(192,57,43,0.12); }
+
+        .cat-add-row {
+            display: flex; gap: 8px; margin-top: 16px; align-items: center;
+        }
+        .cat-add-row .cat-add-icon {
+            width: 44px; height: 44px; border-radius: 6px; border: 1px solid var(--border);
+            background: var(--bg); font-size: 20px; text-align: center; flex-shrink: 0;
+            padding: 0;
+        }
+        .cat-add-name { flex: 1; min-width: 0; }
+        .cat-add-btn {
+            padding: 10px 18px; border-radius: 6px; border: none; background: var(--accent);
+            color: #fff; font-family: var(--font); font-size: 11px; font-weight: 500;
+            cursor: pointer; white-space: nowrap; transition: background 0.2s;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .cat-add-btn:hover { background: var(--accent-hover); }
+
+        .toast {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            z-index: 300; padding: 12px 24px;
+            font-family: var(--font); font-size: 13px; font-weight: 500;
+            background: var(--accent); color: #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            opacity: 0; transition: opacity 0.3s;
+            pointer-events: none; letter-spacing: 0.2px;
+        }
+        .toast.show { opacity: 1; }
+
+        input[type="file"] { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="toast" id="toast"></div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-brand">
+                <div class="header-logo" id="headerLogo">
+                    <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+                </div>
+                <div class="header-title" id="headerTitle">Men&uuml;</div>
+            </div>
+            <div class="badge">
+                <svg viewBox="0 0 24 24" class="icon-sm"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                Men&uuml;
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1><span id="restaurantName">Maison Blanche</span></h1>
+        <div class="hero-sub" id="restaurantDesc">Mutfak sanatına davet</div>
+        <div class="hero-rule"></div>
+        <p>Her tabakta bir hik&acirc;ye</p>
+    </section>
+
+    <div class="menu" id="menu"></div>
+
+    <footer class="footer">
+        <div class="footer-info">
+            <a href="https://maps.google.com" target="_blank" id="footerAddress">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span></span>
+            </a>
+            <a href="tel:" id="footerPhone">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span></span>
+            </a>
+        </div>
+        <div class="footer-social" id="footerSocial"></div>
+        <div class="footer-copy" id="footerCopy">&copy;</div>
+    </footer>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2 id="modalTitle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> &Uuml;r&uuml;n Ekle</h2>
+            <label>&Uuml;r&uuml;n Adı</label>
+            <input id="fieldName" />
+            <label>A&ccedil;ıklama</label>
+            <textarea id="fieldDesc"></textarea>
+            <div class="row">
+                <div>
+                    <label>Fiyat (&#8378;)</label>
+                    <input type="number" id="fieldPrice" />
+                </div>
+                <div>
+                    <label>Kategori</label>
+                    <select id="fieldCat"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label>Emoji</label>
+                    <input id="fieldEmoji" placeholder="&#127860;" />
+                </div>
+                <div>
+                    <label>Etiketler</label>
+                    <select id="fieldTags" multiple style="height:80px">
+                        <option value="pop">Pop&uuml;ler</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="new">Yeni</option>
+                    </select>
+                </div>
+            </div>
+            <div class="photo-upload">
+                <label><svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;margin-right:4px;"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Fotoğraf</label>
+                <div class="preview-wrap">
+                    <div class="preview" id="photoPreview"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+                    <div>
+                        <button class="upload-btn" onclick="document.getElementById('photoInput').click()"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Se&ccedil;</button>
+                        <button class="clear-btn" id="clearPhoto" style="display:none" onclick="clearPhoto()">Kaldır</button>
+                    </div>
+                </div>
+                <input type="file" id="photoInput" accept="image/*" />
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeModal()">İptal</button>
+                <button class="save-btn" id="saveBtn">Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="catModalOverlay">
+        <div class="modal">
+            <h2><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Kategoriler</h2>
+            <div class="cat-list" id="catList"></div>
+            <div class="cat-add-row">
+                <input class="cat-add-icon" id="catIconInput" value="&#127925;" maxlength="2" />
+                <input class="cat-add-name" id="catNameInput" placeholder="Kategori adı" />
+                <button class="cat-add-btn" id="catSaveBtn" onclick="saveCategory()">Ekle</button>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeCatModal()">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var ADMIN_PASSWORD = '1234';
+
+        var SVG_ICONS = {
+            default: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>',
+            entrees: '<svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+            plats: '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="12" y1="10" x2="12" y2="16"/></svg>',
+            salades: '<svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12c0-4 4-7 4-7s4 3 4 7"/><circle cx="12" cy="12" r="2"/></svg>',
+            fromages: '<svg viewBox="0 0 24 24"><path d="M4 10h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10z"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><circle cx="9" cy="15" r="1"/><circle cx="14" cy="16" r="1.5"/><circle cx="12" cy="12" r="1"/></svg>',
+            desserts: '<svg viewBox="0 0 24 24"><path d="M12 2c-3 0-6 2-6 6 0 3.5 2 5 2 5s-2 1.5-2 5c0 4 4 4 6 4s6 0 6-4c0-3.5-2-5-2-5s2-1.5 2-5c0-4-3-6-6-6z"/></svg>',
+            boissons: '<svg viewBox="0 0 24 24"><path d="M17 10H7l-1 12h12L17 10z"/><path d="M9 5V2h6v3"/><line x1="12" y1="5" x2="12" y2="8"/></svg>',
+            plus: '<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',
+            edit: '<svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+            trash: '<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>',
+            chevron: '<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>',
+            flame: '<svg viewBox="0 0 24 24"><path d="M12 2C9 7 5 11 5 15a7 7 0 0 0 14 0c0-4-4-8-7-13z"/><path d="M12 22c-2 0-4-1.5-4-4 2 0 4-1 4-3 0 2 2 3 4 3 0 2.5-2 4-4 4z"/></svg>',
+            leaf: '<svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>',
+            star: '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+            instagram: '<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
+            whatsapp: '<svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>',
+            pin: '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+            phone: '<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+            lock: '<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+            grid: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+            settings: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+            camera: '<svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
+            check: '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>',
+            x: '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+            coffee: '<svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>'
+        };
+
+        var CAT_ICONS = {
+            entrees: SVG_ICONS.entrees,
+            plats: SVG_ICONS.plats,
+            salades: SVG_ICONS.salades,
+            fromages: SVG_ICONS.fromages,
+            desserts: SVG_ICONS.desserts,
+            boissons: SVG_ICONS.boissons
+        };
+
+        var defaultData = {
+            restaurant: 'Maison Blanche',
+            desc: 'Mutfak sanat\u0131na davet',
+            address: '\u0130stiklal Cad. No:147, Beyo\u011flu, \u0130stanbul',
+            phone: '0212 555 55 55',
+            instagram: 'https://instagram.com/maisonblanche',
+            whatsapp: 'https://wa.me/905555555555',
+            categories: [
+                { id: 'entrees', label: 'Entr\u00e9es', icon: 'entrees' },
+                { id: 'plats', label: 'Plats Principaux', icon: 'plats' },
+                { id: 'salades', label: 'Salades', icon: 'salades' },
+                { id: 'fromages', label: 'Fromages', icon: 'fromages' },
+                { id: 'desserts', label: 'Desserts', icon: 'desserts' },
+                { id: 'boissons', label: 'Boissons', icon: 'boissons' }
+            ],
+            items: [
+                { id: 1, name: 'Foie Gras Terini', desc: 'Kaz ci\u011feri terini, incir re\u00e7eli, kızarm\u0131\u015f briyoche', price: 380, cat: 'entrees', tags: ['pop'], photo: '' },
+                { id: 2, name: 'Karamelize So\u011fan Tart', desc: 'Taze kekik, ke\u00e7i peyniri, balzamik glaze', price: 220, cat: 'entrees', tags: ['new'], photo: '' },
+                { id: 3, name: 'Deniz Mahsull\u00fc Gratin', desc: 'Karides, tarak, be\u015famel sos, gratin\u00e9 ka\u015far', price: 340, cat: 'entrees', tags: ['pop'], photo: '' },
+                { id: 4, name: 'Burrata Salatas\u0131', desc: 'Burrata, domates konfit, fesle\u011fen, zeytinya\u011f\u0131', price: 260, cat: 'entrees', tags: [], photo: '' },
+                { id: 5, name: 'Kremal\u0131 Mantar \u00c7orbas\u0131', desc: 'Tr\u00fcf mantar\u0131 ya\u011f\u0131, taze biberiye, cevizli kruton', price: 170, cat: 'entrees', tags: ['vegan'], photo: '' },
+                { id: 6, name: 'Beef Bourguignon', desc: 'Dana eti, k\u0131rm\u0131z\u0131 \u015farap sosu, mantar, arpac\u0131k so\u011fan', price: 420, cat: 'plats', tags: ['pop'], photo: '' },
+                { id: 7, name: 'Dana Bonfile', desc: 'Izgara bonfile, tr\u00fcf mantarl\u0131 pat\u00e9, sebze turlu', price: 450, cat: 'plats', tags: [], photo: '' },
+                { id: 8, name: 'Tavuk Supreme', desc: 'Kremal\u0131 mantar sos, ku\u015fkonmaz, patates graten', price: 340, cat: 'plats', tags: [], photo: '' },
+                { id: 9, name: 'Karidesli Risotto', desc: 'Arborio pirinci, beyaz \u015farap, karides, parmesan', price: 370, cat: 'plats', tags: ['pop'], photo: '' },
+                { id: 10, name: 'Patl\u0131can Moussaka', desc: 'Kıymal\u0131 har\u00e7, be\u015famel, domates sos, fesle\u011fen', price: 280, cat: 'plats', tags: [], photo: '' },
+                { id: 11, name: 'Nicoise Salatas\u0131', desc: 'Ton bal\u0131\u011f\u0131, ye\u015fil fasulye, ha\u015flanm\u0131\u015f yumurta, zeytin', price: 210, cat: 'salades', tags: [], photo: '' },
+                { id: 12, name: 'Roka Salatas\u0131', desc: 'Roka, parmesan telleri, \u00e7am f\u0131st\u0131\u011f\u0131, limon vinaigrette', price: 170, cat: 'salades', tags: ['vegan', 'new'], photo: '' },
+                { id: 13, name: "K\u0131z\u0131lc\u0131kl\u0131 Ke\u00e7i Peyniri Salatas\u0131", desc: 'Kızılcık, ceviz, bal-hardal sos', price: 190, cat: 'salades', tags: [], photo: '' },
+                { id: 14, name: "Akdeniz Ye\u015fillikleri", desc: 'Marul, roka, taze so\u011fan, nar, sumakl\u0131 sos', price: 150, cat: 'salades', tags: ['vegan'], photo: '' },
+                { id: 15, name: 'Comt\u00e9 Peyniri', desc: 'Olgun Comt\u00e9, bal, kayıs\u0131 marmelad\u0131', price: 240, cat: 'fromages', tags: [], photo: '' },
+                { id: 16, name: 'Roquefort Taba\u011f\u0131', desc: 'Mavi k\u00fcf peyniri, ceviz, taze \u00fcz\u00fcm, ballı kruton', price: 270, cat: 'fromages', tags: ['pop'], photo: '' },
+                { id: 17, name: 'Brie de Meaux', desc: 'Fırınlanm\u0131\u015f Brie, sar\u0131msak, biberiye, kızarm\u0131\u015f ekmek', price: 230, cat: 'fromages', tags: ['new'], photo: '' },
+                { id: 18, name: "Cr\u00e8me Br\u00fbl\u00e9e", desc: 'Vanilya \u00e7ekirdekli, karamelize \u015feker, taze meyve', price: 180, cat: 'desserts', tags: ['pop'], photo: '' },
+                { id: 19, name: 'Tarte Tatin', desc: 'Karamelize elma, vanilyal\u0131 dondurma, tar\u00e7\u0131n', price: 200, cat: 'desserts', tags: [], photo: '' },
+                { id: 20, name: '\u00c7ikolatal\u0131 Fondan', desc: 'Ak\u0131\u015fkan \u00e7ikolatal\u0131 kek, frambuazl\u0131 coulis', price: 220, cat: 'desserts', tags: ['pop'], photo: '' },
+                { id: 21, name: 'Limonlu Sorbet', desc: 'Ev yap\u0131m\u0131 limon sorbet, nane yapra\u011f\u0131, meringue', price: 130, cat: 'desserts', tags: ['vegan'], photo: '' },
+                { id: 22, name: 'K\u0131rm\u0131z\u0131 \u015earap (Kadeh)', desc: '\u015eato Margaux, 75cl', price: 280, cat: 'boissons', tags: [], photo: '' },
+                { id: 23, name: 'Beyaz \u015earap (Kadeh)', desc: 'Sancerre, 75cl, so\u011fuk servis', price: 240, cat: 'boissons', tags: [], photo: '' },
+                { id: 24, name: 'Espresso', desc: 'Double shot, \u0130talyan kavrum', price: 65, cat: 'boissons', tags: [], photo: '' },
+                { id: 25, name: 'Cappuccino', desc: 'S\u00fctl\u00fc k\u00f6p\u00fck, kakao tozu', price: 85, cat: 'boissons', tags: [], photo: '' },
+                { id: 26, name: 'Maden Suyu', desc: 'Lara, 330ml, limon dilimli', price: 45, cat: 'boissons', tags: [], photo: '' }
+            ]
+        };
+
+        var data, editingId = null, isAdmin = false;
+        var tempPhoto = '';
+        var collapsedCats = {};
+
+        function loadData() {
+            var saved = localStorage.getItem('qr-menu-editorial-data');
+            if (saved) { try { data = JSON.parse(saved); return; } catch (e) {} }
+            data = JSON.parse(JSON.stringify(defaultData));
+        }
+
+        function saveData() { localStorage.setItem('qr-menu-editorial-data', JSON.stringify(data)); }
+
+        function iconSvg(id) {
+            return SVG_ICONS[id] || SVG_ICONS.default;
+        }
+
+        function catIconSvg(key) {
+            return CAT_ICONS[key] || SVG_ICONS.default;
+        }
+
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('admin') === ADMIN_PASSWORD) {
+            isAdmin = true;
+            document.body.classList.add('admin-on');
+            showAdminBar();
+        }
+
+        function enterAdmin() {
+            window.location.search = 'admin=' + ADMIN_PASSWORD;
+        }
+
+        function showAdminBar() {
+            var bar = document.createElement('div');
+            bar.className = 'admin-bar';
+            bar.id = 'adminBar';
+            bar.innerHTML = '' +
+                '<span class="info">' + SVG_ICONS.lock + ' Y&ouml;netici Paneli</span>' +
+                '<div class="actions">' +
+                    '<button class="admin-btn admin-btn-primary" onclick="openAddModal()">' + SVG_ICONS.plus + ' &Uuml;r&uuml;n</button>' +
+                    '<button class="admin-btn admin-btn-ghost" onclick="openCatModal()">' + SVG_ICONS.grid + '</button>' +
+                    '<button class="admin-btn admin-btn-ghost" onclick="openSettings()">' + SVG_ICONS.settings + '</button>' +
+                    '<button class="admin-btn admin-btn-danger" onclick="exitAdmin()">' + SVG_ICONS.x + ' &Ccedil;ıkış</button>' +
+                '</div>';
+            document.body.appendChild(bar);
+            document.body.style.paddingBottom = '80px';
+        }
+
+        function exitAdmin() {
+            document.body.classList.remove('admin-on');
+            var bar = document.getElementById('adminBar');
+            if (bar) bar.remove();
+            document.body.style.paddingBottom = '40px';
+            var url = new URL(window.location);
+            url.searchParams.delete('admin');
+            window.history.replaceState({}, '', url);
+            isAdmin = false;
+        }
+
+        function showToast(msg) {
+            var t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._hide);
+            t._hide = setTimeout(function () { t.classList.remove('show'); }, 2500);
+        }
+
+        function renderAccordion() {
+            var el = document.getElementById('menu');
+            el.innerHTML = '';
+
+            data.categories.forEach(function (cat) {
+                var items = data.items.filter(function (item) { return item.cat === cat.id; });
+                if (items.length === 0) return;
+
+                var isCollapsed = collapsedCats[cat.id] === true;
+
+                var section = document.createElement('div');
+                section.className = 'category-section' + (isCollapsed ? ' collapsed' : '');
+                section.id = 'cat-' + cat.id;
+
+                var header = document.createElement('div');
+                header.className = 'category-header';
+                header.innerHTML = '' +
+                    '<div class="category-header-left">' +
+                        '<span class="category-header-icon">' + catIconSvg(cat.icon) + '</span>' +
+                        '<span class="category-header-name">' + cat.label + '</span>' +
+                    '</div>' +
+                    '<div style="display:flex;align-items:center;gap:10px">' +
+                        '<span class="category-header-count">' + items.length + '</span>' +
+                        '<span class="category-header-toggle">' + SVG_ICONS.chevron + '</span>' +
+                    '</div>';
+
+                header.addEventListener('click', function () {
+                    toggleCategory(cat.id);
+                });
+
+                var itemsContainer = document.createElement('div');
+                itemsContainer.className = 'category-items';
+
+                items.forEach(function (item, i) {
+                    var div = document.createElement('div');
+                    div.className = 'menu-item';
+                    div.style.animationDelay = (i * 0.04) + 's';
+                    div.dataset.id = item.id;
+
+                    var tagsHtml = '';
+                    (item.tags || []).forEach(function (t) {
+                        if (t === 'pop') tagsHtml += '<span class="tag tag-pop">' + SVG_ICONS.flame + ' Pop&uuml;ler</span>';
+                        else if (t === 'vegan') tagsHtml += '<span class="tag tag-vegan">' + SVG_ICONS.leaf + ' Vegan</span>';
+                        else if (t === 'new') tagsHtml += '<span class="tag tag-new">' + SVG_ICONS.star + ' Yeni</span>';
+                    });
+
+                    var ctrls = '';
+                    if (isAdmin) {
+                        ctrls = '<div class="admin-controls">' +
+                            '<button class="edit-btn" onclick="openEditModal(' + item.id + ')" title="D&uuml;zenle">' + SVG_ICONS.edit + '</button>' +
+                            '<button class="del-btn" onclick="deleteItem(' + item.id + ')" title="Sil">' + SVG_ICONS.trash + '</button>' +
+                        '</div>';
+                    }
+
+                    var imgHtml = catIconSvg(cat.icon);
+                    if (item.photo) imgHtml = '<img src="' + item.photo + '" alt="' + item.name + '" />';
+
+                    div.innerHTML = '' +
+                        ctrls +
+                        '<div class="menu-item-img">' + imgHtml + '</div>' +
+                        '<div class="menu-item-body">' +
+                            '<div class="menu-item-header">' +
+                                '<div class="menu-item-name">' + item.name + '</div>' +
+                                '<div class="menu-item-price">' + item.price + '&#8378;</div>' +
+                            '</div>' +
+                            (item.desc ? '<div class="menu-item-desc">' + item.desc + '</div>' : '') +
+                            (tagsHtml ? '<div class="menu-item-tags">' + tagsHtml + '</div>' : '') +
+                        '</div>';
+
+                    itemsContainer.appendChild(div);
+                });
+
+                section.appendChild(header);
+                section.appendChild(itemsContainer);
+                el.appendChild(section);
+            });
+        }
+
+        function toggleCategory(id) {
+            if (collapsedCats[id]) delete collapsedCats[id];
+            else collapsedCats[id] = true;
+            renderAccordion();
+        }
+
+        function renderAll() {
+            var rd = data.restaurant || 'Maison Blanche';
+            document.getElementById('restaurantName').textContent = rd;
+            document.getElementById('headerTitle').textContent = rd;
+            var logoEl = document.getElementById('headerLogo');
+            logoEl.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>';
+            document.getElementById('restaurantDesc').textContent = data.desc || '';
+
+            var addrEl = document.getElementById('footerAddress');
+            var addrSpan = addrEl.querySelector('span');
+            addrSpan.textContent = data.address || '';
+            addrEl.href = 'https://maps.google.com?q=' + encodeURIComponent(data.address || '');
+
+            var phoneEl = document.getElementById('footerPhone');
+            var phoneSpan = phoneEl.querySelector('span');
+            phoneSpan.textContent = data.phone || '';
+            phoneEl.href = 'tel:' + (data.phone || '');
+
+            document.getElementById('footerCopy').textContent = '\u00a9 ' + rd;
+
+            var social = document.getElementById('footerSocial');
+            social.innerHTML = '';
+            if (data.instagram && data.instagram !== '#') {
+                var a = document.createElement('a');
+                a.href = data.instagram; a.target = '_blank'; a.title = 'Instagram';
+                a.innerHTML = SVG_ICONS.instagram;
+                social.appendChild(a);
+            }
+            if (data.whatsapp && data.whatsapp !== '#') {
+                var a = document.createElement('a');
+                a.href = data.whatsapp; a.target = '_blank'; a.title = 'WhatsApp';
+                a.innerHTML = SVG_ICONS.whatsapp;
+                social.appendChild(a);
+            }
+            if (data.address) {
+                var a = document.createElement('a');
+                a.href = 'https://maps.google.com?q=' + encodeURIComponent(data.address);
+                a.target = '_blank'; a.title = 'Konum';
+                a.innerHTML = SVG_ICONS.pin;
+                social.appendChild(a);
+            }
+
+            renderAccordion();
+        }
+
+        function populateCatSelect() {
+            var sel = document.getElementById('fieldCat');
+            sel.innerHTML = '';
+            data.categories.forEach(function (c) {
+                var opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.label;
+                sel.appendChild(opt);
+            });
+        }
+
+        function setPhotoPreview(src) {
+            var wrap = document.getElementById('photoPreview');
+            if (src) {
+                wrap.innerHTML = '<img src="' + src + '" />';
+                document.getElementById('clearPhoto').style.display = 'inline-block';
+            } else {
+                wrap.innerHTML = SVG_ICONS.camera;
+                document.getElementById('clearPhoto').style.display = 'none';
+            }
+        }
+
+        function clearPhoto() {
+            tempPhoto = '';
+            setPhotoPreview('');
+            document.getElementById('photoInput').value = '';
+        }
+
+        document.getElementById('photoInput').addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function (ev) {
+                var img = new Image();
+                img.onload = function () {
+                    var canvas = document.createElement('canvas');
+                    var max = 400;
+                    var w = img.width, h = img.height;
+                    if (w > h) { if (w > max) { h *= max / w; w = max; } }
+                    else { if (h > max) { w *= max / h; h = max; } }
+                    canvas.width = w; canvas.height = h;
+                    var ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    tempPhoto = canvas.toDataURL('image/jpeg', 0.8);
+                    setPhotoPreview(tempPhoto);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function openAddModal() {
+            editingId = null; tempPhoto = '';
+            document.getElementById('modalTitle').innerHTML = SVG_ICONS.plus + ' &Uuml;r&uuml;n Ekle';
+            document.getElementById('fieldName').value = '';
+            document.getElementById('fieldDesc').value = '';
+            document.getElementById('fieldPrice').value = '';
+            document.getElementById('fieldEmoji').value = '\uD83C\uDF74';
+            populateCatSelect();
+            document.getElementById('fieldCat').value = data.categories[0]?.id || '';
+            document.getElementById('fieldTags').selectedIndex = -1;
+            setPhotoPreview('');
+            document.getElementById('photoInput').value = '';
+            document.getElementById('saveBtn').textContent = 'Ekle';
+            document.getElementById('saveBtn').onclick = saveItem;
+            document.getElementById('modalOverlay').classList.add('open');
+        }
+
+        function openEditModal(id) {
+            var item = data.items.find(function (i) { return i.id === id; });
+            if (!item) return;
+            editingId = id; tempPhoto = '';
+            document.getElementById('modalTitle').innerHTML = SVG_ICONS.edit + ' &Uuml;r&uuml;n D&uuml;zenle';
+            document.getElementById('fieldName').value = item.name;
+            document.getElementById('fieldDesc').value = item.desc || '';
+            document.getElementById('fieldPrice').value = item.price;
+            document.getElementById('fieldEmoji').value = item.emoji || '\uD83C\uDF74';
+            populateCatSelect();
+            document.getElementById('fieldCat').value = item.cat;
+            var sel = document.getElementById('fieldTags');
+            for (var i = 0; i < sel.options.length; i++) {
+                sel.options[i].selected = (item.tags || []).indexOf(sel.options[i].value) !== -1;
+            }
+            if (item.photo) { tempPhoto = item.photo; setPhotoPreview(item.photo); }
+            else setPhotoPreview('');
+            document.getElementById('saveBtn').textContent = 'Kaydet';
+            document.getElementById('saveBtn').onclick = saveItem;
+            document.getElementById('modalOverlay').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('open');
+        }
+
+        function saveItem() {
+            var name = document.getElementById('fieldName').value.trim();
+            var desc = document.getElementById('fieldDesc').value.trim();
+            var price = parseFloat(document.getElementById('fieldPrice').value);
+            var cat = document.getElementById('fieldCat').value;
+            var emoji = document.getElementById('fieldEmoji').value.trim() || '\uD83C\uDF74';
+            var sel = document.getElementById('fieldTags');
+            var tags = [];
+            for (var i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].selected) tags.push(sel.options[i].value);
+            }
+
+            if (!name || isNaN(price)) { showToast('&Uuml;r&uuml;n adı ve fiyat zorunludur'); return; }
+
+            if (editingId) {
+                var item = data.items.find(function (i) { return i.id === editingId; });
+                if (item) {
+                    item.name = name;
+                    item.desc = desc;
+                    item.price = price;
+                    item.cat = cat;
+                    item.emoji = emoji;
+                    item.tags = tags;
+                    if (tempPhoto) item.photo = tempPhoto;
+                }
+                showToast('&Uuml;r&uuml;n g&uuml;ncellendi');
+            } else {
+                var maxId = 0;
+                data.items.forEach(function (i) { if (i.id > maxId) maxId = i.id; });
+                data.items.push({ id: maxId + 1, name: name, desc: desc, price: price, cat: cat, emoji: emoji, tags: tags, photo: tempPhoto || '' });
+                showToast('&Uuml;r&uuml;n eklendi');
+            }
+
+            saveData();
+            closeModal();
+            renderAccordion();
+        }
+
+        function deleteItem(id) {
+            if (!confirm('Bu &uuml;r&uuml;n&uuml; silmek istediğinize emin misiniz?')) return;
+            data.items = data.items.filter(function (i) { return i.id !== id; });
+            saveData();
+            renderAccordion();
+            showToast('&Uuml;r&uuml;n silindi');
+        }
+
+        var editingCatId = null;
+
+        function openCatModal() {
+            editingCatId = null;
+            document.getElementById('catIconInput').value = '\uD83C\uDFB6';
+            document.getElementById('catNameInput').value = '';
+            renderCatList();
+            document.getElementById('catModalOverlay').classList.add('open');
+        }
+
+        function closeCatModal() {
+            editingCatId = null;
+            document.getElementById('catModalOverlay').classList.remove('open');
+        }
+
+        function renderCatList() {
+            var el = document.getElementById('catList');
+            el.innerHTML = '';
+            data.categories.forEach(function (c) {
+                var count = data.items.filter(function (i) { return i.cat === c.id; }).length;
+                var div = document.createElement('div');
+                div.className = 'cat-list-item' + (editingCatId === c.id ? ' edit-mode' : '');
+                div.dataset.catId = c.id;
+
+                if (editingCatId === c.id) {
+                    div.innerHTML = '' +
+                        '<div class="cat-edit-row">' +
+                            '<input class="cat-edit-icon" id="catEditIcon" value="' + c.icon + '" maxlength="2" />' +
+                            '<input class="cat-edit-name" id="catEditName" value="' + escHtml(c.label) + '" />' +
+                            '<button class="cat-edit-save" onclick="saveCatEdit()" title="Kaydet">' + SVG_ICONS.check + '</button>' +
+                            '<button class="cat-edit-cancel" onclick="cancelCatEdit()" title="İptal">' + SVG_ICONS.x + '</button>' +
+                        '</div>';
+                } else {
+                    div.innerHTML = '' +
+                        '<div class="cat-list-info">' +
+                            '<span class="cat-list-icon">' + catIconSvg(c.icon) + '</span>' +
+                            '<div>' +
+                                '<div class="cat-list-name">' + escHtml(c.label) + '</div>' +
+                                '<div class="cat-list-count">' + count + ' &uuml;r&uuml;n</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="cat-list-actions">' +
+                            '<button class="cat-edit-btn" onclick="editCat(\'' + c.id + '\')" title="D&uuml;zenle">' + SVG_ICONS.edit + '</button>' +
+                            '<button class="cat-del-btn" onclick="deleteCat(\'' + c.id + '\')" title="Sil">' + SVG_ICONS.trash + '</button>' +
+                        '</div>';
+                }
+
+                el.appendChild(div);
+            });
+        }
+
+        function editCat(id) {
+            editingCatId = id;
+            renderCatList();
+        }
+
+        function saveCatEdit() {
+            var icon = document.getElementById('catEditIcon').value.trim();
+            var name = document.getElementById('catEditName').value.trim();
+            if (!icon || !name) { showToast('Emoji ve isim gerekli'); return; }
+
+            var cat = data.categories.find(function (c) { return c.id === editingCatId; });
+            if (cat) {
+                cat.icon = icon;
+                cat.label = name;
+            }
+            editingCatId = null;
+            saveData();
+            renderCatList();
+            renderAccordion();
+            showToast('Kategori g&uuml;ncellendi');
+        }
+
+        function cancelCatEdit() {
+            editingCatId = null;
+            renderCatList();
+        }
+
+        function saveCategory() {
+            var icon = document.getElementById('catIconInput').value.trim();
+            var name = document.getElementById('catNameInput').value.trim();
+            if (!icon || !name) { showToast('Emoji ve isim gerekli'); return; }
+
+            var id = slugify(name);
+            if (data.categories.find(function (c) { return c.id === id; })) {
+                var suffix = 1;
+                while (data.categories.find(function (c) { return c.id === id + '-' + suffix; })) suffix++;
+                id = id + '-' + suffix;
+            }
+            data.categories.push({ id: id, label: name, icon: icon });
+            collapsedCats[id] = true;
+
+            document.getElementById('catIconInput').value = '\uD83C\uDFB6';
+            document.getElementById('catNameInput').value = '';
+            saveData();
+            renderCatList();
+            renderAccordion();
+            showToast('Kategori eklendi');
+        }
+
+        function deleteCat(id) {
+            var count = data.items.filter(function (i) { return i.cat === id; }).length;
+            if (count > 0) {
+                showToast('Bu kategoride ' + count + ' &uuml;r&uuml;n var, &ouml;nce &uuml;r&uuml;nleri taşıyın');
+                return;
+            }
+            var cat = data.categories.find(function (c) { return c.id === id; });
+            if (!cat) return;
+            if (!confirm('"' + cat.label + '" kategorisini silmek istediğinize emin misiniz?')) return;
+            data.categories = data.categories.filter(function (c) { return c.id !== id; });
+            delete collapsedCats[id];
+            saveData();
+            renderCatList();
+            renderAccordion();
+            showToast('Kategori silindi');
+        }
+
+        function escHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        function slugify(str) {
+            return str.toLowerCase()
+                .replace(/[ı]/g, 'i').replace(/[ğ]/g, 'g').replace(/[ü]/g, 'u')
+                .replace(/[ş]/g, 's').replace(/[ö]/g, 'o').replace(/[ç]/g, 'c')
+                .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        }
+
+        function openSettings() {
+            var name = prompt('Restoran adı:', data.restaurant);
+            if (name !== null && name.trim()) data.restaurant = name.trim();
+            var desc = prompt('A&ccedil;ıklama (kısa):', data.desc);
+            if (desc !== null) data.desc = desc.trim();
+            var addr = prompt('Adres:', data.address);
+            if (addr !== null) data.address = addr.trim();
+            var phone = prompt('Telefon:', data.phone);
+            if (phone !== null) data.phone = phone.trim();
+            var insta = prompt('Instagram linki:', data.instagram);
+            if (insta !== null) data.instagram = insta.trim();
+            var wp = prompt('WhatsApp linki:', data.whatsapp);
+            if (wp !== null) data.whatsapp = wp.trim();
+            saveData();
+            renderAll();
+            showToast('Ayarlar kaydedildi');
+        }
+
+        (function () {
+            var el = document.getElementById('restaurantName');
+            if (!el) return;
+            var timer = null;
+            var HOLD_MS = 3000;
+
+            function start(e) {
+                if (isAdmin) return;
+                el.classList.add('long-press');
+                timer = setTimeout(function () {
+                    timer = null;
+                    window.location.search = 'admin=' + ADMIN_PASSWORD;
+                }, HOLD_MS);
+            }
+
+            function cancel() {
+                el.classList.remove('long-press');
+                if (timer) { clearTimeout(timer); timer = null; }
+            }
+
+            el.addEventListener('mousedown', start);
+            el.addEventListener('mouseup', cancel);
+            el.addEventListener('mouseleave', cancel);
+            el.addEventListener('touchstart', start, { passive: true });
+            el.addEventListener('touchend', cancel);
+            el.addEventListener('touchcancel', cancel);
+        })();
+
+        loadData();
+        data.categories.forEach(function (c) { collapsedCats[c.id] = true; });
+        renderAll();
+
+        document.getElementById('modalOverlay').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.getElementById('catModalOverlay').addEventListener('click', function (e) {
+            if (e.target === this) closeCatModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { closeModal(); closeCatModal(); }
+        });
+    </script>
+</body>
+</html>

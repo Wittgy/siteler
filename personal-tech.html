@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaan Y&#x131;lmaz &#8226; Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a14;
+      --surface: rgba(26,26,46,0.6);
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --accent-p: #6366f1;
+      --accent-c: #06b6d4;
+      --accent-pink: #d946ef;
+      --border: rgba(99,102,241,0.15);
+      --radius: 16px;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-display);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.08), transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed; bottom: -200px; left: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.06), transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* header */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,20,0.8);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1000px; margin: 0 auto; padding: 14px 24px;
+    }
+    .logo {
+      font-family: var(--font-mono);
+      font-size: 15px; font-weight: 500;
+      color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo span { color: var(--accent-c); }
+    .logo::before {
+      content: '$'; color: var(--accent-p); font-weight: 600;
+    }
+    .nav { display: flex; gap: 32px; }
+    .nav a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 13px; font-weight: 500; transition: color 0.2s;
+      font-family: var(--font-mono); letter-spacing: -0.2px;
+    }
+    .nav a:hover { color: var(--accent-c); }
+
+    /* hero */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 0 80px;
+    }
+    .terminal-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 6px;
+      background: rgba(99,102,241,0.1);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--accent-c); margin-bottom: 24px;
+    }
+    .terminal-badge .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-c);
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+    .hero h1 span.blue { color: var(--accent-p); }
+    .hero h1 span.cyan { color: var(--accent-c); }
+    .hero p {
+      font-size: 17px; color: var(--text-muted);
+      max-width: 540px; line-height: 1.7;
+      margin-bottom: 32px; font-weight: 400;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px; border-radius: 10px; border: none;
+      background: linear-gradient(135deg, var(--accent-p), var(--accent-pink));
+      color: #fff; font-family: var(--font-display);
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      text-decoration: none; transition: all 0.25s ease;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(99,102,241,0.35); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px; border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface); color: var(--text);
+      font-family: var(--font-display); font-size: 14px; font-weight: 500;
+      cursor: pointer; text-decoration: none;
+      backdrop-filter: blur(12px); transition: all 0.25s ease;
+    }
+    .btn-ghost:hover { border-color: var(--accent-p); background: rgba(99,102,241,0.1); }
+
+    /* glass cards */
+    .section { padding: 100px 0; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 12px; color: var(--accent-c);
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800; letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+    .section-title .hl { color: var(--accent-p); }
+
+    .glass-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px; margin-top: 40px;
+    }
+    .glass-card {
+      padding: 28px; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(99,102,241,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .glass-card .icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .glass-card .icon.purple { background: rgba(99,102,241,0.15); color: var(--accent-p); }
+    .glass-card .icon.cyan { background: rgba(6,182,212,0.15); color: var(--accent-c); }
+    .glass-card .icon.pink { background: rgba(217,70,239,0.15); color: var(--accent-pink); }
+    .glass-card .icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .glass-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .glass-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    /* code block */
+    .code-block {
+      margin-top: 40px; border-radius: var(--radius);
+      background: rgba(10,10,20,0.8); border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .code-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+    }
+    .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .code-dot.r { background: #ef4444; }
+    .code-dot.y { background: #eab308; }
+    .code-dot.g { background: #22c55e; }
+    .code-title { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); margin-left: 8px; }
+    .code-body {
+      padding: 20px 24px; overflow-x: auto;
+      font-family: var(--font-mono); font-size: 13px; line-height: 1.8;
+      color: var(--text-muted);
+    }
+    .code-body .kw { color: var(--accent-pink); }
+    .code-body .fn { color: var(--accent-c); }
+    .code-body .str { color: #22c55e; }
+    .code-body .cm { color: #475569; font-style: italic; }
+    .code-body .num { color: var(--accent-p); }
+
+    /* work */
+    .work-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px; margin-top: 40px;
+    }
+    .work-card {
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      backdrop-filter: blur(16px); transition: all 0.3s ease;
+    }
+    .work-card:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-4px); }
+    .work-card-top {
+      height: 140px; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 40px; font-weight: 600;
+    }
+    .work-card-top.p1 { background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(217,70,239,0.1)); color: rgba(99,102,241,0.3); }
+    .work-card-top.p2 { background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(99,102,241,0.1)); color: rgba(6,182,212,0.3); }
+    .work-card-top.p3 { background: linear-gradient(135deg, rgba(217,70,239,0.2), rgba(6,182,212,0.1)); color: rgba(217,70,239,0.3); }
+    .work-card-body { padding: 20px; }
+    .work-card-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .work-card-body p { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .work-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+    .work-tag {
+      padding: 2px 10px; border-radius: 4px;
+      font-family: var(--font-mono); font-size: 10px;
+      background: rgba(99,102,241,0.1); color: var(--accent-p);
+      border: 1px solid rgba(99,102,241,0.15);
+    }
+
+    /* contact */
+    .contact-glass {
+      margin-top: 40px; padding: 48px; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      backdrop-filter: blur(16px); text-align: center;
+    }
+    .contact-glass h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    .contact-glass p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .contact-channels { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .contact-channels a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      background: rgba(10,10,20,0.6); border: 1px solid var(--border);
+      color: var(--text); text-decoration: none;
+      font-size: 13px; font-weight: 500; transition: all 0.2s;
+    }
+    .contact-channels a:hover { border-color: var(--accent-p); background: rgba(99,102,241,0.1); }
+    .contact-channels a svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0; text-align: center;
+    }
+    .footer p { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      .nav { display: none; }
+      .contact-glass { padding: 28px 20px; }
+      .section { padding: 60px 0; }
+      .glass-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo"><span>~</span> kaan.dev</div>
+      <nav class="nav">
+        <a href="#services">/services</a>
+        <a href="#work">/work</a>
+        <a href="#contact">/contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="terminal-badge">
+        <span class="dot"></span>
+        <span>~/portfolio $ <span style="color:#e2e8f0">system ready</span></span>
+      </div>
+      <h1>Kaan <span class="blue">Y&#x131;lmaz</span><br /><span class="cyan">Full Stack Developer</span></h1>
+      <p>Modern web teknolojileriyle &#xF6;l&#xE7;eklenebilir, y&#xFC;ksek performansl&#x131; uygulamalar geli&#x15F;tiriyorum. Temiz kod, sa&#x11F;lam mimari.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          &#x130;leti&#x15F;im
+        </a>
+        <a href="#work" class="btn-ghost">Projeler</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-label">// services</div>
+      <h2 class="section-title">Uzmanl&#x131;k <span class="hl">Alanlar&#x131;m</span></h2>
+
+      <div class="glass-grid">
+        <div class="glass-card">
+          <div class="icon purple">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <h3>Front-end</h3>
+          <p>React, Next.js ve Vue.js ile modern, responsive kullan&#x131;c&#x131; aray&#xFC;zleri geli&#x15F;tiriyorum.</p>
+        </div>
+        <div class="glass-card">
+          <div class="icon cyan">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Back-end &amp; API</h3>
+          <p>Node.js, Python ve Go ile RESTful API'ler, mikroservisler ve sunucu altyap&#x131;lar&#x131; kuruyorum.</p>
+        </div>
+        <div class="glass-card">
+          <div class="icon pink">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>DevOps &amp; Cloud</h3>
+          <p>Docker, AWS ve CI/CD pipeline'lar&#x131; ile u&#xE7;tan uca da&#x11F;&#x131;t&#x131;m s&#xFC;re&#xE7;leri y&#xF6;netiyorum.</p>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dot r"></div>
+          <div class="code-dot y"></div>
+          <div class="code-dot g"></div>
+          <div class="code-title">~/tech-stack.js</div>
+        </div>
+        <div class="code-body">
+          <span class="kw">const</span> stack = {<br />
+          &nbsp;&nbsp;frontend: [<span class="str">'React'</span>, <span class="str">'Next.js'</span>, <span class="str">'Vue'</span>, <span class="str">'TypeScript'</span>],<br />
+          &nbsp;&nbsp;backend:&nbsp;&nbsp;[<span class="str">'Node.js'</span>, <span class="str">'Python'</span>, <span class="str">'Go'</span>, <span class="str">'PostgreSQL'</span>],<br />
+          &nbsp;&nbsp;cloud:&nbsp;&nbsp;&nbsp;&nbsp;[<span class="str">'AWS'</span>, <span class="str">'Docker'</span>, <span class="str">'Kubernetes'</span>, <span class="str">'Redis'</span>],<br />
+          &nbsp;&nbsp;tools:&nbsp;&nbsp;&nbsp;&nbsp;[<span class="str">'Git'</span>, <span class="str">'Figma'</span>, <span class="str">'Linux'</span>, <span class="str">'CI/CD'</span>]<br />
+          };<br />
+          <br />
+          <span class="kw">export</span> <span class="kw">default</span> stack;
+          <span class="cm">// &#x2705; production ready</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-label">// projects</div>
+      <h2 class="section-title">Son <span class="hl">Projeler</span></h2>
+
+      <div class="work-grid">
+        <a class="work-card" href="#">
+          <div class="work-card-top p1">.api</div>
+          <div class="work-card-body">
+            <h3>FlowAPI</h3>
+            <p>Y&#xFC;ksek trafikli e-ticaret platformlar&#x131; i&#xE7;in API gateway</p>
+            <div class="work-tags">
+              <span class="work-tag">Node.js</span>
+              <span class="work-tag">Redis</span>
+              <span class="work-tag">Docker</span>
+            </div>
+          </div>
+        </a>
+        <a class="work-card" href="#">
+          <div class="work-card-top p2">.app</div>
+          <div class="work-card-body">
+            <h3>InsightBoard</h3>
+            <p>Ger&#xE7;ek zamanl&#x131; veri analizi dashboard'u</p>
+            <div class="work-tags">
+              <span class="work-tag">React</span>
+              <span class="work-tag">D3.js</span>
+              <span class="work-tag">WebSocket</span>
+            </div>
+          </div>
+        </a>
+        <a class="work-card" href="#">
+          <div class="work-card-top p3">.cli</div>
+          <div class="work-card-body">
+            <h3>DeployBot</h3>
+            <p>Tek komutla sunucu kurulumu yapan CLI arac&#x131;</p>
+            <div class="work-tags">
+              <span class="work-tag">Go</span>
+              <span class="work-tag">gRPC</span>
+              <span class="work-tag">CLI</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-label">// contact</div>
+      <h2 class="section-title">&#x130;leti&#x15F;ime <span class="hl">Ge&#xE7;in</span></h2>
+
+      <div class="contact-glass">
+        <h3>Birlikte &#xE7;al&#x131;&#x15F;al&#x131;m</h3>
+        <p>A&#xE7;&#x131;k kaynak projeler, freelance i&#x15F;ler veya teknoloji sohbetleri i&#xE7;in her zaman ula&#x15F;abilirsiniz.</p>
+        <div class="contact-channels">
+          <a href="mailto:kaan@example.com">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            kaan@example.com
+          </a>
+          <a href="https://github.com" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <a href="https://linkedin.com" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&#xA9; 2026 Kaan Y&#x131;lmaz &#8226; built with &#x2661;</p>
+    <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">Burak Biçer Tasarım Atlası · <a href="https://www.instagram.com/captainbicer/" target="_blank" style="color:inherit;text-decoration:underline">@captainbicer</a></p>
+  </footer>
+
+</body>
+</html>
